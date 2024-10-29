@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
 // import {  ClerkProvider} from '@clerk/nextjs'
 import "./globals.css";
-import Navbar from "@/components/common/Navbar/NavbarDesktop";
+import NavbarMain from "@/components/common/Navbar/NavbarDesktop";
 const grotesk = Space_Grotesk({
   weight: ["400", "700"],
   style: ["normal"],
@@ -25,7 +25,7 @@ export default function RootLayout({
 
     <html lang="en">
       <body className={`${grotesk.className} antialiased relative`}>
-        <Navbar />
+        <NavbarMain />
         {children}
       </body>
     </html>
