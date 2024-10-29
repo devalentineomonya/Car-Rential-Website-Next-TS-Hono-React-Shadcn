@@ -1,18 +1,13 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
-import {  ClerkProvider} from '@clerk/nextjs'
+import { Space_Grotesk } from "next/font/google";
+// import {  ClerkProvider} from '@clerk/nextjs'
 import "./globals.css";
-import Navbar from "@/components/common/Navbar/Navbar";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+import Navbar from "@/components/common/Navbar/NavbarDesktop";
+const grotesk = Space_Grotesk({
+  weight: ["400", "700"],
+  style: ["normal"],
+  subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -26,17 +21,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
+    // <ClerkProvider>
 
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <Navbar/>
+      <body className={`${grotesk.className} antialiased relative`}>
+        <Navbar />
         {children}
       </body>
     </html>
-    </ClerkProvider>
-
+    // </ClerkProvider>
   );
 }
