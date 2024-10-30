@@ -9,7 +9,8 @@ export const navigationLinks  = [
     link:"/cars",
 },
 {
-    label:"About",link:"/about"
+    label:"About",
+    link:"/about"
 },
 {
     label:"Services",
@@ -18,5 +19,13 @@ export const navigationLinks  = [
 {
     label:"Pricing",
     link:"/pricing",
+},
+{
+    label:"FAQ's",
+    link:"/faq",
+},
+{
+    label:"Contact",
+    link:"/contact",
 }
 ]

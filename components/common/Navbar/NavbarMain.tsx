@@ -2,6 +2,7 @@ import React from "react";
 import NavbarHeader from "./NavbarHeader";
 import NavbarDesktop from "./NavbarDesktop";
 import NavbarCenter from "./NavbarCenter";
+import NavbarMobile from "./NavbarMobile";
 
 const NavbarMain = () => {
   return (
@@ -9,6 +10,7 @@ const NavbarMain = () => {
       <NavbarHeader />
       <NavbarCenter />
       <NavbarDesktop />
+      <NavbarMobile />
     </>
   );
 };
