@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
 // import {  ClerkProvider} from '@clerk/nextjs'
+import { Toaster } from "@/components/ui/sonner"
 import "./globals.css";
 import NavbarMain from "@/components/common/Navbar/NavbarMain";
 import Footer  from "@/components/common/Footer/Footer";
@@ -29,6 +30,7 @@ export default function RootLayout({
         <NavbarMain />
         {children}
         <Footer />
+        <Toaster />
       </body>
     </html>
     // </ClerkProvider>
