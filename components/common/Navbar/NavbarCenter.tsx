@@ -34,7 +34,7 @@ const NavbarCenter = () => {
             <Button
               asChild
               size="sm"
-              className="px-3 ml-3 bg-slate-900 rounded-md text-white shadow-md"
+              className="px-3 ml-3 bg-background rounded-md text-foreground shadow-md"
             >
               <div className="flex gap-x-1 items-center">
                 <MdOutlineMarkEmailUnread />

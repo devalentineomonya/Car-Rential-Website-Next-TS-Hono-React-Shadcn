@@ -22,9 +22,9 @@ import Link from "next/link";
 const NavbarMobile = () => {
   return (
     <Sheet>
-      <header className="w-full flex items-center justify-center bg-slate-950 h-10 md:hidden px-2 sticky top-0">
+      <header className="w-full flex items-center justify-center bg-background h-10 md:hidden px-2 sticky top-0">
         <SheetTrigger asChild className="w-full max-w-6xl ">
-          <div className="w-full flex items-center justify-between text-white hover:text-gray-100 hover:border-gray-200">
+          <div className="w-full flex items-center justify-between text-foreground hover:text-gray-100 hover:border-gray-200">
             <Button
               variant="ghost"
               size="icon"
@@ -62,7 +62,7 @@ const NavbarMobile = () => {
       </header>
       <SheetContent
         side="left"
-        className="bg-slate-950 border-r-transparent shadow-md text-white"
+        className="bg-background border-r-transparent shadow-md text-foreground"
       >
         <SheetHeader>
           <SheetTitle>Are you absolutely sure?</SheetTitle>

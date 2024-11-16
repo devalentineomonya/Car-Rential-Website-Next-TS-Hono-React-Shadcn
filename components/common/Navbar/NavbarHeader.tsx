@@ -7,7 +7,7 @@ import { PiXLogoBold, PiYoutubeLogoFill } from "react-icons/pi";
 import Link from "next/link";
 const NavbarHeader = () => {
   return (
-    <header className="bg-slate-950 text-white h-10 px-2 ">
+    <header className="bg-background text-foreground h-10 px-2 ">
       <MainLayout>
         <div className="w-full h-full flex items-center justify-between">
           <div className="text-xs flex items-center justify-between">

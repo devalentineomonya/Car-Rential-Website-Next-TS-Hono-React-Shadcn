@@ -1,10 +1,9 @@
-import { Button } from "@/components/ui/button";
+import Hero from "@/features/home/widgets/Hero";
 
 export default function Home() {
   return (
-    <div className="h-[1000px]">
-
-      <Button variant="secondary">Console.dir</Button>
-    </div>
+    <>
+<Hero/>
+    </>
   );
 }
