@@ -29,12 +29,14 @@ const HeroFormDateTimePicker = ({
   selectedDate,
   placeholder,
   onDateChange,
+  error,
   time,
   onTimeChange,
 }: {
   selectedDate: Date | null;
   onDateChange: (date: Date) => void;
   time: string;
+  error?: string;
   placeholder: string;
   onTimeChange: (time: string) => void;
 }) => {
@@ -46,7 +48,8 @@ const HeroFormDateTimePicker = ({
     <FormField
       name="datetime"
       render={({ field }) => (
-        <FormItem className="flex items-center gap-x-3">
+        <>
+        <FormItem className="flex items-center max-sm:flex-col max-md:gap-y-8 gap-x-3">
           <FormLabel className="sr-only">Date & Time</FormLabel>
           <Popover open={isOpen} onOpenChange={setIsOpen}>
             <PopoverTrigger asChild>
@@ -134,8 +137,9 @@ const HeroFormDateTimePicker = ({
               </ScrollArea>
             </SelectContent>
           </Select>
-          <FormMessage />
         </FormItem>
+          {error && <FormMessage>{error}</FormMessage>}
+        </>
       )}
     />
   );

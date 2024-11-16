@@ -29,7 +29,7 @@ const Hero = () => {
   const images = [carSix, carSeven, carEight];
 const [ride, setRide] = useState("ride");
   return (
-    <section className="relative isolate h-[70dvh]">
+    <section className="transition-all ease-in-out duration-300 relative isolate h-[55dvh] xl:h-[70dvh] px-4">
       <div className="absolute top-0 left-0 w-full h-full -z-[8] bg-background/70"></div>
       <div className="absolute top-0 left-0 w-full h-full -z-10">
         <Carousel
@@ -42,7 +42,7 @@ const [ride, setRide] = useState("ride");
         >
           <CarouselContent>
             {images.map((image, index) => (
-              <CarouselItem key={index} className="w-full h-[70dvh] relative">
+              <CarouselItem key={index} className="w-full transition-all ease-in-out duration-300  h-[55dvh] xl:h-[70dvh] relative">
                 <Image
                   quality={100}
                   src={image}
@@ -56,8 +56,8 @@ const [ride, setRide] = useState("ride");
         </Carousel>
       </div>
       <MainLayout>
-        <div className="flex  pt-12">
-          <Card className="flex-1 max-w-[450px] bg-background/40 backdrop-blur-md">
+        <div className="flex pt-12">
+          <Card className="flex-1 max-md:min-h-4/5 max-md:h-fit max-w-full md:max-w-[450px] bg-background/50 backdrop-blur-md rounded-md">
             <CardHeader>
               <CardTitle className="text-foreground text-4xl font-semibold">
                 {messages[ride].message}
@@ -67,7 +67,7 @@ const [ride, setRide] = useState("ride");
               <HeroForm setRide={setRide} />
             </CardContent>
           </Card>
-          <div className="flex-1"></div>
+          <div className="flex-1 max-md:hidden"></div>
         </div>
       </MainLayout>
     </section>
