@@ -29,10 +29,11 @@ const Hero = () => {
   const images = [carSix, carSeven, carEight];
 const [ride, setRide] = useState("ride");
   return (
-    <section className="transition-all ease-in-out duration-300 relative isolate h-[55dvh] xl:h-[70dvh] px-4">
+    <section className="transition-all ease-in-out duration-300 relative isolate h-fit min-h-[calc(55dvh-3rem)] xl:min-h-[calc(70dvh-3rem)] px-4 pb-12">
       <div className="absolute top-0 left-0 w-full h-full -z-[8] bg-background/70"></div>
       <div className="absolute top-0 left-0 w-full h-full -z-10">
         <Carousel
+        className="h-full"
           plugins={[
             Autoplay({
               delay: 4000,
@@ -40,9 +41,9 @@ const [ride, setRide] = useState("ride");
             Fade(),
           ]}
         >
-          <CarouselContent>
+          <CarouselContent className="h-full">
             {images.map((image, index) => (
-              <CarouselItem key={index} className="w-full transition-all ease-in-out duration-300  h-[55dvh] xl:h-[70dvh] relative">
+              <CarouselItem key={index} className="w-full transition-all ease-in-out duration-300  h-full relative">
                 <Image
                   quality={100}
                   src={image}

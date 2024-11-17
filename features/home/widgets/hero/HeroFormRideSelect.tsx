@@ -27,15 +27,15 @@ const HeroFormRideSelect = ({
         key={ride.value}
         htmlFor={ride.value}
         className={`flex items-center justify-center flex-col cursor-pointer ${
-          selectedRide === ride.value ? "text-white" : "text-gray-300"
+          selectedRide === ride.value ? "text-black dark:text-white " : "text-gray-600 dark:text-gray-300"
         }`}
       >
         <RadioGroupItem id={ride.value} value={ride.value} hidden aria-hidden />
         <span
           className={`p-3 rounded-md ${
             selectedRide === ride.value
-              ? "bg-gray-200 text-black"
-              : "bg-gray-500"
+              ? "bg-gray-800 dark:bg-gray-200 dark:text-black text-white "
+              : "bg-gray-300 dark:bg-gray-500"
           }`}
         >
           {ride.icon}

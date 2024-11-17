@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
-// import {  ClerkProvider} from '@clerk/nextjs'
+// import {  ClerkProvider, SignInButton, SignedIn, SignedOut, UserButton} from '@clerk/nextjs'
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 import NavbarMain from "@/components/common/Navbar/NavbarMain";
@@ -29,12 +29,21 @@ export default function RootLayout({
 
     <html lang="en">
       <body className={`${grotesk.className} antialiased relative`}>
+    
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
+          {/* <header>
+            <SignedOut>
+              <SignInButton />
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+          </header> */}
           <NavbarMain />
           {children}
           <Footer />

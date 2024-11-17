@@ -12,7 +12,7 @@ import { IoLogInOutline } from "react-icons/io5";
 import { RiUserAddLine } from "react-icons/ri";
 const Navbar = () => {
   return (
-    <header className="h-11  w-full sticky top-0 z-30 bg-background text-foreground hover:text-gray-100 max-md:hidden">
+    <header className="h-11 px-2 w-full sticky top-0 z-30 shadow-card dark:shadow-none bg-background text-foreground max-md:hidden">
       <MainLayout>
         <div className=" h-full flex justify-start items-center w-full max-w-7xl">
           <NavigationMenu className=" w-full h-full flex justify-between items-center  max-w-full">

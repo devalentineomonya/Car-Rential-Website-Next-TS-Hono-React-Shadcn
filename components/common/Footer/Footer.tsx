@@ -18,7 +18,7 @@ const FooterSection = ({
   items: { name: string; href: string }[];
 }) => (
   <div className="col-span-6 sm:col-span-4 lg:col-span-2">
-    <h3 className="text-sm font-semibold text-gray-200 tracking-wider uppercase">
+    <h3 className="text-sm font-semibold  text-slate-800 dark:text-gray-200 tracking-wider uppercase">
       {title}
     </h3>
     <NavigationMenu>
@@ -27,7 +27,7 @@ const FooterSection = ({
           <NavigationMenuItem key={item.name}>
             <NavigationMenuLink
               href={item.href}
-              className="text-gray-300 hover:text-foreground transition-colors font-medium"
+              className="text-slate-700 dark:text-gray-300 hover:text-foreground transition-colors font-medium"
             >
               {item.name}
             </NavigationMenuLink>
@@ -47,14 +47,14 @@ const Footer = () => {
           <FooterSection title="Support" items={footerLinks.support} />
           <FooterSection title="Company" items={footerLinks.company} />
 
-          <Card className="border-0 bg-transparent col-span-12 lg:col-span-6">
+          <Card className="border-0 bg-transparent col-span-12 lg:col-span-6 shadow-none">
             <CardHeader className="px-0">
-              <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
+              <h3 className="text-sm font-semibold text-slate-600 dark:text-gray-400 tracking-wider uppercase">
                 Subscribe to our newsletter
               </h3>
             </CardHeader>
             <CardContent className="px-0">
-              <p className="text-gray-300 mb-4">
+              <p className="text-slate-700 dark:text-gray-300 mb-4">
                 The latest news, articles, and resources, sent to your inbox
                 weekly.
               </p>
@@ -63,7 +63,7 @@ const Footer = () => {
           </Card>
         </div>
 
-        <Separator className="my-8 bg-gray-700" />
+        <Separator className="my-8 bg-gray-300 dark:bg-gray-700" />
 
         <div className="flex flex-col md:flex-row md:items-center md:justify-between">
           <NavigationMenu className="flex space-x-6">
@@ -72,7 +72,7 @@ const Footer = () => {
                 <NavigationMenuItem key={item.name}>
                   <NavigationMenuLink
                     href={item.href}
-                    className="text-gray-400 hover:text-gray-300 transition-colors"
+                    className="text-gray-600 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
                   >
                     <span className="sr-only">{item.name}</span>
                     <item.icon
@@ -84,7 +84,7 @@ const Footer = () => {
               ))}
             </NavigationMenuList>
           </NavigationMenu>
-          <p className="mt-8 md:mt-0 text-gray-400">
+          <p className="mt-8 md:mt-0 text-gray-700 dark:text-gray-400">
             &copy; {new Date().getFullYear()}{" "}
             <Link
               href="http://devalentine.vercel.app"

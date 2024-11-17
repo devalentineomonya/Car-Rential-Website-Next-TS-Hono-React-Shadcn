@@ -60,7 +60,7 @@ const HeroFormDateTimePicker = ({
                 <Button
                   variant={"outline"}
                   className={cn(
-                    "w-full font-normal",
+                    "w-full font-normal hover:bg-white/5",
                     !field.value && "text-muted-foreground"
                   )}
                 >

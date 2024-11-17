@@ -56,9 +56,16 @@
     --chart-5: 340 75% 55%
   }
 }
+
 @layer base {
   * {
     @apply border-border;
+    ::-webkit-scrollbar {
+      @apply bg-muted-foreground rounded-md w-0.5;
+    }
+    ::-webkit-scrollbar-thumb {
+      @apply bg-accent rounded-md;
+    }
   }
   body {
     @apply bg-background text-foreground;

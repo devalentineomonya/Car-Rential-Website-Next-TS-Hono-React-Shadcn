@@ -48,7 +48,7 @@ const HeroFormInputField = ({
         {placeholder}
       </FormLabel>
       <FormControl>
-        <div className="relative h-full flex items-center bg-white/5 border border-input px-3 rounded-md focus-within:outline-none focus-within:ring-1 focus-within:ring-ring">
+        <div className="relative h-full flex items-center bg-white/5  border dark:border-input px-3 rounded-md focus-within:outline-none focus-within:ring-1 focus-within:ring-ring">
           {icon}
           <Input
             id={name}

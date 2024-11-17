@@ -1,5 +1,9 @@
-// import { SignUp } from '@clerk/nextjs'
+// import { SignUp } from "@clerk/nextjs";
 
 // export default function Page() {
-//   return <SignUp />
+//   return (
+//     <div className="bg-white dark:bg-gray-800">
+//       <SignUp />
+//     </div>
+//   );
 // }

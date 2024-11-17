@@ -49,7 +49,7 @@ const FooterForm = () => {
               <Input
                 placeholder="Enter your email"
                 {...field}
-                className="bg-white/5 border-white/10 text-foreground"
+                className="bg-black/5 dark:bg-white/5  border-black/10 dark:border-white/10 text-foreground"
               />
             </FormControl>
             <FormMessage />
@@ -60,7 +60,7 @@ const FooterForm = () => {
         type="submit"
         variant="outline"
         size="icon"
-        className="text-foreground bg-background hover:bg-background/80 hover:text-gray-100 border-white/10 transition-transform hover:scale-105"
+        className="text-foreground bg-background  hover:bg-background/80 hover:text-slate-900 dark:hover:text-gray-100 border-black/10 dark:border-white/10  transition-transform hover:scale-105"
       >
         <GrSend aria-label="Send" />
       </Button>

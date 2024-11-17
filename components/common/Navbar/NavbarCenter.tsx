@@ -9,7 +9,7 @@ import Link from "next/link";
 import { MdOutlineMarkEmailUnread } from "react-icons/md";
 const NavbarCenter = () => {
   return (
-    <header className="bg-white text-slate-950 h-20 px-2">
+    <header className="bg-gray-100 dark:bg-white text-slate-950 h-20 px-2">
       <MainLayout>
         <div className=" w-full flex items-center justify-between h-full">
           <div className="flex gap-x-3 items-center">
@@ -32,6 +32,7 @@ const NavbarCenter = () => {
 
           <div className="flex items-center gap-x-2">
             <Button
+            variant="secondary"
               asChild
               size="sm"
               className="px-3 ml-3 bg-background rounded-md text-foreground shadow-md"
