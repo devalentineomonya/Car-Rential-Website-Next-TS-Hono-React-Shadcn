@@ -2,7 +2,6 @@ import React from "react";
 import {
   NavigationMenu,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
 import MainLayout from "../layouts/MainLayout";
@@ -10,6 +9,7 @@ import { navigationLinks } from "./navigationLinks";
 import { IoLogInOutline } from "react-icons/io5";
 
 import { RiUserAddLine } from "react-icons/ri";
+import Link from "next/link";
 const Navbar = () => {
   return (
     <header className="h-11 px-2 w-full sticky top-0 z-30 shadow-card dark:shadow-none bg-background text-foreground max-md:hidden">
@@ -19,32 +19,32 @@ const Navbar = () => {
             <NavigationMenuList className="space-x-4">
               {navigationLinks.map((link) => (
                 <NavigationMenuItem key={link.link} className="text-base">
-                  <NavigationMenuLink href={link.link}>
+                  <Link href={link.link}>
                     {link.label}
-                  </NavigationMenuLink>
+                  </Link>
                 </NavigationMenuItem>
               ))}
             </NavigationMenuList>
             <NavigationMenuList>
               <NavigationMenuItem>
-                <NavigationMenuLink
+                <Link
                   href="/auth/sign-in"
                   className={`flex items-center gap-x-1`}
                 >
                   <IoLogInOutline />
                   <span>Login</span>
-                </NavigationMenuLink>
+                </Link>
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <NavigationMenuLink
+                <Link
                   href="/auth/sign-up"
                 
                   className={`flex items-center gap-x-1`}
                 >
                   <RiUserAddLine />
                   <span>Register</span>
-                </NavigationMenuLink>
+                </Link>
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>

@@ -32,34 +32,34 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
-      <html lang="en">
+    <html lang="en">
         <body className={`${grotesk.className} antialiased relative`}>
           <ProgressProvider>
+        <ClerkProvider>
             <ThemeProvider
               attribute="class"
               defaultTheme="system"
               enableSystem
               disableTransitionOnChange
             >
-              {/* <header>
-              <SignedOut>
-                <SignInButton />
+              <header>
+              {/* <SignedOut>
+                <SignInButto />
               </SignedOut>
               <SignedIn>
                 <UserButton />
-              </SignedIn>
+              </SignedIn> */}
             </header>
-            */}
+           
              <NavbarMain /> 
              
               {children}
               <Footer />
               <Toaster />
             </ThemeProvider>
+    </ClerkProvider>
           </ProgressProvider>
         </body>
       </html>
-    </ClerkProvider>
   );
 }

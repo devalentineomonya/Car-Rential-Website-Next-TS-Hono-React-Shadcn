@@ -45,6 +45,7 @@ const [ride, setRide] = useState("ride");
             {images.map((image, index) => (
               <CarouselItem key={index} className="w-full transition-all ease-in-out duration-300  h-full relative">
                 <Image
+                priority
                   quality={100}
                   src={image}
                   alt={`Hero Car ${index + 1}`}

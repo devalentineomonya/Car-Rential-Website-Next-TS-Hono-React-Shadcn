@@ -1,4 +1,8 @@
-import { ClerkLoaded, ClerkLoading, SignIn } from "@clerk/nextjs";
+import dynamic from "next/dynamic";
+
+const ClerkLoaded = dynamic(() => import("@clerk/nextjs").then(mod => mod.ClerkLoaded), { ssr: false });
+const ClerkLoading = dynamic(() => import("@clerk/nextjs").then(mod => mod.ClerkLoading), { ssr: false });
+const SignIn = dynamic(() => import("@clerk/nextjs").then(mod => mod.SignIn), { ssr: false });
 import Image from "next/image";
 import { RiLoader5Line } from "react-icons/ri";
 import Logo from "@/public/images/logo.png";
