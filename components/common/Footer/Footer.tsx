@@ -1,3 +1,4 @@
+"use client"
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { footerLinks } from "./footerLinks";
@@ -9,6 +10,9 @@ import {
   NavigationMenuList,
   NavigationMenuLink,
 } from "@/components/ui/navigation-menu";
+import { noNavbarOrFooter } from "@/utils/constants";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 const FooterSection = ({
   title,
@@ -39,8 +43,10 @@ const FooterSection = ({
 );
 
 const Footer = () => {
+  const pathname = usePathname();
+  const hideNavbarOrFooter = noNavbarOrFooter.some(route => pathname.includes(route));
   return (
-    <footer className="border-t flex items-center justify-center bg-background">
+    <footer className={cn("border-t flex items-center justify-center bg-background", hideNavbarOrFooter && "hidden")}>
       <div className="container max-w-6xl px-4 py-12">
         <div className="grid grid-cols-12 max-sm:gap-y-6">
           <FooterSection title="Solutions" items={footerLinks.solutions} />

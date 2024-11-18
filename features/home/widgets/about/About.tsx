@@ -40,7 +40,7 @@ const About = () => {
           <h2 className="max-lg:hidden text-3xl font-semibold text-foreground my-8 ">
             Welcome to our motor services
           </h2>
-          <p>
+          <p className="text-muted-foreground">
             We are dedicated to providing the best motor services in the
             industry. Our team of experienced professionals is here to ensure
             your vehicle is always in top condition. Whether you need routine
@@ -54,7 +54,7 @@ const About = () => {
                   className="border-none"
                 >
                   <AccordionTrigger>{service.title}</AccordionTrigger>
-                  <AccordionContent>{service.content}</AccordionContent>
+                  <AccordionContent className="text-muted-foreground">{service.content}</AccordionContent>
                 </AccordionItem>
               </Accordion>
             ))}

@@ -22,11 +22,11 @@ const TopCars = () => {
   return (
     <MainLayout>
       <div className="flex-1 pr-2 max-lg:mt-6">
-        <h2 className="max-lg:hidden text-3xl font-semibold text-foreground my-8 ">
+        <h2 className="text-3xl font-semibold text-foreground my-8 ">
           Our Top Cars
         </h2>
       </div>
-      <div className="w-full flex items-center justify-end">
+      <div className="w-full flex items-center justify-end max-xl:pr-3">
         <Link
           href="/cars"
           className="border bg-card text-card-foreground shadow group font-medium flex items-center gap-x-2 py-2 rounded-md px-4"

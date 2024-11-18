@@ -7,7 +7,7 @@ import { FaStar, FaRegHeart } from "react-icons/fa6";
 import { IoCarSportOutline } from "react-icons/io5";
 import { GiGearStickPattern, GiGearStick } from "react-icons/gi";
 import { BsFuelPump } from "react-icons/bs";
-import Link from "next/link";
+// import Link from "next/link";
 import { Car } from "@/types/car";
 interface CarCardProps {
   car: Car;
@@ -26,7 +26,7 @@ const CarCard: React.FC<CarCardProps> = ({ car }) => {
           </Badge>
           <Badge
             variant="outline"
-            className="rounded-md py-1 px-1 bg-green-300 hover:bg-green-500 text-green-600 hover:text-green-800"
+            className="rounded-md py-1 px-1 bg-green-300 dark:bg-green-200 hover:bg-green-500 text-green-600 hover:text-green-800"
           >
             {car.availability}
           </Badge>

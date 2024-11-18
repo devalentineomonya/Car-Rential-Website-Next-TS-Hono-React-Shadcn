@@ -1,11 +1,18 @@
 import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
-// import {  ClerkProvider, SignInButton, SignedIn, SignedOut, UserButton} from '@clerk/nextjs'
+import {
+  ClerkProvider,
+  // SignInButton,
+  // SignedIn,
+  // SignedOut,
+  // UserButton,
+} from "@clerk/nextjs";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 import NavbarMain from "@/components/common/Navbar/NavbarMain";
 import Footer from "@/components/common/Footer/Footer";
 import { ThemeProvider } from "@/components/ui/theme-provider";
+import ProgressProvider from "@/components/ui/progress-provider";
 const grotesk = Space_Grotesk({
   weight: ["400", "700"],
   style: ["normal"],
@@ -25,32 +32,34 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // <ClerkProvider>
-
-    <html lang="en">
-      <body className={`${grotesk.className} antialiased relative`}>
-    
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {/* <header>
-            <SignedOut>
-              <SignInButton />
-            </SignedOut>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
-          </header> */}
-          <NavbarMain />
-          {children}
-          <Footer />
-          <Toaster />
-        </ThemeProvider>
-      </body>
-    </html>
-    // </ClerkProvider>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={`${grotesk.className} antialiased relative`}>
+          <ProgressProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              {/* <header>
+              <SignedOut>
+                <SignInButton />
+              </SignedOut>
+              <SignedIn>
+                <UserButton />
+              </SignedIn>
+            </header>
+            */}
+             <NavbarMain /> 
+             
+              {children}
+              <Footer />
+              <Toaster />
+            </ThemeProvider>
+          </ProgressProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

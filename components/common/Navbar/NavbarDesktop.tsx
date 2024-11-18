@@ -28,7 +28,7 @@ const Navbar = () => {
             <NavigationMenuList>
               <NavigationMenuItem>
                 <NavigationMenuLink
-                  href="/auth/login"
+                  href="/auth/sign-in"
                   className={`flex items-center gap-x-1`}
                 >
                   <IoLogInOutline />
@@ -38,7 +38,7 @@ const Navbar = () => {
 
               <NavigationMenuItem>
                 <NavigationMenuLink
-                  href="/auth/register"
+                  href="/auth/sign-up"
                 
                   className={`flex items-center gap-x-1`}
                 >

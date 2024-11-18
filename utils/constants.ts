@@ -1,0 +1,1 @@
+export const noNavbarOrFooter = ["/sign-in", "/sign-up", "/admin", "/user"];
