@@ -12,7 +12,7 @@ import {
   CarouselItem,
   CarouselContent,
 } from "@/components/ui/carousel";
-import HeroForm from "./HeroForm";
+import HeroForm from "../../components/HeroForm";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 const messages:{[key:string]:{message:string}} = {
   ride: {
@@ -58,7 +58,7 @@ const [ride, setRide] = useState("ride");
         </Carousel>
       </div>
       <MainLayout>
-        <div className="flex pt-12">
+        <div className="flex pt-12 animate-in fade-in-50 slide-in-from-bottom-7 animate-out fade-out-20 slide-out-to-bottom-4">
           <Card className="flex-1 max-md:min-h-4/5 max-md:h-fit max-w-full md:max-w-[450px] bg-background/50 backdrop-blur-md rounded-md">
             <CardHeader>
               <CardTitle className="text-foreground text-4xl font-semibold">

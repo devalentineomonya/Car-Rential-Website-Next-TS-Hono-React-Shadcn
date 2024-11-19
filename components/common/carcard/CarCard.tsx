@@ -58,20 +58,20 @@ const CarCard: React.FC<CarCardProps> = ({ car }) => {
           </div>
         </div>
         <Separator className="my-1" />
-        <div className="flex w-full items-center justify-between py-3">
-          <div className="flex items-center gap-x-1 text-sm text-muted-foreground">
+        <div className="flex w-full items-center justify-between flex-wrap py-3 gap-y-2">
+          <div className="flex-shrink-0 flex items-center gap-x-1 text-sm text-muted-foreground">
             <IoCarSportOutline size={20} className="text-foreground" />
             <span>{car.bodyType}</span>
           </div>
-          <div className="flex items-center gap-x-1 text-sm text-muted-foreground">
+          <div className="flex-shrink-0 flex items-center gap-x-1 text-sm text-muted-foreground">
             <GiGearStickPattern size={20} className="text-foreground" />
             <span>{car.transmission}</span>
           </div>
-          <div className="flex items-center gap-x-1 text-sm text-muted-foreground">
+          <div className="flex-shrink-0 flex items-center gap-x-1 text-sm text-muted-foreground">
             <BsFuelPump size={20} className="text-foreground" />
             <span>{car.fuelType}</span>
           </div>
-          <div className="flex items-center gap-x-1 text-sm text-muted-foreground">
+          <div className="flex-shrink-0 flex items-center gap-x-1 text-sm text-muted-foreground">
             <GiGearStick size={20} className="text-foreground" />
             <span>{car.gears}</span>
           </div>

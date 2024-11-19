@@ -1,6 +1,6 @@
 import MainLayout from "@/components/common/layouts/MainLayout";
 import React from "react";
-import FeaturedCard from "./FeaturedCard";
+import FeaturedCard from "../../components/FeaturedCard";
 import ride from "@/public/images/ride.png";
 import delivery from "@/public/images/deliver.png";
 import rent from "@/public/images/rent.png";
