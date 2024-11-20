@@ -55,7 +55,6 @@ export default function Testimonials() {
           plugins={[
             Autoplay({
               delay: 3000,
-              stopOnFocusIn: true,
               stopOnInteraction: true,
               stopOnMouseEnter: true,
             }),

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
+import { Toaster } from "@/components/ui/sonner";
 import {
   ClerkProvider,
   // SignInButton,
@@ -7,7 +8,6 @@ import {
   // SignedOut,
   // UserButton,
 } from "@clerk/nextjs";
-import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 import NavbarMain from "@/components/common/Navbar/NavbarMain";
 import Footer from "@/components/common/Footer/Footer";
@@ -33,9 +33,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-        <body className={`${grotesk.className} antialiased relative`}>
-          <ProgressProvider>
-        <ClerkProvider>
+      <body className={`${grotesk.className} antialiased relative`}>
+        <ProgressProvider>
+          <ClerkProvider>
             <ThemeProvider
               attribute="class"
               defaultTheme="system"
@@ -43,23 +43,24 @@ export default function RootLayout({
               disableTransitionOnChange
             >
               <header>
-              {/* <SignedOut>
+                {/* <SignedOut>
                 <SignInButto />
               </SignedOut>
               <SignedIn>
                 <UserButton />
               </SignedIn> */}
-            </header>
-           
-             <NavbarMain /> 
-             
+              </header>
+
+              <NavbarMain />
+
               {children}
               <Footer />
               <Toaster />
             </ThemeProvider>
-    </ClerkProvider>
-          </ProgressProvider>
-        </body>
-      </html>
+          </ClerkProvider>
+        </ProgressProvider>
+        <Toaster />
+      </body>
+    </html>
   );
 }

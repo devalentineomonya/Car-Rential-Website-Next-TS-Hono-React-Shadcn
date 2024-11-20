@@ -33,13 +33,12 @@ const CarCard: React.FC<CarCardProps> = ({ car }) => {
         </div>
         <FaRegHeart className="hover:fill-pink-700 cursor-pointer" size={24} />
       </CardHeader>
-      <CardContent className="p-3 overflow-hidden bg-background group/image">
+      <CardContent className="justify-center p-3 overflow-hidden bg-background group/image">
         <Image
           src={car.image}
           alt={car.name}
           className="bg-background mix-blend-multiply group-hover/image:translate-x-2 transition-all ease-in-out duration-300 group-hover/image:scale-105"
-          width={300}
-          height={200}
+      
         />
       </CardContent>
       <CardFooter className="p-3 flex-col item-start justify-center">
