@@ -157,3 +157,8 @@ export const plans = [
       ],
     },
   ];
+
+
+  export type PerkTypes = typeof perks[0]
+export type FeatureTypes = typeof features[0]
+  export type PlanTypes = typeof plans[0]
