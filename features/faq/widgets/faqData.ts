@@ -3,7 +3,12 @@ import { GiCarKey } from "react-icons/gi";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { PiFireTruckLight } from "react-icons/pi";
 import { Car } from "lucide-react";
-
+import rideImage from "@/public/images/ride-faq.png";
+import rentImage from "@/public/images/rent-faq.png";
+import businessImage from "@/public/images/business-faq.png";
+import deliveryImage from "@/public/images/delivery-faq.png";
+import wideLoadImage from "@/public/images/wide-load-faq.png";
+import driverImage from "@/public/images/driver-faq.png";
 export const faqData = [
   {
     name: "Ride",
@@ -11,6 +16,7 @@ export const faqData = [
     fullDescription:
       "Get comprehensive support and answers about requesting rides, payments, scheduling, lost items, fare splitting, cancellations, driver communication, and our policies to ensure a smooth riding experience.",
     icon: IoCarSportOutline,
+    image: rideImage,
     faqItems: [
       {
         question: "How do I request a ride?",
@@ -70,6 +76,7 @@ export const faqData = [
     fullDescription:
       "Get comprehensive support and answers about renting cars, payments, scheduling, lost items, fare splitting, cancellations, driver communication, and our policies to ensure a smooth renting experience.",
     icon: GiCarKey,
+    image: rentImage,
     faqItems: [
       {
         question: "How do I rent a car?",
@@ -129,6 +136,7 @@ export const faqData = [
     fullDescription:
       "Get comprehensive support and answers about setting up a business account, managing employees, billing, safety features, travel policies, reporting, and other business-specific needs to ensure a smooth business travel experience.",
     icon: IoBusinessOutline,
+    image: businessImage,
     faqItems: [
       {
         question: "How do I set up a business account?",
@@ -188,6 +196,7 @@ export const faqData = [
     fullDescription:
       "Get comprehensive support and answers about scheduling deliveries, package types, pricing, tracking, insurance, recurring deliveries, same-day deliveries, package preparation, and other delivery-specific needs to ensure a smooth delivery experience.",
     icon: CiDeliveryTruck,
+    image: deliveryImage,
     faqItems: [
       {
         question: "How do I schedule a delivery?",
@@ -247,6 +256,7 @@ export const faqData = [
     fullDescription:
       "Get comprehensive support and answers about what qualifies as a wide load, special permits, booking requirements, escort vehicles, safety measures, pricing, route planning, cargo insurance, and tracking to ensure a smooth wide load transportation experience.",
     icon: PiFireTruckLight,
+    image: wideLoadImage,
     faqItems: [
       {
         question: "What qualifies as a wide load?",
@@ -306,6 +316,7 @@ export const faqData = [
     fullDescription:
       "Get comprehensive support and answers about the requirements to become a driver, applying, earning potential, vehicle requirements, insurance, payment methods, schedule flexibility, training, and support to ensure a smooth driver experience.",
     icon: Car,
+    image: driverImage,
     faqItems: [
       {
         question: "What are the requirements to become a driver?",

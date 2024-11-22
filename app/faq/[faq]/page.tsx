@@ -1,17 +1,22 @@
-import { useRouter } from "next/router";
-import React from "react";
+"use client";
+import FaqItem from "@/features/faqSingle/widgets/FaqItem";
+import { useParams, useRouter } from "next/navigation";
 import { faqData } from "@/features/faq/widgets/faqData";
-const Faq = () => {
+const FaqSingle = () => {
   const router = useRouter();
-  const { faq } = router.query;
-  const faqItem = faqData.find((item) => item.name === faq);
-  if (!faqItem) {
-    router.push("/faqs");
-  }
-
-  return (
- <
+  const params = useParams();
+  const faq = params?.faq;
+  console.log(faq);
+  const faqItem = faqData.find(
+    (item) =>
+      item.name.toLowerCase().replaceAll(" ", "_") ===
+      faq?.toString().toLowerCase()
   );
+  if (!faqItem) {
+    return router.push("/faq");
+    
+  }
+  return <FaqItem faqItem={faqItem} />;
 };
 
-export default Faq;
+export default FaqSingle;
