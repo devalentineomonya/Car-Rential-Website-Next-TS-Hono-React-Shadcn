@@ -1,5 +1,5 @@
 import HeaderBanner from "@/components/common/shared/HeaderBanner";
-import Map from "@/features/about/widgets/Map";
+import LocationMap from "@/components/common/shared/LocationMap";
 import Mission from "@/features/about/widgets/Mission";
 import Network from "@/features/about/widgets/Network";
 import Vision from "@/features/about/widgets/Vision";
@@ -12,7 +12,7 @@ const About = () => {
       <Mission />
       <Vision />
       <Network />
-      <Map/>
+      <LocationMap/>
     </>
   );
 };

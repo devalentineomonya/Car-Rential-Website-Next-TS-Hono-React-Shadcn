@@ -45,10 +45,10 @@ const CarImageCarousel = () => {
           loop: true,
           align: "start",
         }}
-        className="w-full max-lg:px-4"
+        className="w-full max-lg:px-4 aspect-video"
       >
         <CarouselContent className="h-full">
-          <CarouselItem className="w-full min-h-[565px]">
+          <CarouselItem className="w-full aspect-video">
             <Image
               src="/images/car-1.png"
               alt="car"

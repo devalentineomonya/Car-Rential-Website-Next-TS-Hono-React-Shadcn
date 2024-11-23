@@ -1,7 +1,8 @@
-import MainLayout from "@/components/common/layouts/MainLayout";
 import React from "react";
 import ContactForm from "../components/ContactForm";
-import ContactMap from "../components/ContactMap";
+import ContactSummary from "../components/ContactSummary";
+import MainLayout from "@/components/common/layouts/MainLayout";
+import LocationMap from "@/components/common/shared/LocationMap";
 const ContactWidget = () => {
   return (
     <MainLayout>
@@ -11,10 +12,11 @@ const ContactWidget = () => {
         </h2>
       </div>
 
-      <div className="flex mb-24 px-2">
+      <div className="h-full flex  mb-24 px-2">
         <ContactForm />
-        <ContactMap />
+        <ContactSummary />
       </div>
+      <LocationMap/>
     </MainLayout>
   );
 };

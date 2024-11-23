@@ -3,7 +3,7 @@ import { FiCheckCircle } from "react-icons/fi";
 const GeneralInformation = () => {
   return (
     <div className="mt-6">
-      <h2 className="font-semibold font-foreground text-4xl">
+      <h2 className="font-semibold font-foreground text-3xl md:text-4xl ">
         Know about our car service
       </h2>
       <p className="mt-3">

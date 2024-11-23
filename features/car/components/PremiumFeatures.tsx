@@ -3,7 +3,7 @@ import { FiCheckCircle } from "react-icons/fi";
 const PremiumFeatures = () => {
   return (
     <div className="mt-6">
-      <h2 className="font-semibold font-foreground text-4xl">
+      <h2 className="font-semibold font-foreground text-3xl md:text-4xl ">
         Premium Features
       </h2>
       <ul className="mt-6 grid grid-cols-3 gap-4">

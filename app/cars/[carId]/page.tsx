@@ -9,15 +9,15 @@ const page = () => {
     <>
       <HeaderBanner />
       <MainLayout>
-        <div className="flex gap-4 py-24">
-          <div className="w-80 shrink-0 sticky top-20">
+        <div className="lg:flex gap-4 max-xl:px-2 py-24">
+          <div className="w-full  lg:w-80 shrink-0 lg:sticky lg:top-20 mb-10 lg:mb-0">
             <div className="sticky top-20">
               <Summary />
             </div>
           </div>
 
           {/* Main content */}
-          <div className="flex-1 pl-5">
+          <div className="flex-1 lg:pl-5">
             <CarInfo />
           </div>
         </div>

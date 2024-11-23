@@ -14,7 +14,7 @@ interface CarCardProps {
 
 const CarCard: React.FC<CarCardProps> = ({ car }) => {
   return (
-    <Card className="rounded-md w-full hover:scale-105 transition-all ease-in-out duration-300">
+    <Card className="rounded-md w-full hover:scale-105 transition-all ease-in-out duration-300 max-h-fit">
       <CardHeader className="p-2 flex-row items-center justify-between">
         <div className="flex items-center gap-x-2 cursor-default">
           <Badge variant="outline" className="rounded-md px-1 flex items-center gap-x-1">
