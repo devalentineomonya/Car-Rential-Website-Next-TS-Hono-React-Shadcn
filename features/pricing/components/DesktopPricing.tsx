@@ -3,7 +3,6 @@ import { PlanTypes, FeatureTypes, PerkTypes } from "../widgets/pricingData";
 import { cn } from "@/lib/utils";
 import { CheckIcon, XIcon } from "lucide-react";
 
-// Extracted fake background component
 const FakeCardBackgrounds: React.FC<{ plans: PlanTypes[] }> = ({ plans }) => (
   <div
     className="absolute inset-0 flex items-stretch pointer-events-none"
@@ -29,7 +28,6 @@ const FakeCardBackgrounds: React.FC<{ plans: PlanTypes[] }> = ({ plans }) => (
   </div>
 );
 
-// Extracted fake border component
 const FakeCardBorders: React.FC<{ plans: PlanTypes[] }> = ({ plans }) => (
   <div
     className="absolute inset-0 flex items-stretch pointer-events-none"
@@ -57,7 +55,6 @@ const FakeCardBorders: React.FC<{ plans: PlanTypes[] }> = ({ plans }) => (
   </div>
 );
 
-// Extracted cell rendering logic
 const RenderCell: React.FC<{ 
   value: string | boolean, 
   featured?: boolean 
@@ -95,7 +92,6 @@ const RenderCell: React.FC<{
   );
 };
 
-// Extracted comparison table component
 const ComparisonTable: React.FC<{
   items: Array<FeatureTypes | PerkTypes>;
   plans: PlanTypes[];
@@ -156,7 +152,6 @@ const ComparisonTable: React.FC<{
   </div>
 );
 
-// Main Desktop Pricing Component
 const DesktopPricing: React.FC<{
   plans: PlanTypes[];
   features: FeatureTypes[];
@@ -172,7 +167,6 @@ const DesktopPricing: React.FC<{
       </h2>
 
       <div className="mt-24">
-        {/* Plan Header */}
         <div className="w-full border-t border-gray-200 flex items-stretch">
           <div className="-mt-px w-1/4 py-6 pr-4 flex items-end">
             <h3 className="mt-auto text-sm font-bold text-gray-900">
@@ -210,14 +204,12 @@ const DesktopPricing: React.FC<{
           ))}
         </div>
 
-        {/* Features Table */}
         <ComparisonTable 
           items={features} 
           plans={plans} 
           isFeature={true} 
         />
 
-        {/* Perks Table */}
         <h3 className="mt-10 text-sm font-bold text-gray-900">
           Other perks
         </h3>

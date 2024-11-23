@@ -66,7 +66,7 @@ export const faqData = [
       {
         question: "What's your pet policy?",
         answer:
-          "Service animals are always welcome. For other pets, use DvalPet option where available. Regular rides accept pets at driver's discretion.",
+          "Service animals are always welcome. For other pets, use Deval option where available. Regular rides accept pets at driver's discretion.",
       },
     ],
   },

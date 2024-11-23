@@ -120,7 +120,7 @@ const CarFilter = () => {
   );
 
   return (
-    <div className="max-sm:mb-8 col-span-12 sm:col-span-3">
+    <div className="max-sm:mb-8 col-span-12 sm:col-span-3 sticky top-0">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <Accordion type="multiple" defaultValue={["for"]}>

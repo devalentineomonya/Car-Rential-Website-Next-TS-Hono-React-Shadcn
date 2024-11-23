@@ -2,11 +2,7 @@ import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import {
-  ClerkProvider,
-  // SignInButton,
-  // SignedIn,
-  // SignedOut,
-  // UserButton,
+  ClerkProvider
 } from "@clerk/nextjs";
 import "./globals.css";
 import NavbarMain from "@/components/common/Navbar/NavbarMain";
@@ -42,14 +38,6 @@ export default function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              <header>
-                {/* <SignedOut>
-                <SignInButto />
-              </SignedOut>
-              <SignedIn>
-                <UserButton />
-              </SignedIn> */}
-              </header>
 
               <NavbarMain />
 

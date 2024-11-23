@@ -20,8 +20,7 @@ import { navigationLinks } from "./navigationLinks";
 const NavbarMobile = () => {
   return (
     <Sheet>
-      {/* Navbar Header */}
-      <header className="w-full flex items-center justify-center bg-background h-10 md:hidden px-2 sticky top-0">
+      <header className="w-full flex items-center justify-center bg-background h-10 md:hidden px-2 sticky top-0 z-40 shadow-sm border-b border-b-border">
         <SheetTrigger asChild className="w-full max-w-6xl">
           <div className="w-full flex items-center justify-between text-foreground hover:text-gray-100 hover:border-gray-200">
             <Button
@@ -58,7 +57,6 @@ const NavbarMobile = () => {
         </SheetTrigger>
       </header>
 
-      {/* Drawer Content */}
       <SheetContent
         side="left"
         className="bg-background border-r-transparent shadow-md text-foreground px-2"

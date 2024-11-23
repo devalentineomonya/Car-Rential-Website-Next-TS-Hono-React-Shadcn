@@ -6,6 +6,10 @@ import React, { useState } from "react";
 import carSix from "@/public/images/car6.jpg";
 import carSeven from "@/public/images/car7.jpg";
 import carEight from "@/public/images/car8.jpg";
+import carSeventeen from "@/public/images/car17.jpg";
+import carEighteen from "@/public/images/car18.jpg";
+import carNineteen from "@/public/images/car19.jpg";
+import carTwenty from "@/public/images/car20.jpg";
 import Image from "next/image";
 import {
   Carousel,
@@ -14,7 +18,7 @@ import {
 } from "@/components/ui/carousel";
 import HeroForm from "../../components/HeroForm";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-const messages:{[key:string]:{message:string}} = {
+const messages: { [key: string]: { message: string } } = {
   ride: {
     message: "Arrive to your destination in style",
   },
@@ -26,14 +30,22 @@ const messages:{[key:string]:{message:string}} = {
   },
 };
 const Hero = () => {
-  const images = [carSix, carSeven, carEight];
-const [ride, setRide] = useState("ride");
+  const images = [
+    carSeventeen,
+    carEighteen,
+    carNineteen,
+    carTwenty,
+    carSix,
+    carSeven,
+    carEight,
+  ];
+  const [ride, setRide] = useState("ride");
   return (
     <section className="transition-all ease-in-out duration-300 relative isolate h-fit min-h-[calc(55dvh-3rem)] xl:min-h-[calc(70dvh-3rem)] px-4 pb-12">
       <div className="absolute top-0 left-0 w-full h-full -z-[8] bg-background/70"></div>
       <div className="absolute top-0 left-0 w-full h-full -z-10">
         <Carousel
-        className="h-full"
+          className="h-full"
           plugins={[
             Autoplay({
               delay: 4000,
@@ -43,9 +55,12 @@ const [ride, setRide] = useState("ride");
         >
           <CarouselContent className="h-full">
             {images.map((image, index) => (
-              <CarouselItem key={index} className="w-full transition-all ease-in-out duration-300  h-full relative">
+              <CarouselItem
+                key={index}
+                className="w-full transition-all ease-in-out duration-300  h-full relative"
+              >
                 <Image
-                priority
+                  priority
                   quality={100}
                   src={image}
                   alt={`Hero Car ${index + 1}`}

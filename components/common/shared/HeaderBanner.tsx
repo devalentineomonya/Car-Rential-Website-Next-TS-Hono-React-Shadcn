@@ -8,7 +8,7 @@ import Image from "next/image";
 import headerBanner from "@/public/images/banner-header.png";
 const HeaderBanner = () => {
   const pathname = usePathname();
-  const paths = pathname.split("/");
+  const paths = pathname.replace(/[^a-zA-Z0-9\s/]/g, " ").split("/");
   return (
     <div className="h-[18dvh] sm:h-[20dvh] lg:h-[30dvh] relative isolate">
       <Image
@@ -28,7 +28,7 @@ const HeaderBanner = () => {
             {paths.map((path, index) => {
               if (path) {
                 return (
-                  <p className=" flex items-center gap-x-2" key={index}>
+                  <p className=" flex items-center gap-x-2 capitalize" key={index}>
                     <span>
                       <ChevronRight />
                     </span>

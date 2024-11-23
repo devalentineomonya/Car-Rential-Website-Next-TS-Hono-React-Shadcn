@@ -9,7 +9,7 @@ import HeroFormDateTimePicker from "./HeroFormDateTimePicker";
 import { GoDotFill } from "react-icons/go";
 import { IoMdSquare } from "react-icons/io";
 import { Form } from "@/components/ui/form";
-import { heroFormSchema } from "../widgets/hero/HeroFormUtils.ts";
+import { heroFormSchema } from "../widgets/hero/HeroFormUtils";
 import { Button } from "@/components/ui/button";
 import { IoNavigate } from "react-icons/io5";
 
@@ -29,7 +29,6 @@ const HeroForm = ({ setRide }: { setRide: (ride: string) => void }) => {
   const [rentToDate, setRentToDate] = useState<Date | null>(null);
   const [rentToTime, setRentToTime] = useState<string>("18:00");
 
-  // Helper function to combine date and time
   const combineDateAndTime = (date: Date | null, time: string) => {
     if (!date) return null;
     const [hours, minutes] = time.split(":").map(Number);

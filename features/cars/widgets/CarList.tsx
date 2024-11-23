@@ -26,9 +26,13 @@ const CarList = () => {
           Our Top Cars
         </h2>
       </div>
-      <div className="max-lg:px-2 grid grid-cols-12 gap-x-4">
-       <CarFilter/>
-        <div className=" col-span-12 sm:col-span-9 grid  md:grid-cols-2 lg:grid-cols-3  gap-3">
+      <div className="max-lg:px-2 flex gap-4">
+        <div className="w-80 shrink-0 max-sm:hidden">
+          <div className="sticky top-20">
+            <CarFilter />
+          </div>
+        </div>
+        <div className="flex-1 grid md:grid-cols-2 lg:grid-cols-3 gap-3">
           <CarCard car={carData} />
           <CarCard car={carData} />
           <CarCard car={carData} />

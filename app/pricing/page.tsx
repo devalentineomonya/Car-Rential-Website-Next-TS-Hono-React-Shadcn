@@ -1,13 +1,13 @@
-import React from 'react'
+import React from "react";
 import PricingPage from "@/features/pricing/widgets/Pricing";
-import HeaderBanner from '@/components/common/shared/HeaderBanner';
+import HeaderBanner from "@/components/common/shared/HeaderBanner";
 const Pricing = () => {
   return (
     <>
-    <HeaderBanner/>
-        <PricingPage/>
+      <HeaderBanner />
+      <PricingPage />
     </>
-  )
-}
+  );
+};
 
-export default Pricing
+export default Pricing;

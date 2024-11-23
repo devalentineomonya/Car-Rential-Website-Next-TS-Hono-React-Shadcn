@@ -3,7 +3,6 @@ import { cn } from "@/lib/utils";
 import { CheckIcon, XIcon } from "lucide-react";
 import { FeatureTypes, PerkTypes, PlanTypes } from "../widgets/pricingData";
 
-// Extracted reusable card background component
 const FakeCardBackground: React.FC<{ featured?: boolean }> = ({ featured }) => (
   <div
     aria-hidden="true"
@@ -18,7 +17,6 @@ const FakeCardBackground: React.FC<{ featured?: boolean }> = ({ featured }) => (
   </div>
 );
 
-// Extracted reusable card border component
 const FakeCardBorder: React.FC<{ featured?: boolean }> = ({ featured }) => (
   <div
     aria-hidden="true"
@@ -35,7 +33,6 @@ const FakeCardBorder: React.FC<{ featured?: boolean }> = ({ featured }) => (
   </div>
 );
 
-// Extracted feature/perk display logic
 const CheckmarkCell: React.FC<{ value: boolean }> = ({ value }) => (
   <>
     {value ? (
@@ -53,7 +50,6 @@ const CheckmarkCell: React.FC<{ value: boolean }> = ({ value }) => (
   </>
 );
 
-// Extracted section for features and perks
 const PricingSection: React.FC<{
   title: string;
   items: Array<FeatureTypes | PerkTypes>;
@@ -107,7 +103,6 @@ const PricingSection: React.FC<{
   </>
 );
 
-// Main Mobile Pricing Component
 const MobilePricing: React.FC<{
   plans: PlanTypes[];
   features: FeatureTypes[];
