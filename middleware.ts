@@ -5,7 +5,7 @@ const isProtectedRoute = createRouteMatcher(["/admin(.*)", "/user(.*)"]);
 export default clerkMiddleware(
   (auth, request) => {
     if (isProtectedRoute(request)) {
-      auth().protect();
+      auth.protect();
       const url = new URL(request.url);
       const path = url.pathname;
       if (path === "/user") {

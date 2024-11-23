@@ -22,3 +22,8 @@ export const locations = [
     { id: 19, lat: -1.2921, lng: 36.8419, description: "Ngong" },
     { id: 20, lat: -1.2921, lng: 36.8619, description: "Kiserian" },
   ] as const;
+
+ 
+
+
+   

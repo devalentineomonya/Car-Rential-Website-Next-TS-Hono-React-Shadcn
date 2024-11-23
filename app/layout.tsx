@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
-import {
-  ClerkProvider
-} from "@clerk/nextjs";
+import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 import NavbarMain from "@/components/common/Navbar/NavbarMain";
 import Footer from "@/components/common/Footer/Footer";
@@ -38,9 +36,7 @@ export default function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-
               <NavbarMain />
-
               {children}
               <Footer />
               <Toaster />
