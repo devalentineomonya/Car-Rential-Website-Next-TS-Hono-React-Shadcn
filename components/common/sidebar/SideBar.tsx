@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
-import { NavMain } from "@/components/nav-main";
-import { NavUser } from "@/components/nav-user";
+import { NavMain } from "@/components/common/sidebar/NavMenu";
+import { NavUser } from "@/components/common/sidebar/NavUser";
 import {
   Sidebar,
   SidebarContent,
@@ -9,12 +9,12 @@ import {
   SidebarRail,
   SidebarHeader,
 } from "@/components/ui/sidebar";
-import { UserSidebarType } from "@/utils/sidebarData";
-import { CompanyInfo } from "./company-info";
+import { UserSidebarType, AdminSidebarType } from "@/utils/sidebarData";
+import { CompanyInfo } from "./CompanyInfo";
 export function AppSidebar({
   data,
   ...props
-}: React.ComponentProps<typeof Sidebar> & { data: UserSidebarType }) {
+}: React.ComponentProps<typeof Sidebar> & { data: AdminSidebarType | UserSidebarType }) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>

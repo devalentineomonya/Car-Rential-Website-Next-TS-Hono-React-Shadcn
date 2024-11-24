@@ -1,21 +1,13 @@
 import React from "react";
-import { AppSidebar } from "@/components/app-sidebar"
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
+import { userSidebar } from "@/utils/sidebarData";
 import { Separator } from "@/components/ui/separator"
+import BreadCrumb from "@/components/common/sidebar/BreadCrumb";
+import { AppSidebar } from "@/components/common/sidebar/SideBar"
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
-import { userSidebar } from "@/utils/sidebarData";
-
 
 export default function UserLayout({
   children,
@@ -30,19 +22,7 @@ export default function UserLayout({
           <div className="flex items-center gap-2 px-4">
             <SidebarTrigger className="-ml-1" />
             <Separator orientation="vertical" className="mr-2 h-4" />
-            <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="#">
-                    Building Your Application
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator className="hidden md:block" />
-                <BreadcrumbItem>
-                  <BreadcrumbPage>Data Fetching</BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
+            <BreadCrumb />
           </div>
         </header>
         <main className="flex flex-1 flex-col gap-4 p-4 pt-0">

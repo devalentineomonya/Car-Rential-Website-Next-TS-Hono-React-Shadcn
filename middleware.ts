@@ -3,20 +3,20 @@ import { NextResponse } from "next/server";
 
 const isProtectedRoute = createRouteMatcher(["/admin(.*)", "/user(.*)"]);
 export default clerkMiddleware(
-  (auth, request) => {
+  async (auth, request) => {
     if (isProtectedRoute(request)) {
-      auth.protect();
-      const url = new URL(request.url);
-      const path = url.pathname;
-      if (path === "/user") {
-        return NextResponse.redirect(new URL("/user/dashboard", request.url));
-      }
-      if (path === "/admin") {
-        return NextResponse.redirect(new URL("/admin/dashboard", request.url));
-      }
+      await auth.protect();
+    }
+    const url = new URL(request.url);
+    const path = url.pathname;
+    if (path === "/user") {
+      return NextResponse.redirect(new URL("/user/dashboard", request.url));
+    }
+    if (path === "/admin") {
+      return NextResponse.redirect(new URL("/admin/dashboard", request.url));
     }
   },
-  { debug: true }
+  { debug: process.env.NODE_ENV === "development" }
 );
 
 export const config = {

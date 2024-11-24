@@ -1,30 +1,23 @@
-import { AiOutlineDashboard } from "react-icons/ai";
+import { Car } from "lucide-react";
+import { GiCarKey, GiCarSeat } from "react-icons/gi";
 import { BsPerson } from "react-icons/bs";
-import { IoCarSportOutline } from "react-icons/io5";
+import { PiUsersThree } from "react-icons/pi";
+import { TbCreditCardPay, TbReportAnalytics } from "react-icons/tb";
 import { TfiHeadphoneAlt } from "react-icons/tfi";
-import { GiCarKey } from "react-icons/gi";
-import { TbCreditCardPay } from "react-icons/tb";
-
+import { IoCarSportOutline } from "react-icons/io5";
+import { AiOutlineDashboard } from "react-icons/ai";
 export const userSidebar = {
-  user: {
-    name: "Valentine Omonya",
-    email: "valentine@example.com",
-    avatar: "/avatars/valentine.jpg",
-  },
   navMain: [
     {
       title: "Dashboard",
       url: "/user/dashboard",
       icon: <AiOutlineDashboard />,
       isActive: true,
-      items: [],
     },
 
     {
       title: "My Rides",
-      url: "#",
       icon: <IoCarSportOutline />,
-      isActive: false,
       items: [
         {
           title: "Current Bookings",
@@ -38,9 +31,7 @@ export const userSidebar = {
     },
     {
       title: "My Deliveries",
-      url: "#",
       icon: <IoCarSportOutline />,
-      isActive: false,
       items: [
         {
           title: "Current Bookings",
@@ -54,9 +45,7 @@ export const userSidebar = {
     },
     {
       title: "My Hires",
-      url: "#",
       icon: <GiCarKey />,
-      isActive: false,
       items: [
         {
           title: "Current Bookings",
@@ -70,9 +59,7 @@ export const userSidebar = {
     },
     {
       title: "Payments",
-      url: "#",
       icon: <TbCreditCardPay />,
-      isActive: false,
       items: [
         {
           title: "Payment Methods",
@@ -88,17 +75,92 @@ export const userSidebar = {
       title: "Profile",
       url: "/user/profile",
       icon: <BsPerson />,
-      isActive: false,
-      items: [],
     },
     {
       title: "Support",
       url: "/user/support",
       icon: <TfiHeadphoneAlt />,
-      isActive: false,
-      items: [],
     },
   ],
 };
 
+export const adminSidebar = {
+  navMain: [
+    {
+      title: "Dashboard",
+      icon: <AiOutlineDashboard />,
+      url: "/admin/dashboard",
+      isActive: true,
+    },
+    {
+      title: "Car Management",
+      icon: <Car />,
+      items: [
+        { title: "View Cars", url: "/admin/cars" },
+        { title: "Pending Approvals", url: "/admin/cars/pending" },
+        { title: "Add New Car", url: "/admin/cars/add" },
+      ],
+    },
+    {
+      title: "User Management",
+      icon: <PiUsersThree />,
+      items: [
+        { title: "View Users", url: "/admin/users" },
+        { title: "Add New User", url: "/admin/users/add" },
+      ],
+    },
+    {
+      title: "Drivers Management",
+      icon: <Car />,
+      items: [
+        { title: "View Drivers", url: "/admin/drivers" },
+        { title: "Pending Approvals", url: "/admin/drivers/pending" },
+        { title: "Add New Driver", url: "/admin/drivers/add" },
+      ],
+    },
+    {
+      title: "Rides",
+      icon: <GiCarSeat />,
+      items: [
+        { title: "All Rides", url: "/admin/rides" },
+        { title: "Pending Approvals", url: "/admin/rides/pending" },
+      ],
+    },
+    {
+      title: "Rentals",
+      icon: <GiCarKey />,
+      items: [
+        { title: "All Rentals", url: "/admin/rentals" },
+        { title: "Pending Approvals", url: "/admin/rentals/pending" },
+      ],
+    },
+    {
+      title: "Deliveries",
+      icon: <IoCarSportOutline />,
+      items: [
+        { title: "All Deliveries", url: "/admin/deliveries" },
+        { title: "Pending Approvals", url: "/admin/deliveries/pending" },
+      ],
+    },
+
+    {
+      title: "Payments",
+      icon: <TbCreditCardPay />,
+      items: [{ title: "Sales Reports", url: "/admin/payments" }],
+    },
+
+    {
+      title: "Reports",
+      icon: <TbReportAnalytics />,
+      items: [
+        { title: "Cars Reports", url: "/admin/reports/cars" },
+        { title: "Bookings Reports", url: "/admin/reports/bookings" },
+        { title: "Deliveries Reports", url: "/admin/reports/deliveries" },
+        { title: "Rentals Reports", url: "/admin/reports/rentals" },
+        { title: "User Analytics", url: "/admin/reports/analytics" },
+      ],
+    },
+  ],
+};
+export type AdminSidebarType = typeof adminSidebar;
 export type UserSidebarType = typeof userSidebar;
