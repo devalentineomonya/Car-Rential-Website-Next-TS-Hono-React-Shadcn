@@ -3,7 +3,7 @@
 
 ### dotenv ###
 .env
-
+/drizzle
 ### NextJS ###
 # dependencies
 /node_modules

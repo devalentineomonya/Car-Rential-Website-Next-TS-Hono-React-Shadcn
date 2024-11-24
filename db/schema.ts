@@ -8,6 +8,6 @@ export const users = pgTable("users", {
   location: text("location"),
   address: text("address"),
   phone: integer("phone"),
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });

@@ -1,11 +1,12 @@
-import type { Metadata } from "next";
-import { Space_Grotesk } from "next/font/google";
-import { Toaster } from "@/components/ui/sonner";
-import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
-import NavbarMain from "@/components/common/Navbar/NavbarMain";
+import type { Metadata } from "next";
+import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from "@/components/ui/sonner";
+import { Space_Grotesk } from "next/font/google";
 import Footer from "@/components/common/Footer/Footer";
+import { QueryProvider } from "@/providers/query-provider";
 import { ThemeProvider } from "@/components/ui/theme-provider";
+import NavbarMain from "@/components/common/Navbar/NavbarMain";
 import ProgressProvider from "@/components/ui/progress-provider";
 const grotesk = Space_Grotesk({
   weight: ["400", "700"],
@@ -29,19 +30,21 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${grotesk.className} antialiased relative`}>
         <ProgressProvider>
-          <ClerkProvider>
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="system"
-              enableSystem
-              disableTransitionOnChange
-            >
-              <NavbarMain />
-              {children}
-              <Footer />
-              <Toaster />
-            </ThemeProvider>
-          </ClerkProvider>
+          <QueryProvider>
+            <ClerkProvider>
+              <ThemeProvider
+                attribute="class"
+                defaultTheme="system"
+                enableSystem
+                disableTransitionOnChange
+              >
+                <NavbarMain />
+                {children}
+                <Footer />
+                <Toaster />
+              </ThemeProvider>
+            </ClerkProvider>
+          </QueryProvider>
         </ProgressProvider>
         <Toaster />
       </body>
