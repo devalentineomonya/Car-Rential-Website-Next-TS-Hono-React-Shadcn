@@ -22,12 +22,15 @@ const BreadCrumb = () => {
           const isLast = index === paths.length - 1;
           const displayText = path
             .split("-")
-            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
             .join(" ");
 
           return (
             <>
-              <BreadcrumbItem key={path} className="hidden md:block">
+              <BreadcrumbItem
+                key={path + Math.random().toString()}
+                className="hidden md:block"
+              >
                 {isLast ? (
                   <BreadcrumbPage>{displayText}</BreadcrumbPage>
                 ) : (
@@ -35,7 +38,10 @@ const BreadCrumb = () => {
                 )}
               </BreadcrumbItem>
               {!isLast && (
-                <BreadcrumbSeparator key={`${path}-separator`} className="hidden md:block" />
+                <BreadcrumbSeparator
+                  key={`${path}-separator`}
+                  className="hidden md:block"
+                />
               )}
             </>
           );
