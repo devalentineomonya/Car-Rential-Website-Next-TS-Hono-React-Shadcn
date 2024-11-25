@@ -15,110 +15,89 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { useUser } from "@clerk/nextjs";
+import { schemaWithCurrentPassword, schemaWithoutCurrentPassword } from "@/utils/constants";
 
-const PASSWORD_MIN_LENGTH = 8;
-const PASSWORD_MAX_LENGTH = 100;
+type FormData = z.infer<
+  typeof schemaWithCurrentPassword | typeof schemaWithoutCurrentPassword
+>;
 
-const errorMessages = {
-  required: "This field is required",
-  minLength: (field: string) =>
-    `${field} must be at least ${PASSWORD_MIN_LENGTH} characters`,
-  maxLength: (field: string) =>
-    `${field} must be less than ${PASSWORD_MAX_LENGTH} characters`,
-  passwordMatch: "Passwords do not match",
-  passwordComplexity:
-    "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character",
-  currentPasswordMatch: "New password must be different from current password",
-} as const;
-
-const passwordValidation = z
-  .string({ required_error: errorMessages.required })
-  .min(PASSWORD_MIN_LENGTH, { message: errorMessages.minLength("Password") })
-  .max(PASSWORD_MAX_LENGTH, { message: errorMessages.maxLength("Password") })
-  .regex(
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]+$/,
-    { message: errorMessages.passwordComplexity }
-  );
-
-export const ChangePasswordSchema = z
-  .object({
-    currentPassword: passwordValidation,
-    newPassword: passwordValidation,
-    repeatPassword: passwordValidation,
-  })
-  .refine((data) => data.newPassword === data.repeatPassword, {
-    message: errorMessages.passwordMatch,
-    path: ["repeatPassword"],
-  })
-  .refine((data) => data.currentPassword !== data.newPassword, {
-    message: errorMessages.currentPasswordMatch,
-    path: ["newPassword"],
-  });
 const ChangePassword = () => {
-  const form = useForm<z.infer<typeof ChangePasswordSchema>>({
-    resolver: zodResolver(ChangePasswordSchema),
+  const { user } = useUser();
+  const isSocialLogin =
+    user?.externalAccounts && user.externalAccounts.length > 0;
+
+  const form = useForm<FormData>({
+    resolver: zodResolver(
+      isSocialLogin ? schemaWithoutCurrentPassword : schemaWithCurrentPassword
+    ),
   });
 
-  function onSubmit(data: z.infer<typeof ChangePasswordSchema>) {
+  function onSubmit(data: FormData) {
     toast.info(
       <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
         <code className="text-white">{JSON.stringify(data, null, 2)}</code>
       </pre>
     );
   }
+
   return (
     <Card>
       <CardHeader>
         <CardTitle>
           <h2 className="text-lg font-semibold text-foreground">
-            Change Password
+            {isSocialLogin ? "Set Password" : "Change Password"}
           </h2>
           <p className="text-base text-muted-foreground mt-1 font-medium">
-            To change your password please confirm here
+            {isSocialLogin
+              ? "Set a password for your account."
+              : "To change your password, please confirm your current password."}
           </p>
         </CardTitle>
       </CardHeader>
       <CardContent>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-1">
-            <FormField
-              control={form.control}
-              name="currentPassword"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Current Password</FormLabel>
-                  <FormControl>
-                    <Input
-                      autoComplete="off"
-                      className="text-foreground text-base  w-full outline-none focus-visible:ring-0
-                         px-3 rounded-md focus-within:outline-none focus-within:ring-1 focus-within:ring-ring
+            {!isSocialLogin && (
+              <FormField
+                control={form.control}
+                name="currentPassword"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Current Password</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="password"
+                        autoComplete="current-password"
+                        className="text-foreground text-base w-full outline-none focus-visible:ring-0
+                          px-3 rounded-md focus-within:outline-none focus-within:ring-1 focus-within:ring-ring
                           relative h-11 flex-1 items-center bg-white/5 border border-input"
-                      placeholder="********"
-                      {...field}
-                    />
-                  </FormControl>
-
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+                        placeholder="********"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            )}
             <FormField
               control={form.control}
               name="newPassword"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Current Password</FormLabel>
+                  <FormLabel>New Password</FormLabel>
                   <FormControl>
                     <Input
-                      autoComplete="off"
-                      className="text-foreground text-base  w-full outline-none focus-visible:ring-0
-                     px-3 rounded-md focus-within:outline-none focus-within:ring-1 focus-within:ring-ring
-                      relative h-11 flex-1 items-center bg-white/5 border border-input"
+                      type="password"
+                      autoComplete="new-password"
+                      className="text-foreground text-base w-full outline-none focus-visible:ring-0
+                        px-3 rounded-md focus-within:outline-none focus-within:ring-1 focus-within:ring-ring
+                        relative h-11 flex-1 items-center bg-white/5 border border-input"
                       placeholder="********"
                       {...field}
                     />
                   </FormControl>
-
                   <FormMessage />
                 </FormItem>
               )}
@@ -128,18 +107,18 @@ const ChangePassword = () => {
               name="repeatPassword"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Current Password</FormLabel>
+                  <FormLabel>Repeat New Password</FormLabel>
                   <FormControl>
                     <Input
-                      autoComplete="off"
-                      className="text-foreground text-base  w-full outline-none focus-visible:ring-0
-                     px-3 rounded-md focus-within:outline-none focus-within:ring-1 focus-within:ring-ring
-                      relative h-11 flex-1 items-center bg-white/5 border border-input"
+                      type="password"
+                      autoComplete="new-password"
+                      className="text-foreground text-base w-full outline-none focus-visible:ring-0
+                        px-3 rounded-md focus-within:outline-none focus-within:ring-1 focus-within:ring-ring
+                        relative h-11 flex-1 items-center bg-white/5 border border-input"
                       placeholder="********"
                       {...field}
                     />
                   </FormControl>
-
                   <FormMessage />
                 </FormItem>
               )}
