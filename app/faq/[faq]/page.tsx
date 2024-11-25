@@ -1,20 +1,14 @@
-"use client";
 import FaqItem from "@/features/faqSingle/widgets/FaqItem";
-import { useParams, useRouter } from "next/navigation";
 import { faqData } from "@/features/faq/widgets/faqData";
-const FaqSingle = () => {
-  const router = useRouter();
-  const params = useParams();
-  const faq = params?.faq;
-  console.log(faq);
+import { redirect } from "next/navigation";
+const FaqSingle = ({ params }: { params: { faq: string } }) => {
   const faqItem = faqData.find(
     (item) =>
       item.name.toLowerCase().replaceAll(" ", "_") ===
-      faq?.toString().toLowerCase()
+      params.faq.toString().toLowerCase()
   );
   if (!faqItem) {
-    return router.push("/faq");
-    
+    redirect("/faq");
   }
   return <FaqItem faqItem={faqItem} />;
 };

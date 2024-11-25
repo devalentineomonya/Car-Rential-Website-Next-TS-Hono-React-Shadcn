@@ -8,16 +8,18 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { HiOutlineMenuAlt4 } from "react-icons/hi";
+import Link from "next/link";
+import { useUser } from "@clerk/nextjs";
 import {
   NavigationMenuItem,
   NavigationMenuList,
-  NavigationMenuLink,
   NavigationMenu,
 } from "@/components/ui/navigation-menu";
 import { IoLogInOutline } from "react-icons/io5";
-import { RiUserAddLine } from "react-icons/ri";
+import { RiUserAddLine, RiUserSharedLine } from "react-icons/ri";
 import { navigationLinks } from "./navigationLinks";
 const NavbarMobile = () => {
+  const { user, isSignedIn } = useUser();
   return (
     <Sheet>
       <header className="w-full flex items-center justify-center bg-background h-10 md:hidden px-2 sticky top-0 z-40 shadow-sm border-b border-b-border">
@@ -32,25 +34,39 @@ const NavbarMobile = () => {
             </Button>
             <NavigationMenu>
               <NavigationMenuList>
-                <NavigationMenuItem>
-                  <NavigationMenuLink
-                    href="/auth/sign-in"
-                    className={`flex items-center gap-x-1`}
-                  >
-                    <span>Login</span>
-                    <IoLogInOutline />
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
+                {!isSignedIn ? (
+                  <>
+                    <NavigationMenuItem>
+                      <Link
+                        href="/auth/sign-in"
+                        className={`flex items-center gap-x-1`}
+                      >
+                        <IoLogInOutline />
+                        <span>Login</span>
+                      </Link>
+                    </NavigationMenuItem>
 
-                <NavigationMenuItem>
-                  <NavigationMenuLink
-                    href="/auth/sign-up"
-                    className={`flex items-center gap-x-1`}
-                  >
-                    <span>Register</span>
-                    <RiUserAddLine />
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
+                    <NavigationMenuItem>
+                      <Link
+                        href="/auth/sign-up"
+                        className={`flex items-center gap-x-1`}
+                      >
+                        <RiUserAddLine />
+                        <span>Register</span>
+                      </Link>
+                    </NavigationMenuItem>
+                  </>
+                ) : (
+                  <NavigationMenuItem>
+                    <Link
+                      className={`flex items-center gap-x-1`}
+                      href="/user/dashboard"
+                    >
+                      <RiUserSharedLine />
+                      <span>{user.firstName}</span>
+                    </Link>
+                  </NavigationMenuItem>
+                )}
               </NavigationMenuList>
             </NavigationMenu>
           </div>

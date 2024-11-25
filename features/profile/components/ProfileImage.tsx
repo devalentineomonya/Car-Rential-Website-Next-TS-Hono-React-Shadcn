@@ -1,7 +1,9 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import userAvatar from "@/public/images/avatar.png";
 import { Button } from "@/components/ui/button";
+import { useUser } from "@clerk/nextjs";
 import {
   Card,
   CardContent,
@@ -11,6 +13,7 @@ import {
 } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 const ProfileImage = () => {
+  const { user } = useUser();
   return (
     <Card>
       <CardHeader>
@@ -25,7 +28,7 @@ const ProfileImage = () => {
       </CardHeader>
       <CardContent className="w-full flex-col flex items-center justify-center">
         <Avatar className="h-36 w-36">
-          <AvatarImage />
+          <AvatarImage src={user?.imageUrl} />
           <AvatarFallback>
             <Image src={userAvatar} alt="User avatar" />
           </AvatarFallback>

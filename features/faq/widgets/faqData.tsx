@@ -15,7 +15,7 @@ export const faqData = [
     shortDescription: "Get help with your ride",
     fullDescription:
       "Get comprehensive support and answers about requesting rides, payments, scheduling, lost items, fare splitting, cancellations, driver communication, and our policies to ensure a smooth riding experience.",
-    icon: IoCarSportOutline,
+    icon: <IoCarSportOutline size={28} className="text-muted-foreground" />,
     image: rideImage,
     faqItems: [
       {
@@ -75,7 +75,7 @@ export const faqData = [
     shortDescription: "Get help with your rent",
     fullDescription:
       "Get comprehensive support and answers about renting cars, payments, scheduling, lost items, fare splitting, cancellations, driver communication, and our policies to ensure a smooth renting experience.",
-    icon: GiCarKey,
+    icon: <GiCarKey size={28} className="text-muted-foreground" />,
     image: rentImage,
     faqItems: [
       {
@@ -135,7 +135,7 @@ export const faqData = [
     shortDescription: "Get help with your business",
     fullDescription:
       "Get comprehensive support and answers about setting up a business account, managing employees, billing, safety features, travel policies, reporting, and other business-specific needs to ensure a smooth business travel experience.",
-    icon: IoBusinessOutline,
+    icon: <IoBusinessOutline size={28} className="text-muted-foreground" />,
     image: businessImage,
     faqItems: [
       {
@@ -195,7 +195,7 @@ export const faqData = [
     shortDescription: "Get help with your delivery",
     fullDescription:
       "Get comprehensive support and answers about scheduling deliveries, package types, pricing, tracking, insurance, recurring deliveries, same-day deliveries, package preparation, and other delivery-specific needs to ensure a smooth delivery experience.",
-    icon: CiDeliveryTruck,
+    icon: <CiDeliveryTruck size={28} className="text-muted-foreground" />,
     image: deliveryImage,
     faqItems: [
       {
@@ -255,7 +255,7 @@ export const faqData = [
     shortDescription: "Get help with your wide load",
     fullDescription:
       "Get comprehensive support and answers about what qualifies as a wide load, special permits, booking requirements, escort vehicles, safety measures, pricing, route planning, cargo insurance, and tracking to ensure a smooth wide load transportation experience.",
-    icon: PiFireTruckLight,
+    icon: <PiFireTruckLight size={28} className="text-muted-foreground" />,
     image: wideLoadImage,
     faqItems: [
       {
@@ -315,7 +315,7 @@ export const faqData = [
     shortDescription: "Get help with becoming a driver",
     fullDescription:
       "Get comprehensive support and answers about the requirements to become a driver, applying, earning potential, vehicle requirements, insurance, payment methods, schedule flexibility, training, and support to ensure a smooth driver experience.",
-    icon: Car,
+    icon: <Car size={28} className="text-muted-foreground" />,
     image: driverImage,
     faqItems: [
       {

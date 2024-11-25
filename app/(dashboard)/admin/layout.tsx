@@ -2,7 +2,7 @@ import React from "react";
 import { adminSidebar } from "@/utils/sidebarData";
 import { Separator } from "@/components/ui/separator";
 import BreadCrumb from "@/components/common/sidebar/BreadCrumb";
-import { AppSidebar } from "@/components/common/sidebar/SideBar";
+import { AppSidebar } from "@/components/common/sidebar/Sidebar";
 import {
   SidebarInset,
   SidebarProvider,

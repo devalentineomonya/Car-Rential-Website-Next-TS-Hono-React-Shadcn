@@ -18,7 +18,7 @@ const nextConfig = {
             '.json',
           ],
         },
-      }
+      },
 };
 
 export default nextConfig;

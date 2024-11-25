@@ -18,7 +18,7 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
-import { UserSidebarType } from "@/utils/sidebarData";
+import { UserSidebarType } from "@/utils/sidebarData"
 
 export function NavMain({ items }: { items: UserSidebarType["navMain"] }) {
   return (

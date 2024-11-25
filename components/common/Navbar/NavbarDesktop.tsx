@@ -11,7 +11,7 @@ import { useUser } from "@clerk/nextjs";
 import { RiUserAddLine, RiUserSharedLine } from "react-icons/ri";
 import Link from "next/link";
 const Navbar = () => {
-  const { user, isSignedIn } = useUser();
+  const { user, isSignedIn,} = useUser();
   return (
     <header className="h-11 px-2 w-full sticky top-0 z-40 shadow-card dark:shadow-none bg-background text-foreground max-md:hidden shadow-sm border-b border-b-border">
       <MainLayout>

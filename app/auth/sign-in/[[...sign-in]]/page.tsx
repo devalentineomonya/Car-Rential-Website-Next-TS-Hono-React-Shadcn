@@ -1,7 +1,7 @@
 "use client";
 import * as Clerk from "@clerk/elements/common";
 import * as SignIn from "@clerk/elements/sign-in";
-import { ClerkLoaded, ClerkLoading } from "@clerk/nextjs";
+import { ClerkLoaded, ClerkLoading, useAuth } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -17,6 +17,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 export default function Page() {
+  const { isLoaded } = useAuth();
+
   return (
     <div className="min-h-screen grid grid-cols-12">
       <div className="col-span-7 h-full bg-gray-700 dark:bg-gray-900 hidden lg:flex items-center justify-center">
@@ -32,6 +34,7 @@ export default function Page() {
           </p>
         </div>
         <div className="flex items-center justify-center mt-8 bg-background">
+          {!isLoaded && <Icons.spinner className="size-4 animate-spin" />}
           <ClerkLoaded>
             <SignIn.Root>
               <Clerk.Loading>
@@ -71,7 +74,11 @@ export default function Page() {
                               <Label>Email address</Label>
                             </Clerk.Label>
                             <Clerk.Input type="email" required asChild>
-                              <Input />
+                              <Input
+                                className="text-foreground text-base  w-full outline-none focus-visible:ring-0
+                         px-3 rounded-md focus-within:outline-none focus-within:ring-1 focus-within:ring-ring
+                          relative h-11 flex-1 items-center bg-white/5 border border-input"
+                              />
                             </Clerk.Input>
                             <Clerk.FieldError className="block text-sm text-destructive" />
                           </Clerk.Field>
@@ -169,7 +176,11 @@ export default function Page() {
                                 <Label>Password</Label>
                               </Clerk.Label>
                               <Clerk.Input type="password" asChild>
-                                <Input />
+                                <Input
+                                  className="text-foreground text-base  w-full outline-none focus-visible:ring-0
+                         px-3 rounded-md focus-within:outline-none focus-within:ring-1 focus-within:ring-ring
+                          relative h-11 flex-1 items-center bg-white/5 border border-input"
+                                />
                               </Clerk.Input>
                               <Clerk.FieldError className="block text-sm text-destructive" />
                             </Clerk.Field>
@@ -220,12 +231,17 @@ export default function Page() {
                                   <Clerk.Input
                                     type="otp"
                                     autoSubmit
-                                    className="flex justify-center has-[:disabled]:opacity-50"
+                                    className=" flex justify-center gap-x-2 has-[:disabled]:opacity-50"
                                     render={({ value, status }) => {
                                       return (
                                         <div
                                           data-status={status}
-                                          className="relative flex h-9 w-9 items-center justify-center border-y border-r border-input text-sm shadow-sm transition-all first:rounded-l-md first:border-l last:rounded-r-md data-[status=selected]:ring-1 data-[status=selected]:ring-ring data-[status=cursor]:ring-1 data-[status=cursor]:ring-ring"
+                                          className="text-foreground text-base  w-11 outline-none focus-visible:ring-0
+                                                      px-3 rounded-md focus-within:outline-none focus-within:ring-1 focus-within:ring-ring
+                                                        relative h-11 flex-1 items-center bg-white/5 border border-input flex  justify-center 
+                                                        border-y border-r  shadow-sm transition-all first:rounded-l-md first:border-l last:rounded-r-md
+                                                        data-[status=selected]:ring-1 data-[status=selected]:ring-ring data-[status=cursor]:ring-1 
+                                                        data-[status=cursor]:ring-ring"
                                         >
                                           {value}
                                         </div>
@@ -286,7 +302,7 @@ export default function Page() {
             </SignIn.Root>
           </ClerkLoaded>
           <ClerkLoading>
-            <Icons.spinner className="animate-spin text-muted-foreground" />
+            <Icons.spinner className="size-4 animate-spin text-muted-foreground" />
           </ClerkLoading>
         </div>
       </div>

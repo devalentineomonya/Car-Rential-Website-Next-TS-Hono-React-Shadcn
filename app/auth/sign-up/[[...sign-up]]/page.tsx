@@ -48,7 +48,7 @@ export default function SignUpPage() {
                           <div className="grid grid-cols-1">
                             <Clerk.Connection name="google" asChild>
                               <Button
-                                size="sm"
+                                size="lg"
                                 variant="outline"
                                 type="button"
                                 disabled={isGlobalLoading}
@@ -80,7 +80,11 @@ export default function SignUpPage() {
                               <Label>Email address</Label>
                             </Clerk.Label>
                             <Clerk.Input type="email" required asChild>
-                              <Input />
+                              <Input
+                                className="text-foreground text-base  w-full outline-none focus-visible:ring-0
+                         px-3 rounded-md focus-within:outline-none focus-within:ring-1 focus-within:ring-ring
+                          relative h-11 flex-1 items-center bg-white/5 border border-input"
+                              />
                             </Clerk.Input>
                             <Clerk.FieldError className="block text-sm text-destructive" />
                           </Clerk.Field>
@@ -90,7 +94,11 @@ export default function SignUpPage() {
                               <Label>Password</Label>
                             </Clerk.Label>
                             <Clerk.Input type="password" required asChild>
-                              <Input />
+                              <Input
+                                className="text-foreground text-base  w-full outline-none focus-visible:ring-0
+                         px-3 rounded-md focus-within:outline-none focus-within:ring-1 focus-within:ring-ring
+                          relative h-11 flex-1 items-center bg-white/5 border border-input"
+                              />
                             </Clerk.Input>
                             <Clerk.FieldError className="block text-sm text-destructive" />
                           </Clerk.Field>
@@ -140,18 +148,22 @@ export default function SignUpPage() {
                                 <div className="flex justify-center text-center">
                                   <Clerk.Input
                                     type="otp"
-                                    className="flex justify-center has-[:disabled]:opacity-50"
                                     autoSubmit
+                                    className="flex justify-center gap-x-2 has-[:disabled]:opacity-50"
                                     render={({ value, status }) => {
                                       return (
                                         <div
                                           data-status={status}
                                           className={cn(
-                                            "relative flex size-10 items-center justify-center border-y border-r border-input text-sm transition-all first:rounded-l-md first:border-l last:rounded-r-md",
+                                            "text-foreground text-base w-11 outline-none focus-visible:ring-0",
+                                            "px-3 rounded-md focus-within:outline-none focus-within:ring-1 focus-within:ring-ring",
+                                            "relative h-11 flex-1 items-center bg-white/5 border border-input flex justify-center",
+                                            "border-y border-r shadow-sm transition-all first:rounded-l-md first:border-l last:rounded-r-md",
+                                            "data-[status=selected]:ring-1 data-[status=selected]:ring-ring",
+                                            "data-[status=cursor]:ring-1 data-[status=cursor]:ring-ring",
                                             {
                                               "z-10 ring-2 ring-ring ring-offset-background":
-                                                status === "cursor" ||
-                                                status === "selected",
+                                                status === "cursor" || status === "selected",
                                             }
                                           )}
                                         >

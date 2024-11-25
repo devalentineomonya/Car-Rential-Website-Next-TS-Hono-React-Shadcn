@@ -10,7 +10,7 @@ const FaqCard: React.FC<FaqCardProps> = ({ faqItem }) => {
     <Link href={`/faq/${faqItem.name.toLowerCase().replaceAll(" ", "_")}`}>
       <Card className="aspect-square rounded-md">
         <CardContent className="p-4 flex flex-col items-center justify-center ">
-          {<faqItem.icon size={28} className="text-muted-foreground" />}
+          {faqItem.icon}
           <h1 className="font-medium text-lg text-foreground text-center my-2">
             {faqItem.name}
           </h1>

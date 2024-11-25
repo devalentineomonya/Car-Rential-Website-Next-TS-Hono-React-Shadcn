@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useUser } from "@clerk/clerk-react";
-import { Skeleton } from "@/components/ui/skeleton"
+import { Skeleton } from "@/components/ui/skeleton";
 import { SignOutButton } from "@clerk/nextjs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -31,12 +31,12 @@ import {
 
 export function NavUser() {
   const { isMobile } = useSidebar();
-  const { user, isLoaded } = useUser();
+  const { user, isLoaded, isSignedIn } = useUser();
   return (
     <SidebarMenu>
       <SidebarMenuItem>
-        <DropdownMenu >
-          {isLoaded ? (
+        <DropdownMenu>
+          {isLoaded && isSignedIn ? (
             <DropdownMenuTrigger asChild>
               <SidebarMenuButton
                 size="lg"
@@ -62,7 +62,7 @@ export function NavUser() {
             </DropdownMenuTrigger>
           ) : (
             <div className=" flex items-center space-x-4 w-full">
-              <Skeleton className="h-8 w-8 rounded-lg"/>
+              <Skeleton className="h-8 w-8 rounded-lg" />
               <div className="space-y-2 w-full">
                 <Skeleton className="h-4 w-full" />
                 <Skeleton className="h-4 w-[calc(100%-20px)]" />
@@ -121,7 +121,7 @@ export function NavUser() {
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <SignOutButton>
+            <SignOutButton redirectUrl="/">
               <DropdownMenuItem>
                 <LogOut />
                 Log out

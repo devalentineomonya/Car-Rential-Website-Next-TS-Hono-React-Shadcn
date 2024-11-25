@@ -1,18 +1,18 @@
 import { Hono } from "hono";
 import { handle } from "hono/vercel";
-import users from "./users";
-export const runtime = "edge";
-import { HTTPException } from "hono/http-exception";
+import users from "./(modules)/users/users";
+import webhooks from "./(modules)/users/webhooks";
 const app = new Hono().basePath("/api");
 
-app.onError((err, c) => {
-  if (err instanceof HTTPException) {
-    return err.getResponse();
-  }
-  return c.json({ success: false, message: "Internal server error" }, 500);
-});
+const routes = app.route("/users", users).route("/users/webhooks", webhooks);
 
-const routes = app.route("/users", users);
+routes.onError((err, c) => {
+  console.error(err);
+  return c.json(
+    { success: false, message: "Internal server error", error: err.message },
+    500
+  );
+});
 
 export const GET = handle(app);
 export const POST = handle(app);
