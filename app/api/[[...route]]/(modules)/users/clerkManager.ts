@@ -7,7 +7,6 @@ import {
   schemaWithCurrentPassword,
   schemaWithoutCurrentPassword,
 } from "@/utils/constants";
-
 const imageUpdateSchema = z.object({
   file: z.instanceof(File),
 });
@@ -49,10 +48,13 @@ const app = new Hono()
       if (!auth?.userId) {
         return c.json({ success: false, message: "Unauthorized user" }, 401);
       }
-      await client.users.updateUser(auth.userId, {
+      const response = await client.users.updateUser(auth.userId, {
         password: c.req.valid("json").newPassword,
       });
-      return c.json({ success: true, message: "Password updated" }, 200);
+      return c.json(
+        { success: true, message: "Password updated", data: response },
+        200
+      );
     }
   )
   .put(
@@ -66,19 +68,22 @@ const app = new Hono()
         return c.json({ success: false, message: "Unauthorized user" }, 401);
       }
       const { currentPassword, newPassword } = c.req.valid("json");
+
       const isValidPassword = await client.users.verifyPassword({
         password: currentPassword,
         userId: auth.userId,
       });
+      console.log("isValidPassword", { isValidPassword });
       if (!isValidPassword) {
         return c.json(
           { success: false, message: "Invalid current password" },
           400
         );
       }
-      await client.users.updateUser(auth.userId, {
+      const response = await client.users.updateUser(auth.userId, {
         password: newPassword,
       });
+      console.log(response);
       return c.json({ success: true, message: "Password updated" }, 200);
     }
   );

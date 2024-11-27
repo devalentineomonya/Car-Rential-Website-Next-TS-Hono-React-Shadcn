@@ -5,9 +5,9 @@ import { Toaster } from "@/components/ui/sonner";
 import { Space_Grotesk } from "next/font/google";
 import Footer from "@/components/common/footer/Footer";
 import { QueryProvider } from "@/providers/query-provider";
-import { ThemeProvider } from "@/components/ui/theme-provider";
+import { ThemeProvider } from "@/providers/theme-provider";
 import NavbarMain from "@/components/common/navbar/NavbarMain";
-import ProgressProvider from "@/components/ui/progress-provider";
+import ProgressProvider from "@/providers/progress-provider";
 const grotesk = Space_Grotesk({
   weight: ["400", "700"],
   style: ["normal"],
@@ -29,9 +29,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${grotesk.className} antialiased relative`}>
-        <ProgressProvider>
-          <QueryProvider>
-            <ClerkProvider>
+        <ClerkProvider>
+          <ProgressProvider>
+            <QueryProvider>
               <ThemeProvider
                 attribute="class"
                 defaultTheme="system"
@@ -43,9 +43,9 @@ export default function RootLayout({
                 <Footer />
                 <Toaster />
               </ThemeProvider>
-            </ClerkProvider>
-          </QueryProvider>
-        </ProgressProvider>
+            </QueryProvider>
+          </ProgressProvider>
+        </ClerkProvider>
         <Toaster />
       </body>
     </html>

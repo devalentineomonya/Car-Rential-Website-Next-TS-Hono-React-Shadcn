@@ -162,9 +162,9 @@ export default function Page() {
                       <SignIn.Strategy name="password">
                         <Card className="w-full sm:w-96">
                           <CardHeader>
-                            <CardTitle>Check your email</CardTitle>
+                            <CardTitle>Enter your password</CardTitle>
                             <CardDescription>
-                              Enter the verification code sent to your email
+                              Please enter your password to continue
                             </CardDescription>
                             <p className="text-sm text-muted-foreground">
                               Welcome back <SignIn.SafeIdentifier />

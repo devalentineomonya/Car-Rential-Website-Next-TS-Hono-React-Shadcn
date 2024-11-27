@@ -16,29 +16,50 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { useUser } from "@clerk/nextjs";
-import { schemaWithCurrentPassword, schemaWithoutCurrentPassword } from "@/utils/constants";
-
+import {
+  schemaWithCurrentPassword,
+  schemaWithoutCurrentPassword,
+} from "@/utils/constants";
+import {
+  useUpdatePassword,
+  useSetPassword,
+} from "@/state/users/api/use-update-password";
 type FormData = z.infer<
   typeof schemaWithCurrentPassword | typeof schemaWithoutCurrentPassword
 >;
 
 const ChangePassword = () => {
   const { user } = useUser();
-  const isSocialLogin =
-    user?.externalAccounts && user.externalAccounts.length > 0;
+  const isPasswordLogin = user?.passwordEnabled;
+  const updatePassword = useUpdatePassword();
+  const setPassword = useSetPassword();
 
   const form = useForm<FormData>({
     resolver: zodResolver(
-      isSocialLogin ? schemaWithoutCurrentPassword : schemaWithCurrentPassword
+      isPasswordLogin ? schemaWithCurrentPassword : schemaWithoutCurrentPassword
     ),
   });
 
-  function onSubmit(data: FormData) {
-    toast.info(
-      <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-        <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-      </pre>
-    );
+  async function onSubmit(data: FormData) {
+    try {
+      let response;
+      if (isPasswordLogin) {
+        response = await updatePassword.mutateAsync(
+          data as z.infer<typeof schemaWithCurrentPassword>
+        );
+        toast.success(response.message || "Password updated successfully.");
+      } else {
+        response = await setPassword.mutateAsync(
+          data as z.infer<typeof schemaWithoutCurrentPassword>
+        );
+        toast.success(response.message || "Password set successfully.");
+      }
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      const errorMessage =  error?.message || "Failed to update password.";
+      toast.error(errorMessage);
+    }
   }
 
   return (
@@ -46,19 +67,19 @@ const ChangePassword = () => {
       <CardHeader>
         <CardTitle>
           <h2 className="text-lg font-semibold text-foreground">
-            {isSocialLogin ? "Set Password" : "Change Password"}
+            {isPasswordLogin ? "Change Password" : "Set Password"}
           </h2>
           <p className="text-base text-muted-foreground mt-1 font-medium">
-            {isSocialLogin
-              ? "Set a password for your account."
-              : "To change your password, please confirm your current password."}
+            {isPasswordLogin
+              ? "To change your password, please confirm your current password."
+              : "Set a password for your account to enhance security."}
           </p>
         </CardTitle>
       </CardHeader>
       <CardContent>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-1">
-            {!isSocialLogin && (
+            {isPasswordLogin && (
               <FormField
                 control={form.control}
                 name="currentPassword"
@@ -124,7 +145,13 @@ const ChangePassword = () => {
               )}
             />
             <Button type="submit" className="mt-2">
-              Submit
+              {isPasswordLogin
+                ? updatePassword.isPending
+                  ? "Updating..."
+                  : "Change Password"
+                : setPassword.isPending
+                ? "Setting..."
+                : "Set Password"}
             </Button>
           </form>
         </Form>
@@ -134,3 +161,4 @@ const ChangePassword = () => {
 };
 
 export default ChangePassword;
+

@@ -106,7 +106,7 @@ export function NavUser() {
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem asChild>
-                <Link href="/user/user-profile">
+                <Link href="/user/profile">
                   <BadgeCheck />
                   Account
                 </Link>

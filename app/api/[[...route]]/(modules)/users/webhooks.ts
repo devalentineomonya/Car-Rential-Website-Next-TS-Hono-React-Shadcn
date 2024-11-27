@@ -1,10 +1,10 @@
 import { createUser } from "./users";
-
 import { Hono } from "hono";
 import { createId } from "@paralleldrive/cuid2";
 import { Webhook } from "svix";
 import { headers } from "next/headers";
 import { WebhookEvent } from "@clerk/nextjs/server";
+import { clerkClient } from "@clerk/nextjs/server";
 const app = new Hono().post("/", async (c) => {
   const SIGNING_SECRET = process.env.SIGNING_SECRET;
 
@@ -77,9 +77,14 @@ const app = new Hono().post("/", async (c) => {
         address: null,
         phone: null,
       };
-
       const data = await createUser(userData);
       if (data.success) {
+        const client = await clerkClient();
+        await client.users.updateUserMetadata(payload.data.id, {
+          publicMetadata: {
+            isNew: data.data?.isNew,
+          },
+        });
         console.log("User successfully created in DB:", data.data);
         return c.json({ success: true, data: data.data }, 200);
       } else {

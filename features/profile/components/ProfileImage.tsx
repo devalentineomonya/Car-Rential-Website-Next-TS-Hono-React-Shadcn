@@ -20,6 +20,15 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle} from "@/components/ui/alert-dialog";
 import { Icons } from "@/components/ui/icons";
 
 const MAX_FILE_SIZE = 8000 * 1024;
@@ -173,8 +182,16 @@ const ProfileImage = () => {
                 </Label>
                 Change Image
               </Button>
-              <Button  disabled={updateImage.isPending} variant="default" onClick={handleUpload}>
-                {updateImage.isPending ? <Icons.spinner className="size-7 animate-spin" /> : "Upload"}
+              <Button
+                disabled={updateImage.isPending}
+                variant="default"
+                onClick={handleUpload}
+              >
+                {updateImage.isPending ? (
+                  <Icons.spinner className="size-7 animate-spin" />
+                ) : (
+                  "Upload"
+                )}
               </Button>
             </div>
           </div>
@@ -182,32 +199,30 @@ const ProfileImage = () => {
       </Dialog>
 
       {/* Delete Confirmation Dialog */}
-      <Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Confirm Deletion</DialogTitle>
-            <DialogDescription>
-              Are you sure you want to delete your profile image? This action
-              cannot be undone.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="w-full flex justify-end items-center gap-x-4">
-            <Button variant="default" onClick={handleDeleteImage}>
+      <AlertDialog
+        open={isDeleteDialogOpen}
+        onOpenChange={setIsDeleteDialogOpen}
+      >
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Are you absolutely sure ?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This action cannot be undone. This will permanently delete your
+              profile image and remove it from our servers.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={handleDeleteImage}>
               {removeImage.isPending ? (
                 <Icons.spinner className="size-6 animate-spin" />
               ) : (
                 "Confirm"
               )}
-            </Button>
-            <Button
-              variant="secondary"
-              onClick={() => setIsDeleteDialogOpen(false)}
-            >
-              Cancel
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </>
   );
 };

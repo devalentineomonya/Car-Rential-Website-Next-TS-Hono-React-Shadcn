@@ -1,5 +1,4 @@
 import {
-  integer,
   pgTable,
   text,
   timestamp,
@@ -14,7 +13,7 @@ export const users = pgTable("users", {
   lastName: text("last_name"),
   location: text("location"),
   address: text("address"),
-  phone: integer("phone"),
+  phone: text("phone"),
   isNew: boolean("is_new").notNull().default(true),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
