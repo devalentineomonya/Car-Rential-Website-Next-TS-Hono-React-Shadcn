@@ -1,14 +1,17 @@
-import React from 'react'
-import Account from '@/features/profile/widgets/Account';
-import Header from '@/features/profile/components/Header';
-import MainLayout from '@/components/common/layouts/MainLayout'
+import React from "react";
+import Account from "@/features/profile/widgets/Account";
+import DashboardHeader from "@/components/common/shared/DashboardHeader";
+import MainLayout from "@/components/common/layouts/MainLayout";
 const Profile = () => {
   return (
     <MainLayout>
-      <Header />
+      <DashboardHeader
+        title="Account Setting"
+        description="Manage your account settings and preferences."
+      />
       <Account />
     </MainLayout>
   );
-}
+};
 
-export default Profile
+export default Profile;

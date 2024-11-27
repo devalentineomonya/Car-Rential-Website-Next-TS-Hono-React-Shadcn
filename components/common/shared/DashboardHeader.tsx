@@ -4,7 +4,14 @@ import { CiWarning } from "react-icons/ci";
 import React from "react";
 import { useUser } from "@clerk/nextjs";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-const Header = () => {
+
+const DashboardHeader = ({
+  title,
+  description,
+}: {
+  title: string;
+  description: string;
+}) => {
   const { user } = useUser();
   const isNewUser = user?.publicMetadata?.isNew;
   return (
@@ -21,11 +28,9 @@ const Header = () => {
       <Card className="bg-muted">
         <CardContent className="p-6">
           <div>
-            <h2 className="font-semibold text-xl text-foreground">
-              Account Setting
-            </h2>
+            <h2 className="font-semibold text-xl text-foreground">{title}</h2>
             <p className="text-base font-medium text-foreground">
-              Manage your account settings and preferences.
+              {description}
             </p>
           </div>
         </CardContent>
@@ -34,4 +39,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default DashboardHeader;

@@ -96,19 +96,12 @@ export const adminSidebar = {
     {
       title: "Car Management",
       icon: <Car />,
-      items: [
-        { title: "View Cars", url: "/admin/cars" },
-        { title: "Pending Approvals", url: "/admin/cars/pending" },
-        { title: "Add New Car", url: "/admin/cars/add" },
-      ],
+      items: [{ title: "View Cars", url: "/admin/cars" }],
     },
     {
       title: "User Management",
       icon: <PiUsersThree />,
-      items: [
-        { title: "View Users", url: "/admin/users" },
-        { title: "Add New User", url: "/admin/users/add" },
-      ],
+      items: [{ title: "View Users", url: "/admin/users" }],
     },
     {
       title: "Drivers Management",
@@ -116,7 +109,6 @@ export const adminSidebar = {
       items: [
         { title: "View Drivers", url: "/admin/drivers" },
         { title: "Pending Approvals", url: "/admin/drivers/pending" },
-        { title: "Add New Driver", url: "/admin/drivers/add" },
       ],
     },
     {

@@ -23,8 +23,7 @@ import { CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
 import { Calendar } from "@/components/ui/calendar";
 import { useState } from "react";
-import cn from "classnames";
-
+import { cn } from "@/lib/utils";
 const HeroFormDateTimePicker = ({
   selectedDate,
   placeholder,
