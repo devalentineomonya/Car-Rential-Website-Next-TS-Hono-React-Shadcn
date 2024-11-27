@@ -54,10 +54,8 @@ const ChangePassword = () => {
         );
         toast.success(response.message || "Password set successfully.");
       }
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
-      const errorMessage =  error?.message || "Failed to update password.";
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : "Failed to update password.";
       toast.error(errorMessage);
     }
   }

@@ -68,10 +68,9 @@ const PersonalInfo = ({ data }: { data: PersonalInfoSchema }) => {
     try {
       const response = updateUser.mutate(data);
       console.log("Response", response);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
-      console.log("Error", error);
-      toast.error(error.message || "Failed to update user");
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : "Failed to update user";
+      toast.error(errorMessage);
     }
   }
   return (
