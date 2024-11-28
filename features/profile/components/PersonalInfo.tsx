@@ -17,6 +17,7 @@ import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useUpdateUser } from "@/state/users/api/use-update-user";
+import { INPUT_CLASSNAME } from "@/utils/constants";
 const personalInfoSchema = insertUserSchema
   .pick({
     id: true,
@@ -98,9 +99,7 @@ const PersonalInfo = ({ data }: { data: PersonalInfoSchema }) => {
                     <FormControl>
                       <Input
                         autoComplete="off"
-                        className="text-foreground text-base w-full outline-none focus-visible:ring-0
-                         px-3 rounded-md focus-within:outline-none focus-within:ring-1 focus-within:ring-ring
-                          relative h-11 flex-1 items-center bg-white/5 border border-input"
+                        className={INPUT_CLASSNAME}
                         placeholder="Eg John, Jane"
                         required
                         {...field}
@@ -120,9 +119,7 @@ const PersonalInfo = ({ data }: { data: PersonalInfoSchema }) => {
                     <FormControl>
                       <Input
                         autoComplete="off"
-                        className="text-foreground text-base  w-full outline-none focus-visible:ring-0
-                     px-3 rounded-md focus-within:outline-none focus-within:ring-1 focus-within:ring-ring
-                      relative h-11 flex-1 items-center bg-white/5 border border-input"
+                        className={INPUT_CLASSNAME}
                         placeholder="eg Doe, Smith"
                         required
                         {...field}
@@ -143,9 +140,7 @@ const PersonalInfo = ({ data }: { data: PersonalInfoSchema }) => {
                     <FormControl>
                       <Input
                         autoComplete="off"
-                        className="text-foreground text-base  w-full outline-none focus-visible:ring-0
-                     px-3 rounded-md focus-within:outline-none focus-within:ring-1 focus-within:ring-ring
-                      relative h-11 flex-1 items-center bg-white/5 border border-input"
+                        className={INPUT_CLASSNAME}
                         placeholder="eg New York, London"
                         required
                         {...field}
@@ -165,9 +160,7 @@ const PersonalInfo = ({ data }: { data: PersonalInfoSchema }) => {
                     <FormControl>
                       <Input
                         autoComplete="off"
-                        className="text-foreground text-base  w-full outline-none focus-visible:ring-0
-                     px-3 rounded-md focus-within:outline-none focus-within:ring-1 focus-within:ring-ring
-                      relative h-11 flex-1 items-center bg-white/5 border border-input"
+                        className={INPUT_CLASSNAME}
                         placeholder="eg john@doe.com, jane@smith.com"
                         type="email"
                         required
@@ -189,9 +182,7 @@ const PersonalInfo = ({ data }: { data: PersonalInfoSchema }) => {
                     <FormControl>
                       <Input
                         autoComplete="off"
-                        className="text-foreground text-base  w-full outline-none focus-visible:ring-0
-                     px-3 rounded-md focus-within:outline-none focus-within:ring-1 focus-within:ring-ring
-                      relative h-11 flex-1 items-center bg-white/5 border border-input"
+                        className={INPUT_CLASSNAME}
                         placeholder="eg +1234567890, +1234567890"
                         required
                         {...field}
@@ -211,9 +202,7 @@ const PersonalInfo = ({ data }: { data: PersonalInfoSchema }) => {
                     <FormControl>
                       <Input
                         autoComplete="off"
-                        className="text-foreground text-base  w-full outline-none focus-visible:ring-0
-                     px-3 rounded-md focus-within:outline-none focus-within:ring-1 focus-within:ring-ring
-                      relative h-11 flex-1 items-center bg-white/5 border border-input"
+                        className={INPUT_CLASSNAME}
                         placeholder="2g 1234 Main St, Anytown, USA Main St, Anytown, USA"
                         required
                         {...field}

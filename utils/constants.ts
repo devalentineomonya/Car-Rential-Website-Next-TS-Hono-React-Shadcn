@@ -73,3 +73,6 @@ export const schemaWithoutCurrentPassword = z
     message: errorMessages.passwordMatch,
     path: ["repeatPassword"],
   });
+
+export const INPUT_CLASSNAME =
+  "text-foreground text-base  w-full outline-none focus-visible:ring-0 px-3 rounded-md focus-within:outline-none focus-within:ring-1 focus-within:ring-ring relative h-11 flex-1 items-center bg-white/5 border border-input";

@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Icons } from "@/components/ui/icons";
 import Logo from "@/public/images/logo.png";
+import { INPUT_CLASSNAME } from "@/utils/constants";
 import Image from "next/image";
 import {
   Card,
@@ -74,11 +75,7 @@ export default function Page() {
                               <Label>Email address</Label>
                             </Clerk.Label>
                             <Clerk.Input type="email" required asChild>
-                              <Input
-                                className="text-foreground text-base  w-full outline-none focus-visible:ring-0
-                         px-3 rounded-md focus-within:outline-none focus-within:ring-1 focus-within:ring-ring
-                          relative h-11 flex-1 items-center bg-white/5 border border-input"
-                              />
+                              <Input className={INPUT_CLASSNAME} />
                             </Clerk.Input>
                             <Clerk.FieldError className="block text-sm text-destructive" />
                           </Clerk.Field>
@@ -176,11 +173,7 @@ export default function Page() {
                                 <Label>Password</Label>
                               </Clerk.Label>
                               <Clerk.Input type="password" asChild>
-                                <Input
-                                  className="text-foreground text-base  w-full outline-none focus-visible:ring-0
-                         px-3 rounded-md focus-within:outline-none focus-within:ring-1 focus-within:ring-ring
-                          relative h-11 flex-1 items-center bg-white/5 border border-input"
-                                />
+                                <Input className={INPUT_CLASSNAME} />
                               </Clerk.Input>
                               <Clerk.FieldError className="block text-sm text-destructive" />
                             </Clerk.Field>

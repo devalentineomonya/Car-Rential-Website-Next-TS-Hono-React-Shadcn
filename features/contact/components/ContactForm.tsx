@@ -25,7 +25,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-
+import { INPUT_CLASSNAME } from "@/utils/constants";
 export const contactFormSchema = z.object({
   name: z.string().min(2, {
     message: "Name must be at least 2 characters.",
@@ -86,9 +86,7 @@ const ContactForm = () => {
                   <FormControl>
                     <Input
                       autoComplete="off"
-                      className="text-foreground text-base  w-full outline-none focus-visible:ring-0
-                      px-3 rounded-md focus-within:outline-none focus-within:ring-1 focus-within:ring-ring
-                       relative h-11 flex-1 items-center bg-white/5 border border-input"
+                      className={INPUT_CLASSNAME}
                       placeholder="Enter your name"
                       {...field}
                     />
@@ -106,9 +104,7 @@ const ContactForm = () => {
                   <FormControl>
                     <Input
                       autoComplete="off"
-                       className="text-foreground text-base  w-full outline-none focus-visible:ring-0
-                      px-3 rounded-md focus-within:outline-none focus-within:ring-1 focus-within:ring-ring
-                       relative h-11 flex-1 items-center bg-white/5 border border-input"
+                      className={INPUT_CLASSNAME}
                       type="email"
                       placeholder="Enter your email"
                       {...field}
@@ -127,9 +123,7 @@ const ContactForm = () => {
                   <FormControl>
                     <Input
                       autoComplete="off"
-                       className="text-foreground text-base  w-full outline-none focus-visible:ring-0
-                      px-3 rounded-md focus-within:outline-none focus-within:ring-1 focus-within:ring-ring
-                       relative h-11 flex-1 items-center bg-white/5 border border-input"
+                      className={INPUT_CLASSNAME}
                       placeholder="What's this about?"
                       {...field}
                     />
@@ -147,8 +141,7 @@ const ContactForm = () => {
                   <FormControl>
                     <Textarea
                       autoComplete="off"
-                      className="min-h-[120px] text-foreground text-base  w-full outline-none focus-visible:ring-0 relative h-11 flex-1 items-center bg-white/5 border border-input
-                px-3 rounded-md focus-within:outline-none focus-within:ring-1 focus-within:ring-ring"
+                      className={INPUT_CLASSNAME}
                       placeholder="Your message..."
                       {...field}
                     />
