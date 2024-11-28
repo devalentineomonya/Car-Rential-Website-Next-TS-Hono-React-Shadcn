@@ -8,6 +8,7 @@ import { QueryProvider } from "@/providers/query-provider";
 import { ThemeProvider } from "@/providers/theme-provider";
 import NavbarMain from "@/components/common/navbar/NavbarMain";
 import ProgressProvider from "@/providers/progress-provider";
+import { SheetProvider } from "@/providers/sheet-provider";
 const grotesk = Space_Grotesk({
   weight: ["400", "700"],
   style: ["normal"],
@@ -32,12 +33,14 @@ export default function RootLayout({
         <ClerkProvider>
           <ProgressProvider>
             <QueryProvider>
+              
               <ThemeProvider
                 attribute="class"
                 defaultTheme="system"
                 enableSystem
                 disableTransitionOnChange
               >
+                <SheetProvider/>
                 <NavbarMain />
                 {children}
                 <Footer />
