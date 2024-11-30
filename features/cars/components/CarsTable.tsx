@@ -12,6 +12,7 @@ import {
 } from "@tanstack/react-table";
 import { Plus } from "lucide-react";
 import React from "react";
+  import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -21,6 +22,7 @@ import {
   CardTitle,
   CardFooter,
 } from "@/components/ui/card";
+import { Icons } from "@/components/ui/icons";
 import { Input } from "@/components/ui/input";
 import {
   Table,
@@ -30,17 +32,14 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { selectCarSchema } from "@/db/schema";
 import { useNewCar } from "@/hooks/use-new-car";
-interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
-  data: TData[];
-}
+import { useGetCars } from "@/state/cars/api/use-get-cars"
 
+import { columns } from "../widgets/TableColumns";
 // Define CarsTable as a generic functional component
-const CarsTable = <TData, TValue>({
-  columns,
-  data,
-}: DataTableProps<TData, TValue>) => {
+const CarsTable =() => {
+  const { data, isLoading } = useGetCars();
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -48,8 +47,8 @@ const CarsTable = <TData, TValue>({
   const { onOpen } = useNewCar();
   const [rowSelection, setRowSelection] = React.useState({});
   const table = useReactTable({
-    data,
-    columns,
+    data: data ?? [],
+    columns: columns as ColumnDef<z.infer<typeof selectCarSchema>>[],
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     onSortingChange: setSorting,
@@ -63,7 +62,9 @@ const CarsTable = <TData, TValue>({
       columnFilters,
     },
   });
-
+if(isLoading) return <div className="flex justify-center items-center h-48 w-full rounded-lg mt-6  border bg-card text-card-foreground shadow">
+  <Icons.spinner className="animate-spin size-6 text-muted-foreground"/>
+</div>
   return (
     <Card className="mt-6">
       <CardHeader className="flex-row items-center justify-between">

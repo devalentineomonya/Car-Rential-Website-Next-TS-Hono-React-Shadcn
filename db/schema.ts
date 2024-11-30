@@ -7,7 +7,7 @@ import {
   jsonb,
   integer,
 } from "drizzle-orm/pg-core";
-import { createInsertSchema } from "drizzle-zod";
+import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 export const users = pgTable("users", {
   id: text("id").primaryKey(),
@@ -67,6 +67,8 @@ export const carRelations = relations(cars, ({ one }) => ({
 export const insertUserSchema = createInsertSchema(users);
 
 export const insertCarSchema = createInsertSchema(cars);
+export const selectCarSchema = createSelectSchema(cars);
+
 export const dynamicSchema = z
   .object({
     ...insertCarSchema.shape,

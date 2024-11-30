@@ -21,7 +21,7 @@ const app = new Hono()
       },
     });
 
-    return c.json({ success: true, cars: fetchedCars }, 200);
+    return c.json({ success: true, data: fetchedCars }, 200);
   })
   .post(
     "/",
