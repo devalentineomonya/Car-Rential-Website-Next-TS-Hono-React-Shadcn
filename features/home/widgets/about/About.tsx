@@ -1,3 +1,6 @@
+import Image from "next/image";
+import React from "react";
+
 import MainLayout from "@/components/common/layouts/MainLayout";
 import {
   Accordion,
@@ -5,8 +8,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import Image from "next/image";
-import React from "react";
 import about from "@/public/images/about.png";
 
 const About = () => {

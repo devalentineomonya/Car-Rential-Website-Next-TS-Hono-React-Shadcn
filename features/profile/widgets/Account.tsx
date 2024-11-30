@@ -1,10 +1,13 @@
 "use client";
-import { useGetUser } from "@/state/users/api/use-get-users";
 import { useUser } from "@clerk/nextjs";
+
+import LoaderWrapper from "@/components/common/loaders/LoaderWrapper";
+import { useGetUser } from "@/state/users/api/use-get-users";
+
+import ChangePassword from "../components/ChangePassword";
 import PersonalInfo from "../components/PersonalInfo";
 import ProfileImage from "../components/ProfileImage";
-import ChangePassword from "../components/ChangePassword";
-import LoaderWrapper from "@/components/common/loaders/LoaderWrapper";
+
 
 const Account = () => {
   const { user, isLoaded } = useUser();

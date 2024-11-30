@@ -1,11 +1,13 @@
 "use client";
-import React from "react";
-import MainLayout from "@/components/common/layouts/MainLayout";
-import LoginBanner from "../components/LoginBanner";
-import FaqDescription from "../components/FaqDescription";
-import { FaqData } from "@/features/faq/widgets/faqData";
-import FaqAccordion from "../components/FaqAccordion";
 import Image from "next/image";
+import React from "react";
+
+import MainLayout from "@/components/common/layouts/MainLayout";
+import { FaqData } from "@/features/faq/widgets/faqData";
+
+import FaqAccordion from "../components/FaqAccordion";
+import FaqDescription from "../components/FaqDescription";
+import LoginBanner from "../components/LoginBanner";
 const FaqItem = ({ faqItem }: { faqItem: FaqData }) => {
   return (
     <MainLayout>

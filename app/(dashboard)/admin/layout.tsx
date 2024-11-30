@@ -1,13 +1,14 @@
 import React from "react";
-import { adminSidebar } from "@/utils/sidebarData";
-import { Separator } from "@/components/ui/separator";
+
 import BreadCrumb from "@/components/common/sidebar/BreadCrumb";
 import { AppSidebar } from "@/components/common/sidebar/Sidebar";
+import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import { adminSidebar } from "@/utils/sidebarData";
 
 export default function AdminLayout({
   children,

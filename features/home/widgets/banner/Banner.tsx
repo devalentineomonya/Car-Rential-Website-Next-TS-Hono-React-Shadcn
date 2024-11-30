@@ -1,10 +1,11 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
+import { FaCarSide } from "react-icons/fa6";
+
+import MainLayout from "@/components/common/layouts/MainLayout";
 import bannerLarge from "@/public/images/banner-large.png";
 import bannerSmall from "@/public/images/car9.png";
-import MainLayout from "@/components/common/layouts/MainLayout";
-import Link from "next/link";
-import { FaCarSide } from "react-icons/fa6";
 
 const Banner = () => {
   return (

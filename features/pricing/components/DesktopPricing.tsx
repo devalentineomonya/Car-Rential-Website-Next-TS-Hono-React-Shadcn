@@ -1,7 +1,9 @@
-import React from "react";
-import { PlanTypes, FeatureTypes, PerkTypes } from "../widgets/pricingData";
-import { cn } from "@/lib/utils";
 import { CheckIcon, XIcon } from "lucide-react";
+import React from "react";
+
+import { cn } from "@/lib/utils";
+
+import { PlanTypes, FeatureTypes, PerkTypes } from "../widgets/pricingData";
 
 const FakeCardBackgrounds: React.FC<{ plans: PlanTypes[] }> = ({ plans }) => (
   <div

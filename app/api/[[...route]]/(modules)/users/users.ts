@@ -1,13 +1,13 @@
-import { Hono } from "hono";
-import { db } from "@/db/drizzle";
-import { clerkMiddleware, getAuth } from "@hono/clerk-auth";
 import { clerkClient } from "@clerk/nextjs/server";
+import { clerkMiddleware, getAuth } from "@hono/clerk-auth";
 import { zValidator } from "@hono/zod-validator";
-import { insertUserSchema, users } from "@/db/schema";
 import { createId } from "@paralleldrive/cuid2";
-
-import { z } from "zod";
 import { and, eq } from "drizzle-orm";
+import { Hono } from "hono";
+import { z } from "zod";
+
+import { db } from "@/db/drizzle";
+import { insertUserSchema, users } from "@/db/schema";
 
 const createUserSchema = insertUserSchema
   .extend({

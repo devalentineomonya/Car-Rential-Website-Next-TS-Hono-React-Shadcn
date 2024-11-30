@@ -1,8 +1,9 @@
+import { Car } from "lucide-react";
 import { IoCarSportOutline } from "react-icons/io5";
 import { PiPackage } from "react-icons/pi";
-import { Car } from "lucide-react";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+
 import { FormLabel } from "@/components/ui/form";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 const rideTypes = [
   { label: "Ride", value: "ride", icon: <IoCarSportOutline size={24} /> },

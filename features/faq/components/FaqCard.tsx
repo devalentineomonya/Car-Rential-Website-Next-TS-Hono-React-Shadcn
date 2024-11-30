@@ -1,7 +1,9 @@
-import React from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { FaqData } from "../widgets/faqData";
 import Link from "next/link";
+import React from "react";
+
+import { Card, CardContent } from "@/components/ui/card";
+
+import { FaqData } from "../widgets/faqData";
 interface FaqCardProps {
   faqItem: FaqData;
 }

@@ -1,9 +1,10 @@
-import HeaderBanner from '@/components/common/shared/HeaderBanner'
-import Ride from '@/features/services/widgets/Ride'
-import Rent from '@/features/services/widgets/Rent'
 import React from 'react'
-import Driver from '@/features/services/widgets/Driver'
+
+import HeaderBanner from '@/components/common/shared/HeaderBanner'
 import Auto from '@/features/services/widgets/Auto'
+import Driver from '@/features/services/widgets/Driver'
+import Rent from '@/features/services/widgets/Rent'
+import Ride from '@/features/services/widgets/Ride'
 
 const Services = () => {
   return (

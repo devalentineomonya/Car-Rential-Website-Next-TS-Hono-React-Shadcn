@@ -1,7 +1,8 @@
-import React from "react";
 import Image from "next/image";
-import driver from "@/public/images/driver.png";
+import React from "react";
+
 import MainLayout from "@/components/common/layouts/MainLayout";
+import driver from "@/public/images/driver.png";
 const Driver = () => {
   return (
     <MainLayout>

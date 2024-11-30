@@ -1,9 +1,11 @@
-import React from "react";
-import { cn } from "@/lib/utils";
 import { CheckIcon } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import React from "react";
+
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
+
 import { PlanTypes } from "../widgets/pricingData";
 
 interface PricingCardProps {

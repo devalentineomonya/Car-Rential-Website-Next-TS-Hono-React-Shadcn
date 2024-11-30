@@ -1,10 +1,10 @@
-import React from "react";
-import MainLayout from "../layouts/MainLayout";
-import { HiMiniPhoneArrowUpRight } from "react-icons/hi2";
-import { CgFacebook } from "react-icons/cg";
-import { CgInstagram } from "react-icons/cg";
-import { PiXLogoBold, PiYoutubeLogoFill } from "react-icons/pi";
 import Link from "next/link";
+import React from "react";
+import { CgFacebook , CgInstagram } from "react-icons/cg";
+import { HiMiniPhoneArrowUpRight } from "react-icons/hi2";
+import { PiXLogoBold, PiYoutubeLogoFill } from "react-icons/pi";
+
+import MainLayout from "../layouts/MainLayout";
 const NavbarHeader = () => {
   return (
     <header className="bg-background text-foreground h-10 px-2 ">

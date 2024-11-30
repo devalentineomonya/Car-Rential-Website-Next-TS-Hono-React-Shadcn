@@ -1,9 +1,10 @@
 "use client";
 
-import * as React from "react";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
-import { cn } from "@/lib/utils";
+import * as React from "react";
+import { useFormContext } from "react-hook-form";
+
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
@@ -13,13 +14,13 @@ import {
   FormControl,
   FormMessage,
 } from "@/components/ui/form";
-import { useFormContext } from "react-hook-form";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-
+import { cn } from "@/lib/utils";
+import { INPUT_CLASSNAME } from "@/utils/constants";
 interface DatePickerProps {
   label: string;
   name: string;
@@ -33,7 +34,7 @@ const DatePicker: React.FC<DatePickerProps> = ({ label, name }) => {
       control={control}
       name={name}
       render={({ field }) => (
-        <FormItem className="col-span-12 sm:col-span-6">
+        <FormItem className="col-span-12 sm:col-span-6 mt-2">
           <FormLabel className="block">{label}</FormLabel>
           <FormControl>
             <Popover>
@@ -41,7 +42,8 @@ const DatePicker: React.FC<DatePickerProps> = ({ label, name }) => {
                 <Button
                   variant="outline"
                   className={cn(
-                    "w-full justify-start text-left font-normal",
+                    INPUT_CLASSNAME,
+                    "justify-start mt-2",
                     !field.value && "text-muted-foreground"
                   )}
                 >
@@ -53,7 +55,8 @@ const DatePicker: React.FC<DatePickerProps> = ({ label, name }) => {
                 <Calendar
                   mode="single"
                   selected={field.value}
-                  onSelect={field.onChange} 
+                  onSelect={field.onChange}
+                  disabled={(date) => date > new Date()}
                   initialFocus
                 />
               </PopoverContent>

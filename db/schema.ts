@@ -1,3 +1,4 @@
+import { relations } from "drizzle-orm";
 import {
   pgTable,
   text,
@@ -7,7 +8,7 @@ import {
   integer,
 } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
-import { relations } from "drizzle-orm";
+import { z } from "zod";
 export const users = pgTable("users", {
   id: text("id").primaryKey(),
   clerk_id: text("clerk_id").notNull().unique(),
@@ -48,7 +49,7 @@ export const cars = pgTable("cars", {
   transmission: text("transmission").notNull(),
   driveType: text("drive_type").notNull(),
   condition: text("condition").notNull(),
-  engineSize: text("engine_size").notNull(),
+  engineSize: integer("engine_size").notNull(),
   doors: integer("doors").notNull(),
   cylinders: integer("cylinders").notNull(),
   features: jsonb("features"),
@@ -64,4 +65,43 @@ export const carRelations = relations(cars, ({ one }) => ({
 }));
 
 export const insertUserSchema = createInsertSchema(users);
+
 export const insertCarSchema = createInsertSchema(cars);
+export const dynamicSchema = z
+  .object({
+    ...insertCarSchema.shape,
+    id: z.string().optional(),
+    pricePerDay: z.preprocess(
+      (val) => (val === "" || isNaN(Number(val)) ? undefined : Number(val)),
+      z.number().min(1).optional()
+    ),
+    pricePerKm: z.preprocess(
+      (val) => (val === "" || isNaN(Number(val)) ? undefined : Number(val)),
+      z.number().min(1).optional()
+    ),
+    images: z.array(z.string()),
+    carPurpose: z.string().optional(),
+    isForRent: z.boolean().optional(),
+    isForHire: z.boolean().optional(),
+    isForDelivery: z.boolean().optional(),
+    dateManufactured: z.preprocess(
+      (val) => (typeof val === "string" ? new Date(val) : val),
+      z.date()
+    ),
+  })
+  .omit({ createdAt: true, updatedAt: true })
+  .refine((data) => (data.isForRent ? data.pricePerDay !== undefined : true), {
+    message: "Price per day is required when car is available for rent",
+    path: ["pricePerDay"],
+  })
+  .refine(
+    (data) =>
+      data.isForHire || data.isForDelivery
+        ? data.pricePerKm !== undefined
+        : true,
+    {
+      message:
+        "Price per km is required when car is available for hire or delivery",
+      path: ["pricePerKm"],
+    }
+  );

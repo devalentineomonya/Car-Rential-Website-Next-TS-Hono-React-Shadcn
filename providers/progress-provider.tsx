@@ -1,9 +1,9 @@
 "use client";
 
-import { AppProgressBar as ProgressBar } from "next-nprogress-bar";
 import { useUser } from "@clerk/nextjs";
-import { ReactNode } from "react";
 import { usePathname } from "next/navigation";
+import { AppProgressBar as ProgressBar } from "next-nprogress-bar";
+import { ReactNode } from "react";
 
 const ProgressProvider = ({ children }: { children: ReactNode }) => {
   const { user } = useUser();

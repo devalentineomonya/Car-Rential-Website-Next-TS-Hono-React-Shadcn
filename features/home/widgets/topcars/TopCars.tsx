@@ -1,9 +1,10 @@
-import CarCard from "@/components/common/carcard/CarCard";
-import MainLayout from "@/components/common/layouts/MainLayout";
-import car2 from "@/public/images/car2.png";
 import Link from "next/link";
 import React from "react";
 import { FaCarSide } from "react-icons/fa6";
+
+import CarCard from "@/components/common/carcard/CarCard";
+import MainLayout from "@/components/common/layouts/MainLayout";
+import car2 from "@/public/images/car2.png";
 
 const TopCars = () => {
   const carData = {

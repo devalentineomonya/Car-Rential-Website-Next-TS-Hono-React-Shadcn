@@ -1,16 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import { useUser } from "@clerk/nextjs";
-import { Skeleton } from "@/components/ui/skeleton";
-import { SignOutButton } from "@clerk/nextjs";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import {
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  useSidebar,
-} from "@/components/ui/sidebar";
+import { useUser , SignOutButton } from "@clerk/nextjs";
 import {
   BadgeCheck,
   Bell,
@@ -19,6 +9,9 @@ import {
   LogOut,
   Sparkles,
 } from "lucide-react";
+import Link from "next/link";
+
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -28,6 +21,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  useSidebar,
+} from "@/components/ui/sidebar";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export function NavUser() {
   const { isMobile } = useSidebar();

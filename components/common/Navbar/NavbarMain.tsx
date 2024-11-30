@@ -1,11 +1,14 @@
 "use client";
-import React from "react";
-import NavbarHeader from "./NavbarHeader";
-import NavbarDesktop from "./NavbarDesktop";
-import NavbarCenter from "./NavbarCenter";
-import NavbarMobile from "./NavbarMobile";
-import { noNavbarOrFooter } from "@/utils/constants";
 import { usePathname } from "next/navigation";
+import React from "react";
+
+import { noNavbarOrFooter } from "@/utils/constants";
+
+import NavbarCenter from "./NavbarCenter";
+import NavbarDesktop from "./NavbarDesktop";
+import NavbarHeader from "./NavbarHeader";
+import NavbarMobile from "./NavbarMobile";
+
 const NavbarMain = () => {
   const pathname = usePathname();
   const hideNavbarOrFooter = noNavbarOrFooter.some((route) =>

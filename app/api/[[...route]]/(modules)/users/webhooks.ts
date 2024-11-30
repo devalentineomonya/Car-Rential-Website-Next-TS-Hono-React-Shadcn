@@ -1,10 +1,10 @@
-import { createUser } from "./users";
-import { Hono } from "hono";
+import { WebhookEvent , clerkClient } from "@clerk/nextjs/server";
 import { createId } from "@paralleldrive/cuid2";
-import { Webhook } from "svix";
+import { Hono } from "hono";
 import { headers } from "next/headers";
-import { WebhookEvent } from "@clerk/nextjs/server";
-import { clerkClient } from "@clerk/nextjs/server";
+import { Webhook } from "svix";
+
+import { createUser } from "./users";
 const app = new Hono().post("/", async (c) => {
   const SIGNING_SECRET = process.env.SIGNING_SECRET;
 

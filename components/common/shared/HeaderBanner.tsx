@@ -1,11 +1,13 @@
 "use client";
-import React from "react";
-import MainLayout from "../layouts/MainLayout";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { ChevronRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import React from "react";
+
 import headerBanner from "@/public/images/banner-header.png";
+
+import MainLayout from "../layouts/MainLayout";
 const HeaderBanner = () => {
   const pathname = usePathname();
   const paths = pathname.replace(/[^a-zA-Z0-9\s/]/g, " ").split("/");

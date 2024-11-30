@@ -1,15 +1,10 @@
 "use client";
-import { cn } from "@/lib/utils";
 import * as Clerk from "@clerk/elements/common";
 import * as SignUp from "@clerk/elements/sign-up";
 import { ClerkLoaded, ClerkLoading } from "@clerk/nextjs";
-import { INPUT_CLASSNAME } from "@/utils/constants";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Icons } from "@/components/ui/icons";
-import Logo from "@/public/images/logo.png";
 import Image from "next/image";
+
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -18,6 +13,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Icons } from "@/components/ui/icons";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { cn } from "@/lib/utils";
+import Logo from "@/public/images/logo.png";
+import { INPUT_CLASSNAME } from "@/utils/constants";
 
 export default function SignUpPage() {
   return (

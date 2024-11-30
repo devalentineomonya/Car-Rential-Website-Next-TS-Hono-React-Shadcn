@@ -1,8 +1,9 @@
-import { clerkMiddleware, getAuth } from "@hono/clerk-auth";
 import { clerkClient } from "@clerk/nextjs/server";
+import { clerkMiddleware, getAuth } from "@hono/clerk-auth";
 import { zValidator } from "@hono/zod-validator";
 import { Hono } from "hono";
 import { z } from "zod";
+
 import {
   schemaWithCurrentPassword,
   schemaWithoutCurrentPassword,

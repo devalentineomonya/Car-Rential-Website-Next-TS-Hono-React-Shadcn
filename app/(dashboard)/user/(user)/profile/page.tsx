@@ -1,7 +1,8 @@
 import React from "react";
-import Account from "@/features/profile/widgets/Account";
-import DashboardHeader from "@/components/common/shared/DashboardHeader";
+
 import MainLayout from "@/components/common/layouts/MainLayout";
+import DashboardHeader from "@/components/common/shared/DashboardHeader";
+import Account from "@/features/profile/widgets/Account";
 const Profile = () => {
   return (
     <MainLayout>

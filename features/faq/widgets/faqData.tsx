@@ -1,14 +1,15 @@
-import { IoCarSportOutline, IoBusinessOutline } from "react-icons/io5";
-import { GiCarKey } from "react-icons/gi";
-import { CiDeliveryTruck } from "react-icons/ci";
-import { PiFireTruckLight } from "react-icons/pi";
 import { Car } from "lucide-react";
-import rideImage from "@/public/images/ride-faq.png";
-import rentImage from "@/public/images/rent-faq.png";
+import { CiDeliveryTruck } from "react-icons/ci";
+import { GiCarKey } from "react-icons/gi";
+import { IoCarSportOutline, IoBusinessOutline } from "react-icons/io5";
+import { PiFireTruckLight } from "react-icons/pi";
+
 import businessImage from "@/public/images/business-faq.png";
 import deliveryImage from "@/public/images/delivery-faq.png";
-import wideLoadImage from "@/public/images/wide-load-faq.png";
 import driverImage from "@/public/images/driver-faq.png";
+import rentImage from "@/public/images/rent-faq.png";
+import rideImage from "@/public/images/ride-faq.png";
+import wideLoadImage from "@/public/images/wide-load-faq.png";
 export const faqData = [
   {
     name: "Ride",

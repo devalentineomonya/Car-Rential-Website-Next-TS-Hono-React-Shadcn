@@ -1,7 +1,8 @@
 "use client"
 
-import * as React from "react"
 import { ChevronsUpDown } from "lucide-react"
+import Image from "next/image"
+import * as React from "react"
 
 import {
   DropdownMenu,
@@ -12,7 +13,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import Image from "next/image"
+
 
 export function CompanyInfo() {
   const companyInfo = {

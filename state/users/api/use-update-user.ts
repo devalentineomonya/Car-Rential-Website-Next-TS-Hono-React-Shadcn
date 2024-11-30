@@ -1,7 +1,8 @@
 import { useMutation } from "@tanstack/react-query";
 import { z } from "zod";
-import { client } from "@/lib/hono";
+
 import { insertUserSchema } from "@/db/schema";
+import { client } from "@/lib/hono";
 
 export const useUpdateUser = () => {
   const query = useMutation({

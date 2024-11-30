@@ -1,6 +1,9 @@
-import MainLayout from "@/components/common/layouts/MainLayout";
 import React from "react";
+
+import MainLayout from "@/components/common/layouts/MainLayout";
+
 import FaqCard from "../components/FaqCard";
+
 import { faqData } from "./faqData";
 
 const FaqCards = () => {

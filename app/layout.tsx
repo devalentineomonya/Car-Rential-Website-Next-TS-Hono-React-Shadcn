@@ -1,14 +1,15 @@
 import "./globals.css";
-import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
-import { Toaster } from "@/components/ui/sonner";
+import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
+
 import Footer from "@/components/common/footer/Footer";
-import { QueryProvider } from "@/providers/query-provider";
-import { ThemeProvider } from "@/providers/theme-provider";
 import NavbarMain from "@/components/common/navbar/NavbarMain";
+import { Toaster } from "@/components/ui/sonner";
 import ProgressProvider from "@/providers/progress-provider";
+import { QueryProvider } from "@/providers/query-provider";
 import { SheetProvider } from "@/providers/sheet-provider";
+import { ThemeProvider } from "@/providers/theme-provider";
 const grotesk = Space_Grotesk({
   weight: ["400", "700"],
   style: ["normal"],

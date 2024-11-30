@@ -2,13 +2,9 @@
 import * as Clerk from "@clerk/elements/common";
 import * as SignIn from "@clerk/elements/sign-in";
 import { ClerkLoaded, ClerkLoading, useAuth } from "@clerk/nextjs";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Icons } from "@/components/ui/icons";
-import Logo from "@/public/images/logo.png";
-import { INPUT_CLASSNAME } from "@/utils/constants";
 import Image from "next/image";
+
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -17,6 +13,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Icons } from "@/components/ui/icons";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import Logo from "@/public/images/logo.png";
+import { INPUT_CLASSNAME } from "@/utils/constants";
 export default function Page() {
   const { isLoaded } = useAuth();
 

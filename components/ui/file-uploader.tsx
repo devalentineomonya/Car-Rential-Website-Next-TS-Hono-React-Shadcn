@@ -1,19 +1,19 @@
 "use client";
 
-import * as React from "react";
-import Image from "next/image";
 import { FileText, Upload, X } from "lucide-react";
+import Image from "next/image";
+import * as React from "react";
 import Dropzone, {
   type DropzoneProps,
   type FileRejection,
 } from "react-dropzone";
 import { toast } from "sonner";
 
-import { cn, formatBytes } from "@/lib/utils";
-import { useControllableState } from "@/hooks/use-controllable-state";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { useControllableState } from "@/hooks/use-controllable-state";
+import { cn, formatBytes } from "@/lib/utils";
 
 interface FileUploaderProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -120,6 +120,7 @@ export function FileUploader(props: FileUploaderProps) {
         toast.error("Cannot upload more than 1 file at a time");
         return;
       }
+      console.log("acceptedFiles", acceptedFiles);
 
       if ((files?.length ?? 0) + acceptedFiles.length > maxFileCount) {
         toast.error(`Cannot upload more than ${maxFileCount} files`);
@@ -160,10 +161,9 @@ export function FileUploader(props: FileUploaderProps) {
         });
       }
     },
-
     [files, maxFileCount, multiple, onUpload, setFiles]
   );
-
+  console.log(files);
   function onRemove(index: number) {
     if (!files) return;
     const newFiles = files.filter((_, i) => i !== index);

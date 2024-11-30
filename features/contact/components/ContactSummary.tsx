@@ -1,5 +1,5 @@
-import React from "react";
 import Link from "next/link";
+import React from "react";
 import { CiLocationOn } from "react-icons/ci";
 import { LuPhoneCall, LuMail } from "react-icons/lu";
 import {

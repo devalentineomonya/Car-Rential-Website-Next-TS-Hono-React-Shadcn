@@ -1,18 +1,21 @@
 "use client"
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { footerLinks } from "./footerLinks";
-import FooterForm from "./FooterForm";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuList,
   NavigationMenuLink,
 } from "@/components/ui/navigation-menu";
-import { noNavbarOrFooter } from "@/utils/constants";
-import { usePathname } from "next/navigation";
+import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
+import { noNavbarOrFooter } from "@/utils/constants";
+
+import FooterForm from "./FooterForm";
+import { footerLinks } from "./footerLinks";
+
 
 const FooterSection = ({
   title,

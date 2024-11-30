@@ -1,8 +1,10 @@
 import React from "react";
-import ContactForm from "../components/ContactForm";
-import ContactSummary from "../components/ContactSummary";
+
 import MainLayout from "@/components/common/layouts/MainLayout";
 import LocationMap from "@/components/common/shared/LocationMap";
+
+import ContactForm from "../components/ContactForm";
+import ContactSummary from "../components/ContactSummary";
 const ContactWidget = () => {
   return (
     <MainLayout>

@@ -1,8 +1,9 @@
 "use client";
+import L from "leaflet";
 import React from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import L from "leaflet";
+
 import "leaflet-defaulticon-compatibility";
 import MainLayout from "@/components/common/layouts/MainLayout";
 import { locations } from "@/utils/constants";

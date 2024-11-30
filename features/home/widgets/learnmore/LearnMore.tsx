@@ -1,5 +1,7 @@
-import MainLayout from "@/components/common/layouts/MainLayout";
 import React from "react";
+
+import MainLayout from "@/components/common/layouts/MainLayout";
+
 import LearnMoreCard from "../../components/LearnMoreCard";
 
 const LearnMore = () => {

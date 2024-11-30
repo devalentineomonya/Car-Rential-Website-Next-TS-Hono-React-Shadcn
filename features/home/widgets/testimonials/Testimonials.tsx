@@ -1,15 +1,17 @@
 'use client'
 
+import Autoplay from "embla-carousel-autoplay"
 import React from "react"
+
+import MainLayout from "@/components/common/layouts/MainLayout"
+import { Button } from "@/components/ui/button"
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   type CarouselApi,
 } from "@/components/ui/carousel"
-import { Button } from "@/components/ui/button"
-import Autoplay from "embla-carousel-autoplay"
-import MainLayout from "@/components/common/layouts/MainLayout"
+
 import TestimonialCard from "../../components/TestimonialCard"
 
 const testimonials = [

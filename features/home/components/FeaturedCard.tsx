@@ -1,7 +1,8 @@
-import { CardContent, Card } from "@/components/ui/card";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import React from "react";
+
+import { CardContent, Card } from "@/components/ui/card";
 interface FeaturedCardProps {
   name: string;
   link: string;

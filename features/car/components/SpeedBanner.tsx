@@ -1,6 +1,7 @@
 import React from "react";
-import { Alert, AlertDescription } from "@/components/ui/alert";
 import { SlSpeedometer, SlLockOpen } from "react-icons/sl";
+
+import { Alert, AlertDescription } from "@/components/ui/alert";
 const SpeedBanner = () => {
   return (
     <Alert className="bg-muted p-4 lg:p-6 mt-6 rounded-lg">

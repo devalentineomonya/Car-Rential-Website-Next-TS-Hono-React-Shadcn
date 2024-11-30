@@ -1,12 +1,15 @@
+import Image from "next/image";
+import Link from "next/link";
 import React from "react";
-import MainLayout from "../layouts/MainLayout";
 import { FaCar } from "react-icons/fa";
 import { LuAlarmClock } from "react-icons/lu";
-import Image from "next/image";
+import { MdOutlineMarkEmailUnread } from "react-icons/md";
+
 import { Button } from "@/components/ui/button";
 import Nairobi from "@/public/images/nairobi.png";
-import Link from "next/link";
-import { MdOutlineMarkEmailUnread } from "react-icons/md";
+
+
+import MainLayout from "../layouts/MainLayout";
 const NavbarCenter = () => {
   return (
     <header className="bg-gray-100 dark:bg-white text-slate-950 h-20 px-2">

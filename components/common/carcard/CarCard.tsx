@@ -1,12 +1,13 @@
-import React from "react";
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
-import { Separator } from "@/components/ui/separator";
-import { FaStar, FaRegHeart } from "react-icons/fa6";
-import { IoCarSportOutline } from "react-icons/io5";
-import { GiGearStickPattern, GiGearStick } from "react-icons/gi";
+import React from "react";
 import { BsFuelPump } from "react-icons/bs";
+import { FaStar, FaRegHeart } from "react-icons/fa6";
+import { GiGearStickPattern, GiGearStick } from "react-icons/gi";
+import { IoCarSportOutline } from "react-icons/io5";
+
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 import { Car } from "@/types/car";
 interface CarCardProps {
   car: Car;

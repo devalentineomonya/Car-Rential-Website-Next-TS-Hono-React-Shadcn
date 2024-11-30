@@ -1,7 +1,8 @@
-import React from "react";
 import Image from "next/image";
-import mission from "@/public/images/mission.png";
+import React from "react";
+
 import MainLayout from "@/components/common/layouts/MainLayout";
+import mission from "@/public/images/mission.png";
 const Mission = () => {
   return (
     <MainLayout>

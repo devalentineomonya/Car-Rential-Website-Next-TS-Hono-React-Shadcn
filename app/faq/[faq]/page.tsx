@@ -1,6 +1,7 @@
-import FaqItem from "@/features/faqSingle/widgets/FaqItem";
-import { faqData } from "@/features/faq/widgets/faqData";
 import { redirect } from "next/navigation";
+
+import { faqData } from "@/features/faq/widgets/faqData";
+import FaqItem from "@/features/faqSingle/widgets/FaqItem";
 const FaqSingle = ({ params }: { params: { faq: string } }) => {
   const faqItem = faqData.find(
     (item) =>

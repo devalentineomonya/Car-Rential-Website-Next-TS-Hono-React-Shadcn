@@ -1,9 +1,11 @@
-import MainLayout from "@/components/common/layouts/MainLayout";
 import React from "react";
-import FeaturedCard from "../../components/FeaturedCard";
-import ride from "@/public/images/ride.png";
+
+import MainLayout from "@/components/common/layouts/MainLayout";
 import delivery from "@/public/images/deliver.png";
 import rent from "@/public/images/rent.png";
+import ride from "@/public/images/ride.png";
+
+import FeaturedCard from "../../components/FeaturedCard";
 const Featured = () => {
   const features = [
     {

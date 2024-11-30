@@ -1,4 +1,12 @@
 "use client";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { z } from "zod";
+
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Form,
   FormField,
@@ -7,15 +15,8 @@ import {
   FormControl,
   FormMessage,
 } from "@/components/ui/form";
-import { z } from "zod";
-import { toast } from "sonner";
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { insertUserSchema } from "@/db/schema";
-import { Button } from "@/components/ui/button";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useUpdateUser } from "@/state/users/api/use-update-user";
 import { INPUT_CLASSNAME } from "@/utils/constants";
 const personalInfoSchema = insertUserSchema

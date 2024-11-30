@@ -1,7 +1,8 @@
-import React from "react";
 import Image from "next/image";
-import vision from "@/public/images/vision.png";
+import React from "react";
+
 import MainLayout from "@/components/common/layouts/MainLayout";
+import vision from "@/public/images/vision.png";
 const Vision = () => {
   return (
     <MainLayout>

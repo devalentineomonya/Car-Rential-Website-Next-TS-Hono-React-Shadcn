@@ -1,23 +1,28 @@
 "use client";
-import MainLayout from "@/components/common/layouts/MainLayout";
 import Autoplay from "embla-carousel-autoplay";
 import Fade from "embla-carousel-fade";
-import React, { useState } from "react";
-import carSix from "@/public/images/car6.jpg";
-import carSeven from "@/public/images/car7.jpg";
-import carEight from "@/public/images/car8.jpg";
-import carSeventeen from "@/public/images/car17.jpg";
-import carEighteen from "@/public/images/car18.jpg";
-import carNineteen from "@/public/images/car19.jpg";
-import carTwenty from "@/public/images/car20.jpg";
 import Image from "next/image";
+import React, { useState } from "react";
+
+import MainLayout from "@/components/common/layouts/MainLayout";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Carousel,
   CarouselItem,
   CarouselContent,
 } from "@/components/ui/carousel";
+import carSeventeen from "@/public/images/car17.jpg";
+import carEighteen from "@/public/images/car18.jpg";
+import carNineteen from "@/public/images/car19.jpg";
+import carTwenty from "@/public/images/car20.jpg";
+import carSix from "@/public/images/car6.jpg";
+import carSeven from "@/public/images/car7.jpg";
+import carEight from "@/public/images/car8.jpg";
+
+
+
 import HeroForm from "../../components/HeroForm";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
 const messages: { [key: string]: { message: string } } = {
   ride: {
     message: "Arrive to your destination in style",

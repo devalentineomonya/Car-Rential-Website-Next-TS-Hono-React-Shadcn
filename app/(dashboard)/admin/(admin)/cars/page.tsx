@@ -1,6 +1,6 @@
-import CarManagement from "@/features/cars/widgets/CarManagement";
-import DashboardHeader from "@/components/common/shared/DashboardHeader";
 import MainLayout from "@/components/common/layouts/MainLayout";
+import DashboardHeader from "@/components/common/shared/DashboardHeader";
+import CarManagement from "@/features/cars/widgets/CarManagement";
 const CarsPage = () => {
   return (
     <MainLayout>

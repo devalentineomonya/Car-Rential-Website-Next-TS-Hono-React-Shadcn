@@ -1,4 +1,16 @@
+import { useUser } from "@clerk/nextjs";
+import Link from "next/link";
 import React from "react";
+import { HiOutlineMenuAlt4 } from "react-icons/hi";
+import { IoLogInOutline } from "react-icons/io5";
+import { RiUserAddLine, RiUserSharedLine } from "react-icons/ri";
+
+import { Button } from "@/components/ui/button";
+import {
+  NavigationMenuItem,
+  NavigationMenuList,
+  NavigationMenu,
+} from "@/components/ui/navigation-menu";
 import {
   Sheet,
   SheetContent,
@@ -6,17 +18,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
-import { HiOutlineMenuAlt4 } from "react-icons/hi";
-import Link from "next/link";
-import { useUser } from "@clerk/nextjs";
-import {
-  NavigationMenuItem,
-  NavigationMenuList,
-  NavigationMenu,
-} from "@/components/ui/navigation-menu";
-import { IoLogInOutline } from "react-icons/io5";
-import { RiUserAddLine, RiUserSharedLine } from "react-icons/ri";
+
 import { navigationLinks } from "./navigationLinks";
 const NavbarMobile = () => {
   const { user, isSignedIn } = useUser();

@@ -1,6 +1,7 @@
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
 import React from "react";
+
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import car from "@/public/images/car1.png";
 const TestimonialCard = () => {
   return (

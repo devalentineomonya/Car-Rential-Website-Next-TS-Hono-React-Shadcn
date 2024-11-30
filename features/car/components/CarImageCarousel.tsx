@@ -1,8 +1,9 @@
 "use client";
-import React from "react";
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
 import Autoplay from "embla-carousel-autoplay";
+import Image from "next/image";
+import React from "react";
+
+import { Button } from "@/components/ui/button";
 import {
   Carousel,
   CarouselContent,

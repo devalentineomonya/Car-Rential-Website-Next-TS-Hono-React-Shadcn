@@ -21,6 +21,13 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "features/home/widgets/hero/HeroFormUtils.ts", "app/faq/[faq]/page.tss"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "features/home/widgets/hero/HeroFormUtils.ts",
+    "app/faq/[faq]/page.tss"
+  ],
   "exclude": ["node_modules"]
 }

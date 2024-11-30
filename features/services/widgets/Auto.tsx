@@ -1,7 +1,8 @@
-import React from "react";
 import Image from "next/image";
-import auto from "@/public/images/auto.png";
+import React from "react";
+
 import MainLayout from "@/components/common/layouts/MainLayout";
+import auto from "@/public/images/auto.png";
 const Auto = () => {
   return (
     <MainLayout>

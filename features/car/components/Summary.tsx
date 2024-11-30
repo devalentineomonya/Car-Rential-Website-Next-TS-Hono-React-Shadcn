@@ -1,11 +1,13 @@
 import React from "react";
-import { PiFanLight } from "react-icons/pi";
-import { Button } from "@/components/ui/button";
-import { IoCarSportOutline } from "react-icons/io5";
 import { BsFuelPump, BsWhatsapp } from "react-icons/bs";
-import { Separator } from "@/components/ui/separator"
 import { GiGearStickPattern, GiCarDoor, GiGearStick } from "react-icons/gi";
+import { IoCarSportOutline } from "react-icons/io5";
+import { PiFanLight } from "react-icons/pi";
+
+import { Button } from "@/components/ui/button";
 import { Card, CardTitle, CardHeader, CardContent, CardFooter } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator"
+
 
 const Summary = () => {
   const carFeatures = [

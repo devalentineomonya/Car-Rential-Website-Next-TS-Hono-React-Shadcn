@@ -1,7 +1,8 @@
-import React from "react";
 import Image from "next/image";
-import self from "@/public/images/self.png";
+import React from "react";
+
 import MainLayout from "@/components/common/layouts/MainLayout";
+import self from "@/public/images/self.png";
 const Ride = () => {
   return (
     <MainLayout>

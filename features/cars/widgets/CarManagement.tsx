@@ -1,7 +1,9 @@
 import React from 'react'
+
 import CarsTable from '../components/CarsTable'
-import { columns } from './TableColumns'
+
 import {payments} from "./carData"
+import { columns } from './TableColumns'
 const CarManagement = () => {
   return (
     <div>

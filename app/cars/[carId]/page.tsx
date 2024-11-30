@@ -1,6 +1,7 @@
 import React from "react";
-import HeaderBanner from "@/components/common/shared/HeaderBanner";
+
 import MainLayout from "@/components/common/layouts/MainLayout";
+import HeaderBanner from "@/components/common/shared/HeaderBanner";
 import Summary from "@/features/car/components/Summary";
 import CarInfo from "@/features/car/widgets/CarInfo";
 

@@ -1,5 +1,6 @@
-import { FaqData } from "@/features/faq/widgets/faqData";
 import React from "react";
+
+import { FaqData } from "@/features/faq/widgets/faqData";
 
 const FaqDescription = ({ faqItem }: { faqItem: FaqData }) => {
   return (

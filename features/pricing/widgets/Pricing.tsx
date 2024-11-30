@@ -1,8 +1,11 @@
-import { plans, features, perks } from "./pricingData";
-import PricingCard from "../components/PricingCard";
-import MobilePricing from "../components/MobilePricing";
-import DesktopPricing from "../components/DesktopPricing";
 import MainLayout from "@/components/common/layouts/MainLayout";
+
+import DesktopPricing from "../components/DesktopPricing";
+import MobilePricing from "../components/MobilePricing";
+import PricingCard from "../components/PricingCard";
+
+import { plans, features, perks } from "./pricingData";
+
 export default function Example() {
   return (
     <MainLayout>

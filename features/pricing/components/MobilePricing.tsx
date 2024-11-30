@@ -1,6 +1,8 @@
-import React from "react";
-import { cn } from "@/lib/utils";
 import { CheckIcon, XIcon } from "lucide-react";
+import React from "react";
+
+import { cn } from "@/lib/utils";
+
 import { FeatureTypes, PerkTypes, PlanTypes } from "../widgets/pricingData";
 
 const FakeCardBackground: React.FC<{ featured?: boolean }> = ({ featured }) => (

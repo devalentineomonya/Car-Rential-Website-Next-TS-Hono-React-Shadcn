@@ -1,6 +1,7 @@
-import React from "react";
-import Link from "next/link";
 import { useUser } from "@clerk/nextjs";
+import Link from "next/link";
+import React from "react";
+
 import { Alert, AlertDescription } from "@/components/ui/alert";
 const LoginBanner = () => {
   const {  isSignedIn } = useUser();

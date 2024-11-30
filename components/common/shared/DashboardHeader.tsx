@@ -1,9 +1,10 @@
 "use client";
-import { Card, CardContent } from "@/components/ui/card";
-import { CiWarning } from "react-icons/ci";
-import React from "react";
 import { useUser } from "@clerk/nextjs";
+import React from "react";
+import { CiWarning } from "react-icons/ci";
+
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Card, CardContent } from "@/components/ui/card";
 
 const DashboardHeader = ({
   title,

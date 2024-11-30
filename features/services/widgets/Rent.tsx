@@ -1,7 +1,8 @@
-import React from "react";
 import Image from "next/image";
-import rent from "@/public/images/trip.png";
+import React from "react";
+
 import MainLayout from "@/components/common/layouts/MainLayout";
+import rent from "@/public/images/trip.png";
 const Rent = () => {
   return (
     <MainLayout>

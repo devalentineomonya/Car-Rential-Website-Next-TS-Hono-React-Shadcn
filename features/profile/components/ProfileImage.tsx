@@ -1,25 +1,9 @@
 "use client";
-import React, { useState } from "react";
-import Image from "next/image";
-import userAvatar from "@/public/images/avatar.png";
-import { Button } from "@/components/ui/button";
 import { useUser } from "@clerk/nextjs";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import {
-  useUpdateImage,
-  useRemoveImage,
-} from "@/state/users/api/use-update-image";
+import Image from "next/image";
+import React, { useState } from "react";
 import { toast } from "sonner";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -29,7 +13,24 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle} from "@/components/ui/alert-dialog";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Icons } from "@/components/ui/icons";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import userAvatar from "@/public/images/avatar.png";
+import {
+  useUpdateImage,
+  useRemoveImage,
+} from "@/state/users/api/use-update-image";
 
 const MAX_FILE_SIZE = 8000 * 1024;
 const ALLOWED_FILE_TYPES = ["image/jpeg", "image/png", "image/gif"];

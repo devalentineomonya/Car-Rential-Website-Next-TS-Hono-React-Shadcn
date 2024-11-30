@@ -1,7 +1,8 @@
-import React from "react";
 import Image from "next/image";
-import network from "@/public/images/network.png";
+import React from "react";
+
 import MainLayout from "@/components/common/layouts/MainLayout";
+import network from "@/public/images/network.png";
 
 const Network = () => {
   return (

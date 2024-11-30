@@ -1,8 +1,10 @@
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
-import blog from "@/public/images/blog1.png";
-import React from "react";
 import Link from "next/link"
+import React from "react";
+
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import blog from "@/public/images/blog1.png";
+
 const LearnMoreCard = () => {
   return (
     <Card className="rounded-md overflow-hidden">

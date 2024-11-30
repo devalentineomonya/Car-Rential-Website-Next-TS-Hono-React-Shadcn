@@ -1,15 +1,18 @@
+import { useUser } from "@clerk/nextjs";
+import Link from "next/link";
 import React from "react";
+import { IoLogInOutline } from "react-icons/io5";
+import { RiUserAddLine, RiUserSharedLine } from "react-icons/ri";
+
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
+
 import MainLayout from "../layouts/MainLayout";
+
 import { navigationLinks } from "./navigationLinks";
-import { IoLogInOutline } from "react-icons/io5";
-import { useUser } from "@clerk/nextjs";
-import { RiUserAddLine, RiUserSharedLine } from "react-icons/ri";
-import Link from "next/link";
 const Navbar = () => {
   const { user, isSignedIn,} = useUser();
   return (
