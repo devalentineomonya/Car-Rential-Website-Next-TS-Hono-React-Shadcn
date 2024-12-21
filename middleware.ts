@@ -18,6 +18,7 @@ export default clerkMiddleware(
       if (userId) {
         const client = await clerkClient();
         const user = await client.users.getUser(userId);
+        
         const publicMetadata = user.publicMetadata;
         const isNewUser =
           publicMetadata?.isNew &&

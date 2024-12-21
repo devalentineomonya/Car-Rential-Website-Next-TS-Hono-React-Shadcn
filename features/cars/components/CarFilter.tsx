@@ -79,7 +79,7 @@ const CarFilter = () => {
 
   const renderFilter = (
     fieldName: keyof z.infer<typeof CarFilterSchema>,
-    items: { id: string; label: string }[] 
+    items: { id: string; label: string }[]
   ) => (
     <AccordionItem  value={fieldName}>
       <AccordionTrigger

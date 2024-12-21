@@ -24,7 +24,7 @@ export default function Page() {
   return (
     <div className="min-h-screen grid grid-cols-12">
       <div className="col-span-7 h-full bg-gray-700 dark:bg-gray-900 hidden lg:flex items-center justify-center">
-        <Image src={Logo} alt="Car Rental" className="w-96" />
+        <Image priority src={Logo} alt="Car Rental" className="w-96" />
       </div>
       <div className="col-span-12 lg:col-span-5 h-full lg:flex flex-col items-center justify-center px-4">
         <div className="text-center space-y-4 pt-16">
@@ -232,9 +232,9 @@ export default function Page() {
                                           data-status={status}
                                           className="text-foreground text-base  w-11 outline-none focus-visible:ring-0
                                                       px-3 rounded-md focus-within:outline-none focus-within:ring-1 focus-within:ring-ring
-                                                        relative h-11 flex-1 items-center bg-white/5 border border-input flex  justify-center 
+                                                        relative h-11 flex-1 items-center bg-white/5 border border-input flex  justify-center
                                                         border-y border-r  shadow-sm transition-all first:rounded-l-md first:border-l last:rounded-r-md
-                                                        data-[status=selected]:ring-1 data-[status=selected]:ring-ring data-[status=cursor]:ring-1 
+                                                        data-[status=selected]:ring-1 data-[status=selected]:ring-ring data-[status=cursor]:ring-1
                                                         data-[status=cursor]:ring-ring"
                                         >
                                           {value}

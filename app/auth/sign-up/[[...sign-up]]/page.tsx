@@ -24,7 +24,7 @@ export default function SignUpPage() {
   return (
     <div className="min-h-screen grid grid-cols-12">
       <div className="col-span-7 h-full bg-gray-700 dark:bg-gray-900 hidden lg:flex items-center justify-center">
-        <Image src={Logo} alt="Car Rental" className="w-96" />
+        <Image priority src={Logo} alt="Car Rental" className="w-96" />
       </div>
       <div className="col-span-12 lg:col-span-5 h-full lg:flex flex-col items-center justify-center px-4">
         <div className="text-center space-y-4 pt-16">

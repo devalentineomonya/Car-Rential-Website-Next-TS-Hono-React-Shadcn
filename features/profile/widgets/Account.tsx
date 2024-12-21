@@ -11,9 +11,9 @@ import ProfileImage from "../components/ProfileImage";
 
 const Account = () => {
   const { user, isLoaded, isSignedIn } = useUser();
+  const { data, isLoading } = useGetUser(user?.id);
   if (!isSignedIn || !user?.id) return toast.error("Not logged in or user not found");
 
-  const { data, isLoading } = useGetUser(user.id);
 
   const userData = data || {
     id: "",

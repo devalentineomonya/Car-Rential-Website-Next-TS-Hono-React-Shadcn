@@ -92,27 +92,48 @@ const app = new Hono()
   /*====================
   GET user by Clerk ID
   =====================*/
-  .get("/:clerkId", clerkMiddleware(), async (c) => {
-    const auth = getAuth(c);
-    if (!auth?.userId) {
-      return c.json({ success: false, message: "Unauthorized user" }, 401);
+  .get(
+    "/:clerkId?",
+    zValidator("param", z.object({ clerkId: z.string().optional() })),
+    clerkMiddleware(),
+    async (c) => {
+      const auth = getAuth(c);
+      if (!auth?.userId) {
+        return c.json({ success: false, message: "Unauthorized user" }, 401);
+      }
+      const { clerkId } = c.req.valid("param");
+      if (!clerkId) {
+        return c.json(
+          { success: false, message: "Missing or invalid Clerk ID" },
+          400
+        );
+      }
+      const data = await db.query.users.findFirst({
+        where: eq(users.clerk_id, clerkId),
+        columns: {
+          id: true,
+          clerk_id: true,
+          firstName: true,
+          lastName: true,
+          location: true,
+          address: true,
+          phone: true,
+          email: true,
+        },
+      });
+      if (data) {
+        return c.json(
+          {
+            success: false,
+            message: "User with the specified id was not found.",
+          },
+          404
+        );
+      }
+
+      return c.json({ success: true, data }, 200);
     }
-    const { clerkId } = c.req.param();
-    const data = await db.query.users.findFirst({
-      where: eq(users.clerk_id, clerkId),
-      columns: {
-        id: true,
-        clerk_id: true,
-        firstName: true,
-        lastName: true,
-        location: true,
-        address: true,
-        phone: true,
-        email: true,
-      },
-    });
-    return c.json({ success: true, data }, 200);
-  })
+  )
 
   /*===============
   Create User

@@ -34,7 +34,7 @@ export default function RootLayout({
         <ClerkProvider>
           <ProgressProvider>
             <QueryProvider>
-              
+
               <ThemeProvider
                 attribute="class"
                 defaultTheme="system"

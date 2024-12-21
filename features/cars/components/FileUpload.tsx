@@ -6,7 +6,9 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/ui/icons";
 import { Input } from "@/components/ui/input";
+import { useDeleteImage } from "@/state/cars/api/use-delete-image";
 import { useUploadImage } from "@/state/cars/api/use-upload-image";
+
 interface FilePreview {
   file: File;
   previewUrl: string;
@@ -15,9 +17,13 @@ interface FilePreview {
 
 interface FileUploadProps {
   onFilesChange: (files: string[]) => void;
+  existingFiles?: string[];
 }
 
-const FileUpload: React.FC<FileUploadProps> = ({ onFilesChange }) => {
+const FileUpload: React.FC<FileUploadProps> = ({ existingFiles = [], onFilesChange }) => {
+const deleteImage = useDeleteImage()
+
+
   const [filePreviews, setFilePreviews] = useState<FilePreview[]>([]);
   const uploadImage = useUploadImage();
 
@@ -25,11 +31,9 @@ const FileUpload: React.FC<FileUploadProps> = ({ onFilesChange }) => {
     const files = event.target.files;
     if (!files) return;
 
-    const fileArray = Array.from(files);
-    const newPreviews = fileArray.map((file) => ({
+    const newPreviews = Array.from(files).map((file) => ({
       file,
       previewUrl: URL.createObjectURL(file),
-
     }));
 
     setFilePreviews((prev) => [...prev, ...newPreviews]);
@@ -39,32 +43,71 @@ const FileUpload: React.FC<FileUploadProps> = ({ onFilesChange }) => {
     try {
       const filesToUpload = filePreviews.map((preview) => preview.file);
       const response = await uploadImage.mutateAsync(filesToUpload);
-      
-      // Update filePreviewts with uploaded URLs
-      setFilePreviews((prev) => 
+
+      setFilePreviews((prev) =>
         prev.map((preview, index) => ({
           ...preview,
-          uploadedUrl: response.images[index]
+          uploadedUrl: response.images[index],
         }))
       );
 
-      // Pass only the uploaded URLs to parent
       onFilesChange(response.images);
       toast.success("Images uploaded successfully");
-      console.log("Uploaded:", response);
     } catch (error) {
       console.error("Error uploading files:", error);
       toast.error("Error uploading files");
     }
   };
 
-  const removeFile = (index: number) => {
-    setFilePreviews((prev) => {
-      const updatedPreviews = [...prev];
-      const removedPreview = updatedPreviews.splice(index, 1)[0];
-      URL.revokeObjectURL(removedPreview.previewUrl);
-      return updatedPreviews;
-    });
+  const removeFile = async (index: number, url: string, isExistingFile = false) => {
+    try {
+      toast.loading("Deleting image...");
+      // Extract public ID from the URL
+      const publicId = url.split("/").slice(-1).join("").replace(/\.[^/.]+$/, "");
+
+      // Call the deleteImage mutation
+      await deleteImage.mutateAsync(publicId);
+
+      // Update the state
+      if (isExistingFile) {
+        onFilesChange(existingFiles.filter((_, i) => i !== index));
+      } else {
+        setFilePreviews((prev) => {
+          const updatedPreviews = [...prev];
+          const removedPreview = updatedPreviews.splice(index, 1)[0];
+          URL.revokeObjectURL(removedPreview.previewUrl);
+          return updatedPreviews;
+        });
+      }
+
+      toast.success("Image deleted successfully");
+    } catch (error) {
+      console.error("Error deleting image:", error);
+      toast.error("Failed to delete image. Please try again.");
+    }
+  };
+
+  const renderPreviews = () => {
+    return (
+      <div className="mt-4 grid grid-cols-4 gap-4">
+        {existingFiles.map((url, index) => (
+          <PreviewItem
+            key={`existing-${index}`}
+            src={url}
+            alt={`Existing Preview ${index + 1}`}
+            onRemove={() => removeFile(index, url,true)}
+          />
+        ))}
+        {filePreviews.map((preview, index) => (
+          <PreviewItem
+            key={`new-${index}`}
+            src={preview.previewUrl}
+            alt={`New Preview ${index + 1}`}
+            onRemove={() => removeFile(index,(preview.uploadedUrl || ""))}
+          />
+        ))}
+      </div>
+    );
   };
 
   return (
@@ -82,31 +125,7 @@ const FileUpload: React.FC<FileUploadProps> = ({ onFilesChange }) => {
           Click to select files
         </div>
       </label>
-      {filePreviews.length > 0 && (
-        <div className="mt-4 grid grid-cols-4 gap-4">
-          {filePreviews.map((preview, index) => (
-            <div key={index} className="relative">
-              <Image
-                width={100}
-                height={100}
-                quality={100}
-                src={preview.previewUrl}
-                alt={`Preview ${index + 1}`}
-                className="w-full h-32 object-cover rounded"
-              />
-              <Button
-                variant="destructive"
-                size="icon"
-                type="button"
-                onClick={() => removeFile(index)}
-                className="absolute top-1 right-1 h-7 w-7 bg-red-500 text-white rounded-lg"
-              >
-                <RiCloseFill className="w-4 h-4" />
-              </Button>
-            </div>
-          ))}
-        </div>
-      )}
+      {renderPreviews()}
       <div className="mt-4 flex justify-end">
         <Button
           onClick={handleUpload}
@@ -128,4 +147,30 @@ const FileUpload: React.FC<FileUploadProps> = ({ onFilesChange }) => {
   );
 };
 
+const PreviewItem: React.FC<{ src: string; alt: string; onRemove: () => void }> = ({
+    src,
+    alt,
+    onRemove,
+  }) => (
+    <div className="relative">
+      <Image
+        width={100}
+        height={100}
+        quality={100}
+        src={src}
+        alt={alt}
+        className="w-full h-32 object-cover rounded"
+      />
+      <Button
+        variant="destructive"
+        size="icon"
+        type="button"
+        onClick={onRemove}
+        className="absolute top-1 right-1 h-7 w-7 bg-red-500 text-white rounded-lg"
+      >
+        <Icons.spinner className="animate-spin w-4 h-4" /> {/* Optional spinner */}
+        <RiCloseFill className="w-4 h-4" />
+      </Button>
+    </div>
+  );
 export default FileUpload;

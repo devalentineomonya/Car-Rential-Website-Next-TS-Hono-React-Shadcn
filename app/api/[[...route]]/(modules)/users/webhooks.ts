@@ -1,10 +1,15 @@
-import { WebhookEvent , clerkClient } from "@clerk/nextjs/server";
+import { WebhookEvent, clerkClient } from "@clerk/nextjs/server";
 import { createId } from "@paralleldrive/cuid2";
+import { eq } from "drizzle-orm";
 import { Hono } from "hono";
 import { headers } from "next/headers";
 import { Webhook } from "svix";
 
+import { db } from "@/db/drizzle";
+import { users } from "@/db/schema";
+
 import { createUser } from "./users";
+
 const app = new Hono().post("/", async (c) => {
   const SIGNING_SECRET = process.env.SIGNING_SECRET;
 
@@ -77,23 +82,31 @@ const app = new Hono().post("/", async (c) => {
         address: null,
         phone: null,
       };
-      const data = await createUser(userData);
-      if (data.success) {
-        const client = await clerkClient();
-        await client.users.updateUserMetadata(payload.data.id, {
-          publicMetadata: {
-            isNew: data.data?.isNew,
-          },
-        });
-        console.log("User successfully created in DB:", data.data);
-        return c.json({ success: true, data: data.data }, 200);
-      } else {
-        console.error("Error creating user in DB:", data.error);
-        return c.json(
-          { success: false, message: "Error creating user in DB" },
-          500
-        );
+      // Check if user already exists
+      const existingUser = await db.query.users.findFirst({
+        where: eq(users.clerk_id, payload.data.id as string),
+      });
+
+      if (existingUser) {
+        return c.json({ success: true, data: existingUser }, 200);
       }
+
+      const data = await createUser(userData);
+
+      if (!data.success) {
+        console.error("Database error:", data.error);
+        throw new Error("Error creating user in DB");
+      }
+
+      const client = await clerkClient();
+      await client.users.updateUserMetadata(payload.data.id, {
+        publicMetadata: {
+          isNew: data.data?.isNew,
+        },
+      });
+
+      console.log("User successfully created in DB:", data.data);
+      return c.json({ success: true, data: data.data }, 200);
     } catch (err) {
       console.error("Error creating user:", err);
       return c.json(
