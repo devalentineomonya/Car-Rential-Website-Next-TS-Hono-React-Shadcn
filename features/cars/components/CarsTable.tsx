@@ -1,6 +1,5 @@
 "use client";
 import {
-  ColumnDef,
   flexRender,
   getCoreRowModel,
   useReactTable,
@@ -12,7 +11,6 @@ import {
 } from "@tanstack/react-table";
 import { Plus } from "lucide-react";
 import React from "react";
-  import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -22,7 +20,6 @@ import {
   CardTitle,
   CardFooter,
 } from "@/components/ui/card";
-import { Icons } from "@/components/ui/icons";
 import { Input } from "@/components/ui/input";
 import {
   Table,
@@ -32,23 +29,25 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { selectCarSchema } from "@/db/schema";
 import { useNewCar } from "@/hooks/use-new-car";
-import { useGetCars } from "@/state/cars/api/use-get-cars"
+import { useGetCars } from "@/state/cars/api/use-get-cars";
 
 import { columns } from "../widgets/TableColumns";
-// Define CarsTable as a generic functional component
-const CarsTable =() => {
+
+import { CarTablePagination } from "./CarTablePagination";
+import DataTableSkeleton from "./CarTableSkeleton";
+const CarsTable = () => {
   const { data, isLoading } = useGetCars();
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   );
+
   const { onOpen } = useNewCar();
   const [rowSelection, setRowSelection] = React.useState({});
   const table = useReactTable({
     data: data ?? [],
-    columns: columns as ColumnDef<z.infer<typeof selectCarSchema>>[],
+    columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     onSortingChange: setSorting,
@@ -62,9 +61,16 @@ const CarsTable =() => {
       columnFilters,
     },
   });
-if(isLoading) return <div className="flex justify-center items-center h-48 w-full rounded-lg mt-6  border bg-card text-card-foreground shadow">
-  <Icons.spinner className="animate-spin size-6 text-muted-foreground"/>
-</div>
+  if (isLoading)
+    return (
+      <DataTableSkeleton
+        columnCount={6}
+        searchableColumnCount={1}
+        filterableColumnCount={2}
+        cellWidths={["10rem", "40rem", "12rem", "12rem", "8rem", "8rem"]}
+        shrinkZero
+      />
+    );
   return (
     <Card className="mt-6">
       <CardHeader className="flex-row items-center justify-between">
@@ -72,12 +78,12 @@ if(isLoading) return <div className="flex justify-center items-center h-48 w-ful
           <CardTitle>Cars</CardTitle>
           <div className="flex items-center py-4">
             <Input
-              placeholder="Filter emails..."
+              placeholder="Filter cars..."
               value={
-                (table.getColumn("email")?.getFilterValue() as string) ?? ""
+                (table.getColumn("name")?.getFilterValue() as string) ?? ""  
               }
               onChange={(event) =>
-                table.getColumn("email")?.setFilterValue(event.target.value)
+                table.getColumn("name")?.setFilterValue(event.target.value)
               }
               className="max-w-sm"
             />
@@ -114,7 +120,7 @@ if(isLoading) return <div className="flex justify-center items-center h-48 w-ful
                     data-state={row.getIsSelected() && "selected"}
                   >
                     {row.getVisibleCells().map((cell) => (
-                      <TableCell key={cell.id}>
+                      <TableCell className="py-2 whitespace-nowrap shrink-0" key={cell.id}>
                         {flexRender(
                           cell.column.columnDef.cell,
                           cell.getContext()
@@ -138,28 +144,7 @@ if(isLoading) return <div className="flex justify-center items-center h-48 w-ful
         </div>
       </CardContent>
       <CardFooter className="flex justify-between">
-        <div className="flex-1 text-sm text-muted-foreground">
-          {table.getFilteredSelectedRowModel().rows.length} of{" "}
-          {table.getFilteredRowModel().rows.length} row(s) selected.
-        </div>
-        <div className="flex items-center justify-end space-x-2 py-4">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
-          >
-            Previous
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
-          >
-            Next
-          </Button>
-        </div>
+        <CarTablePagination table={table} />
       </CardFooter>
     </Card>
   );

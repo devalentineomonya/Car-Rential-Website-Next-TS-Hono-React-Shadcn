@@ -5,6 +5,7 @@ import { MoreHorizontal } from "lucide-react";
 import Image from "next/image";
 import { z } from "zod";
 
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -15,11 +16,17 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import {selectCarSchema} from "@/db/schema"
+import { selectCarSchema } from "@/db/schema";
+import { useEditCar } from "@/hooks/use-edit-car";
 
-
-
-export const columns: ColumnDef<z.infer<typeof selectCarSchema>>[] = [
+const refinedSchema = z.object({
+  ...selectCarSchema.shape,
+  owner: z.object({
+    firstName: z.string(),
+    lastName: z.string(),
+  }),
+});
+export const columns: ColumnDef<z.infer<typeof refinedSchema>>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -45,7 +52,7 @@ export const columns: ColumnDef<z.infer<typeof selectCarSchema>>[] = [
   {
     accessorKey: "id",
     header: "#",
-    cell: ({ row }) => row.index + 1, 
+    cell: ({ row }) => row.index + 1,
     enableSorting: false,
   },
   {
@@ -58,7 +65,11 @@ export const columns: ColumnDef<z.infer<typeof selectCarSchema>>[] = [
         <div className="flex items-center gap-4">
           {/* Car Image */}
           <Image
-            src={images[0] ?? '/images/car1.png'}
+            src={
+              Array.isArray(images) && images[0]
+                ? (images[0] as string)
+                : "/images/car1.png"
+            }
             alt={name}
             width={100}
             height={100}
@@ -85,6 +96,7 @@ export const columns: ColumnDef<z.infer<typeof selectCarSchema>>[] = [
     accessorKey: "mileage",
     header: "Mileage",
   },
+
   {
     accessorFn: (row) => `${row.owner?.firstName} ${row.owner?.lastName}`,
     id: "owner",
@@ -103,9 +115,35 @@ export const columns: ColumnDef<z.infer<typeof selectCarSchema>>[] = [
     header: "Availability",
     cell: ({ row }) =>
       row.original.isAvailable ? (
-        <span className="text-green-600">Available</span>
+        <Badge variant="outline" className="text-green-600">
+          Available
+        </Badge>
       ) : (
-        <span className="text-red-600">Unavailable</span>
+        <Badge variant="outline" className="text-red-600">
+          Unavailable
+        </Badge>
+      ),
+  },
+  {
+    accessorKey: "isForHire",
+    header: "Purpose",
+    cell: ({ row }) =>
+      row.original.isForDelivery ? (
+        <Badge variant="outline" className="text-green-600">
+          Delivery
+        </Badge>
+      ) : row.original.isForHire ? (
+        <Badge variant="outline" className="text-green-600">
+          Hire
+        </Badge>
+      ) : row.original.isForRent ? (
+        <Badge variant="outline" className="text-green-600">
+          Rent
+        </Badge>
+      ) : (
+        <Badge variant="outline" className="text-green-600">
+          Not Specified
+        </Badge>
       ),
   },
 
@@ -113,28 +151,32 @@ export const columns: ColumnDef<z.infer<typeof selectCarSchema>>[] = [
     id: "actions",
     cell: ({ row }) => {
       const car = row.original;
-
+      const { onOpen } = useEditCar();
       return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(car.id)}
-            >
-              Copy car ID
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>View details</DropdownMenuItem>
-            <DropdownMenuItem>Edit car</DropdownMenuItem>
-            <DropdownMenuItem>Delete car</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <div className=" sticky right-0">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="h-8 w-8 p-0">
+                <span className="sr-only">Open menu</span>
+                <MoreHorizontal className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-40">
+              <DropdownMenuLabel>Actions</DropdownMenuLabel>
+              <DropdownMenuItem
+                onClick={() => navigator.clipboard.writeText(car.id)}
+              >
+                Copy car ID
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>View details</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => onOpen(car.id)}>
+                Edit car
+              </DropdownMenuItem>
+              <DropdownMenuItem>Delete car</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
       );
     },
   },

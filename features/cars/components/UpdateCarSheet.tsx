@@ -1,4 +1,3 @@
-import { useUser } from "@clerk/nextjs";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Car } from "lucide-react";
 import React, { useEffect, useState, useMemo } from "react";
@@ -29,10 +28,12 @@ import {
 } from "@/components/ui/sheet";
 import { Textarea } from "@/components/ui/textarea";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import LoaderWrapper from "@/components/common/loaders/LoaderWrapper";
 import { dynamicSchema } from "@/db/schema";
-import { useNewCar } from "@/hooks/use-new-car";
+import { useEditCar } from "@/hooks/use-edit-car";
 import { cn } from "@/lib/utils";
 import { useAddCar } from "@/state/cars/api/use-add-car";
+import { useGetCar } from "@/state/cars/api/use-get-car";
 import { INPUT_CLASSNAME } from "@/utils/constants";
 
 import DateManufactured from "./DateManufactured";
@@ -40,25 +41,25 @@ import FileUpload from "./FileUpload";
 import FormInputField from "./FormInput";
 import FormSelect from "./FormSelect";
 
-const AddCarSheet: React.FC = () => {
-  const { isOpen, onClose } = useNewCar();
-  const { user } = useUser();
+const EditCarSheet: React.FC = () => {
+  const { isOpen, onClose, id } = useEditCar();
+  const { data, isLoading } = useGetCar(id);
   const addCar = useAddCar();
   const [files, setFiles] = useState<string[]>([]);
   const defaultValues = useMemo(
     () => ({
-      ownerId: user?.id ?? "",
-      isForRent: false,
-      isForHire: false,
-      isForDelivery: false,
-      isAvailable: true,
+      ...data,
     }),
-    [user]
+    [data]
   );
 
   const formMethods = useForm<z.infer<typeof dynamicSchema>>({
     resolver: zodResolver(dynamicSchema),
-    defaultValues,
+    defaultValues: {
+      ...defaultValues,
+      dateManufactured: defaultValues?.dateManufactured ? new Date(defaultValues.dateManufactured) : undefined,
+      pricePerDay:defaultValues?.pricePerDay ?? undefined
+    },
   });
 
   const { handleSubmit, watch, setValue } = formMethods;
@@ -102,18 +103,21 @@ const AddCarSheet: React.FC = () => {
       toast.error(errorMessage);
     }
   };
-  console.log(formMethods.getValues());
-  console.log(formMethods.formState.errors);
+
+  if (!isLoading && !data) {
+    return toast.error("Failed to fetch car data");
+  }
+  
   return (
     <Sheet open={isOpen} onOpenChange={onClose}>
       <SheetContent className="w-full sm:max-w-4xl">
         <SheetHeader>
-          <SheetTitle>Add Car</SheetTitle>
+          <SheetTitle>Edit Car</SheetTitle>
           <SheetDescription>
-            Fill out the form to add a new car.
+            Fill out the form to edit a new car.
           </SheetDescription>
         </SheetHeader>
-
+        <LoaderWrapper isLoading={isLoading}>
         <FormProvider {...formMethods}>
           <ScrollArea className="h-screen pb-28 pr-4">
             <form
@@ -181,7 +185,10 @@ const AddCarSheet: React.FC = () => {
                 <FormInputField
                   name="ownerId"
                   label="Car Owner"
-                  placeholder={user?.fullName ?? "Unknown"}
+                  placeholder={
+                    `${data?.owner?.firstName} ${data?.owner?.lastName}` ??
+                    "Unknown"
+                  }
                   disabled
                 />
                 <FormField
@@ -326,7 +333,7 @@ const AddCarSheet: React.FC = () => {
                   Cancel
                 </Button>
                 <Button type="submit" disabled={addCar.isPending}>
-                  {addCar.isPending ?(
+                  {addCar.isPending ? (
                     <div className="flex items-center space-x-2">
                       <Icons.spinner className="animate-spin size-6" />
                       <span>Adding...</span>
@@ -336,12 +343,13 @@ const AddCarSheet: React.FC = () => {
                   )}
                 </Button>
               </div>
-            </form>
-          </ScrollArea>
-        </FormProvider>
+              </form>
+            </ScrollArea>
+          </FormProvider>
+        </LoaderWrapper>
       </SheetContent>
     </Sheet>
   );
 };
 
-export default AddCarSheet;
+export default EditCarSheet;

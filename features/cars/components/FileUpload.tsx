@@ -29,6 +29,7 @@ const FileUpload: React.FC<FileUploadProps> = ({ onFilesChange }) => {
     const newPreviews = fileArray.map((file) => ({
       file,
       previewUrl: URL.createObjectURL(file),
+
     }));
 
     setFilePreviews((prev) => [...prev, ...newPreviews]);

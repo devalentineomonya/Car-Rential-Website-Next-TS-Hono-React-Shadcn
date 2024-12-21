@@ -1,17 +1,19 @@
 "use client";
 import { useUser } from "@clerk/nextjs";
+import { toast } from "sonner";
 
 import LoaderWrapper from "@/components/common/loaders/LoaderWrapper";
-import { useGetUser } from "@/state/users/api/use-get-users";
+import { useGetUser } from "@/state/users/api/use-get-user";
 
 import ChangePassword from "../components/ChangePassword";
 import PersonalInfo from "../components/PersonalInfo";
 import ProfileImage from "../components/ProfileImage";
 
-
 const Account = () => {
-  const { user, isLoaded } = useUser();
-  const { data, isLoading } = useGetUser(user?.id || "", isLoaded && !!user?.id);
+  const { user, isLoaded, isSignedIn } = useUser();
+  if (!isSignedIn || !user?.id) return toast.error("Not logged in or user not found");
+
+  const { data, isLoading } = useGetUser(user.id);
 
   const userData = data || {
     id: "",
