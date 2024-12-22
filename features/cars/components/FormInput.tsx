@@ -10,13 +10,16 @@ const FormInputField = ({
     label,
     placeholder,
     type = "text",
+    min,
+    max,
     disabled = false,
-    ...props
-  }: {
+   }: {
     name: string;
     label: string;
     placeholder: string;
     type?: string;
+    min?:number;
+    max?:number;
     disabled?: boolean;
   }) => {
     const { control } = useFormContext();
@@ -30,7 +33,8 @@ const FormInputField = ({
             <FormLabel htmlFor={name}>{label}</FormLabel>
             <FormControl>
               <Input
-              {...props}
+              min={min}
+              max={max}
                 id={name}
                 {...field}
                 placeholder={placeholder}

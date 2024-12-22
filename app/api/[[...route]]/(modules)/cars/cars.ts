@@ -114,6 +114,28 @@ const app = new Hono()
     }
 
     return c.json({ success: false, data: response });
-  });
+  }).delete(
+    "/:id?",
+    clerkMiddleware(),
+    zValidator("param", z.object({ id: z.string().optional() })),
+    async (c) => {
+      const auth = getAuth(c);
+      if (!auth?.userId) {
+        return c.json({ success: false, message: "Unauthorized user" }, 401);
+      }
+      const { id } = c.req.valid("param");
+      if (!id) {
+        return c.json({ success: false, message: "Car ID is required" }, 400);
+      }
+
+      const car = await db.delete(cars).where(eq(cars.id, id)).returning().then((res) => res[0]);
+
+      if (!car) {
+        return c.json({ success: false, message: "Car not found or already deleted" }, 404);
+      }
+
+      return c.json({ success: true, message: "Car deleted successfully", data: car });
+    }
+  );
 
 export default app;

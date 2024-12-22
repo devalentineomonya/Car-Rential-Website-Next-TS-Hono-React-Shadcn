@@ -33,7 +33,10 @@ export const userRelations = relations(users, ({ many }) => ({
 // Cars Table
 export const cars = pgTable("cars", {
   id: text("id").primaryKey(),
-  ownerId: text("owner_id"),
+  ownerId: text("owner_id").references(() => users.id, {
+    onDelete: "cascade",
+    onUpdate: "cascade",
+  }),
   name: text("name").notNull(),
   description: text("description").notNull(),
   images: jsonb("images").notNull().$type<string[]>(),

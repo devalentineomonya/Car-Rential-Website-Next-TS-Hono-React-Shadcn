@@ -239,11 +239,15 @@ const EditCarSheet: React.FC = () => {
                     name="cylinders"
                     label="Cylinders"
                     placeholder="4"
+                    max={12}
+                    min={4}
                     type="number"
                   />
                   <FormInputField
                     name="engineSize"
                     label="Engine Size"
+                    max={6}
+                    min={3}
                     placeholder="2.0L"
                     type="number"
                   />

@@ -1,6 +1,6 @@
 "use client";
 
-import { ColumnDef } from "@tanstack/react-table";
+import { ColumnDef, Row } from "@tanstack/react-table";
 import { MoreHorizontal } from "lucide-react";
 import Image from "next/image";
 import { z } from "zod";
@@ -17,16 +17,59 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { selectCarSchema } from "@/db/schema";
+import { useDeleteCar } from "@/hooks/use-delete-car";
 import { useEditCar } from "@/hooks/use-edit-car";
 
+
 const refinedSchema = z.object({
-  ...selectCarSchema.shape,
-  owner: z.object({
-    firstName: z.string(),
-    lastName: z.string(),
-  }),
-});
-export const columns: ColumnDef<z.infer<typeof refinedSchema>>[] = [
+    ...selectCarSchema.shape,
+    owner: z.object({
+      firstName: z.string(),
+      lastName: z.string(),
+    }),
+  });
+
+ type TableTypes = z.infer<typeof refinedSchema>
+
+
+const CarActions = ({ row }:{row:Row<TableTypes>}) => {
+    const car = row.original;
+    const { onOpen } = useEditCar();
+    const { onOpen: onDelete } = useDeleteCar();
+    return (
+      <div className=" sticky right-0">
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" className="h-8 w-8 p-0">
+              <span className="sr-only">Open menu</span>
+              <MoreHorizontal className="h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end" className="w-40">
+            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            <DropdownMenuItem
+              onClick={() => navigator.clipboard.writeText(car.id)}
+            >
+              Copy car ID
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>View details</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => onOpen(car.id)}>
+              Edit car
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => onDelete(car.id)}>
+              Delete car
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+    );
+  }
+
+
+
+
+export const columns: ColumnDef<TableTypes>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -149,35 +192,6 @@ export const columns: ColumnDef<z.infer<typeof refinedSchema>>[] = [
 
   {
     id: "actions",
-    cell: ({ row }) => {
-      const car = row.original;
-      const { onOpen} = useEditCar();
-      return (
-        <div className=" sticky right-0">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="h-8 w-8 p-0">
-                <span className="sr-only">Open menu</span>
-                <MoreHorizontal className="h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-40">
-              <DropdownMenuLabel>Actions</DropdownMenuLabel>
-              <DropdownMenuItem
-                onClick={() => navigator.clipboard.writeText(car.id)}
-              >
-                Copy car ID
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>View details</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => onOpen(car.id)}>
-                Edit car
-              </DropdownMenuItem>
-              <DropdownMenuItem>Delete car</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
-      );
-    },
+    cell: CarActions
   },
 ];

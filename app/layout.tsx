@@ -10,6 +10,7 @@ import ProgressProvider from "@/providers/progress-provider";
 import { QueryProvider } from "@/providers/query-provider";
 import { SheetProvider } from "@/providers/sheet-provider";
 import { ThemeProvider } from "@/providers/theme-provider";
+import { ModalProvider } from "@/providers/modal-provider";
 const grotesk = Space_Grotesk({
   weight: ["400", "700"],
   style: ["normal"],
@@ -42,6 +43,7 @@ export default function RootLayout({
                 disableTransitionOnChange
               >
                 <SheetProvider/>
+                <ModalProvider/>
                 <NavbarMain />
                 {children}
                 <Footer />
