@@ -6,13 +6,13 @@ export const useDeleteImage = () => {
   const deleteImage = useMutation({
     mutationFn: async (imageName:string) => {
 
-      const response = await client.api.cars.images[":imageName"].$post({
+      const response = await client.api.cars.images[":imageName"].$delete({
         param: {
           imageName
         },
       });
       if (!response.ok) {
-        throw new Error("Failed to upload images");
+        throw new Error("Failed to delete image");
       }
       return response.json();
     },

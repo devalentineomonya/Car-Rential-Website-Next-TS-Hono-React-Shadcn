@@ -151,7 +151,7 @@ export const columns: ColumnDef<z.infer<typeof refinedSchema>>[] = [
     id: "actions",
     cell: ({ row }) => {
       const car = row.original;
-      const { onOpen } = useEditCar();
+      const { onOpen} = useEditCar();
       return (
         <div className=" sticky right-0">
           <DropdownMenu>

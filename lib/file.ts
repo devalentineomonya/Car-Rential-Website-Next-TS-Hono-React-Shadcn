@@ -36,11 +36,11 @@ export const uploadToCloudinary = async (filePath: string): Promise<string> => {
  * @param {string} imageName - The public ID of the image to delete.
  * @returns {Promise<object>} The response from Cloudinary.
  */
-export const deleteFromCloudinary = async (imageName: string): Promise<object> => {
+export const deleteFromCloudinary = async (imageName: string): Promise<boolean> => {
   try {
     const response = await cloudinary.uploader.destroy(imageName);
-    console.log("Cloudinary delete response:", response);
-    return response;
+    return response.result === "ok"
+
   } catch (error) {
     console.error("Cloudinary delete error:", error);
     throw new Error("Failed to delete image from Cloudinary");

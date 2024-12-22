@@ -9,6 +9,8 @@ import {
 } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
+
+// Users Table
 export const users = pgTable("users", {
   id: text("id").primaryKey(),
   clerk_id: text("clerk_id").notNull().unique(),
@@ -23,13 +25,15 @@ export const users = pgTable("users", {
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
 
+// Relations for Users
 export const userRelations = relations(users, ({ many }) => ({
   cars: many(cars),
 }));
 
+// Cars Table
 export const cars = pgTable("cars", {
   id: text("id").primaryKey(),
-  ownerId: text("owner_id").references(() => users.id),
+  ownerId: text("owner_id"),
   name: text("name").notNull(),
   description: text("description").notNull(),
   images: jsonb("images").notNull().$type<string[]>(),
@@ -57,6 +61,7 @@ export const cars = pgTable("cars", {
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
 
+// Relations for Cars
 export const carRelations = relations(cars, ({ one }) => ({
   owner: one(users, {
     fields: [cars.ownerId],
@@ -64,22 +69,22 @@ export const carRelations = relations(cars, ({ one }) => ({
   }),
 }));
 
-export const insertUserSchema = createInsertSchema(users);
-
+// Zod Schema for Cars
 export const insertCarSchema = createInsertSchema(cars);
 export const selectCarSchema = createSelectSchema(cars);
 
+// Dynamic Validation Schema
 export const dynamicSchema = z
   .object({
     ...insertCarSchema.shape,
     id: z.string().optional(),
     pricePerDay: z.preprocess(
       (val) => (val === "" || isNaN(Number(val)) ? undefined : Number(val)),
-      z.number().min(1).optional()
+      z.number().min(0).optional()
     ),
     pricePerKm: z.preprocess(
       (val) => (val === "" || isNaN(Number(val)) ? undefined : Number(val)),
-      z.number().min(1).optional()
+      z.number().min(0).optional()
     ),
     images: z.array(z.string()),
     carPurpose: z.string().optional(),
@@ -90,6 +95,22 @@ export const dynamicSchema = z
       (val) => (typeof val === "string" ? new Date(val) : val),
       z.date()
     ),
+    mileage: z.number().min(0, "Mileage must be 0 or greater").optional(),
+    engineSize: z
+      .number()
+      .min(500, "Engine size must be at least 500cc")
+      .max(8000, "Engine size cannot exceed 8000cc")
+      .optional(),
+    doors: z
+      .number()
+      .min(2, "Number of doors must be at least 2")
+      .max(6, "Number of doors cannot exceed 6")
+      .optional(),
+    cylinders: z
+      .number()
+      .min(3, "Cylinders must be at least 3")
+      .max(12, "Cylinders cannot exceed 12")
+      .optional(),
   })
   .omit({ createdAt: true, updatedAt: true })
   .refine((data) => (data.isForRent ? data.pricePerDay !== undefined : true), {
@@ -107,3 +128,6 @@ export const dynamicSchema = z
       path: ["pricePerKm"],
     }
   );
+
+// Zod Schema for Users
+export const insertUserSchema = createInsertSchema(users);

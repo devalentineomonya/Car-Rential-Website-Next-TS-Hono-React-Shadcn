@@ -32,8 +32,8 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { dynamicSchema } from "@/db/schema";
 import { useEditCar } from "@/hooks/use-edit-car";
 import { cn } from "@/lib/utils";
-import { useAddCar } from "@/state/cars/api/use-add-car";
 import { useGetCar } from "@/state/cars/api/use-get-car";
+import { useUpdateCar } from "@/state/cars/api/use-update-car";
 import { INPUT_CLASSNAME } from "@/utils/constants";
 
 import DateManufactured from "./DateManufactured";
@@ -45,7 +45,7 @@ const EditCarSheet: React.FC = () => {
   const { isOpen, onClose, id } = useEditCar();
   const { data, isLoading, isError } = useGetCar(id);
 
-  const addCar = useAddCar();
+  const updateCar = useUpdateCar();
   const [files, setFiles] = useState<string[]>([]);
  type FormData = z.infer<typeof dynamicSchema>
 
@@ -94,7 +94,7 @@ const EditCarSheet: React.FC = () => {
 
   const onSubmit = async (data: FormData) => {
     try {
-      await addCar.mutateAsync(data);
+      await updateCar.mutateAsync(data);
       toast.success("Car added successfully!");
       onClose();
     } catch (error) {
@@ -230,6 +230,8 @@ const EditCarSheet: React.FC = () => {
                   <FormInputField
                     name="doors"
                     label="Doors"
+                    max={4}
+                    min={3}
                     placeholder="4"
                     type="number"
                   />
@@ -335,14 +337,14 @@ const EditCarSheet: React.FC = () => {
                   <Button type="button" variant="outline" onClick={onClose}>
                     Cancel
                   </Button>
-                  <Button type="submit" disabled={addCar.isPending}>
-                    {addCar.isPending ? (
+                  <Button type="submit" disabled={updateCar.isPending}>
+                    {updateCar.isPending ? (
                       <div className="flex items-center space-x-2">
                         <Icons.spinner className="animate-spin size-6" />
-                        <span>Adding...</span>
+                        <span>Updating...</span>
                       </div>
                     ) : (
-                      "Add Car"
+                      "Update Car"
                     )}
                   </Button>
                 </div>

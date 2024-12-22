@@ -69,7 +69,6 @@ const app = new Hono()
       if (!auth?.userId) {
         return c.json({ success: false, message: "Unauthorized user" }, 401);
       }
-      console.log("authenticated user", auth.userId);
 
       const body = c.req.valid("json");
       const user = await db.query.users.findFirst({
@@ -89,6 +88,32 @@ const app = new Hono()
 
       return c.json({ success: true, car }, 200);
     }
-  );
+  )
+  .put("/", clerkMiddleware(), zValidator("json", dynamicSchema), async (c) => {
+    const auth = getAuth(c);
+    if (!auth?.userId) {
+      return c.json({ success: false, message: "Unauthorized user" }, 401);
+    }
+    const body = c.req.valid("json");
+    if (!body.id) {
+      return c.json({ success: false, message: "Car id is required" }, 400);
+    }
+    const car = await db.query.cars.findFirst({
+      where: eq(cars.id, body.id),
+    });
+    if (!car) {
+      return c.json({ success: false, message: "car not found" }, 404);
+    }
+    const [response] = await db
+      .update(cars)
+      .set(body)
+      .where(eq(cars.id, body.id))
+      .returning();
+    if (!response) {
+      return c.json({ success: false, data: "Failed to update car" }, 500);
+    }
+
+    return c.json({ success: false, data: response });
+  });
 
 export default app;

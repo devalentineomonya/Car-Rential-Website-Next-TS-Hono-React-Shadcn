@@ -11,6 +11,7 @@ const FormInputField = ({
     placeholder,
     type = "text",
     disabled = false,
+    ...props
   }: {
     name: string;
     label: string;
@@ -19,7 +20,7 @@ const FormInputField = ({
     disabled?: boolean;
   }) => {
     const { control } = useFormContext();
-  
+
     return (
       <FormField
         control={control}
@@ -29,6 +30,7 @@ const FormInputField = ({
             <FormLabel htmlFor={name}>{label}</FormLabel>
             <FormControl>
               <Input
+              {...props}
                 id={name}
                 {...field}
                 placeholder={placeholder}
@@ -42,7 +44,7 @@ const FormInputField = ({
                     field.onChange(e.target.value);
                   }
                 }}
-                
+
               />
             </FormControl>
             <FormMessage />

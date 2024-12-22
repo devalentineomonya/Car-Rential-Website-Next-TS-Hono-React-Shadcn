@@ -83,7 +83,7 @@ const app = new Hono()
       }
     }
   )
-  .post(
+  .delete(
     "/:imageName",
     clerkMiddleware(),
     zValidator("param", z.object({ imageName: z.string() })),
@@ -92,11 +92,13 @@ const app = new Hono()
       if (!auth?.userId) {
         return c.json({ success: false, message: "Unauthorized user" }, 401);
       }
-      
+
       const {imageName} = c.req.valid("param")
       const response = await deleteFromCloudinary(`car-images/${imageName}`)
-      console.log(response)
-      return c.json({success:true, data:response})
+     if(!response){
+        return c.json({success:true, message:"Failed to delete image"}, 400)
+     }
+      return c.json({success:true, data:response},200)
     }
   );
 
