@@ -36,7 +36,7 @@ const TopCars = () => {
           <FaCarSide className="group-hover:translate-x-2  transition-all ease-in-out duration-300" />
         </Link>
       </div>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-4 pb-12 max-xl:px-3">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pt-4 pb-12 max-xl:px-3">
         <CarCard car={carData} />
         <CarCard car={carData} />
         <CarCard car={carData} />

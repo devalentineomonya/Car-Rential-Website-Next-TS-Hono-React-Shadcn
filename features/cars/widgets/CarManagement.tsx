@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 import CarsTable from '../components/CarsTable'
 
 const CarManagement = () => {
