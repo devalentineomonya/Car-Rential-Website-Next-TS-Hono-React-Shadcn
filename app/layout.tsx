@@ -6,11 +6,12 @@ import { Space_Grotesk } from "next/font/google";
 import Footer from "@/components/common/footer/Footer";
 import NavbarMain from "@/components/common/navbar/NavbarMain";
 import { Toaster } from "@/components/ui/sonner";
+import { ModalProvider } from "@/providers/modal-provider";
 import ProgressProvider from "@/providers/progress-provider";
 import { QueryProvider } from "@/providers/query-provider";
 import { SheetProvider } from "@/providers/sheet-provider";
 import { ThemeProvider } from "@/providers/theme-provider";
-import { ModalProvider } from "@/providers/modal-provider";
+
 const grotesk = Space_Grotesk({
   weight: ["400", "700"],
   style: ["normal"],
@@ -30,20 +31,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${grotesk.className} antialiased relative`}>
-        <ClerkProvider>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={`${grotesk.className} antialiased relative`}>
           <ProgressProvider>
             <QueryProvider>
-
               <ThemeProvider
                 attribute="class"
                 defaultTheme="system"
                 enableSystem
                 disableTransitionOnChange
               >
-                <SheetProvider/>
-                <ModalProvider/>
+                <SheetProvider />
+                <ModalProvider />
                 <NavbarMain />
                 {children}
                 <Footer />
@@ -51,9 +51,8 @@ export default function RootLayout({
               </ThemeProvider>
             </QueryProvider>
           </ProgressProvider>
-        </ClerkProvider>
-        <Toaster />
-      </body>
-    </html>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

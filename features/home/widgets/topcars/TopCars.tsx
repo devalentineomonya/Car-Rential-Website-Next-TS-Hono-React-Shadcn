@@ -43,6 +43,8 @@ const TopCars = () => {
         <CarCard car={carData} />
         <CarCard car={carData} />
         <CarCard car={carData} />
+        <CarCard car={carData} />
+        <CarCard car={carData} />
       </div>
     </MainLayout>
   );
