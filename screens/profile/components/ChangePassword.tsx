@@ -20,7 +20,7 @@ import { Input } from "@/components/ui/input";
 import {
   useUpdatePassword,
   useSetPassword,
-} from "@/state/users/api/use-update-password";
+} from "@/features//users/api/use-update-password";
 import {
   schemaWithCurrentPassword,
   schemaWithoutCurrentPassword,

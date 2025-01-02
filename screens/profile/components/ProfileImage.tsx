@@ -30,7 +30,7 @@ import userAvatar from "@/public/images/avatar.png";
 import {
   useUpdateImage,
   useRemoveImage,
-} from "@/state/users/api/use-update-image";
+} from "@/features//users/api/use-update-image";
 
 const MAX_FILE_SIZE = 8000 * 1024;
 const ALLOWED_FILE_TYPES = ["image/jpeg", "image/png", "image/gif"];

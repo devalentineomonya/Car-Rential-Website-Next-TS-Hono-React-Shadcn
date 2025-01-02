@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { insertUserSchema } from "@/db/schema";
-import { useUpdateUser } from "@/state/users/api/use-update-user";
+import { useUpdateUser } from "@/features//users/api/use-update-user";
 import { INPUT_CLASSNAME } from "@/utils/constants";
 const personalInfoSchema = insertUserSchema
   .pick({

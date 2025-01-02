@@ -3,7 +3,7 @@ import { useUser } from "@clerk/nextjs";
 import { toast } from "sonner";
 
 import LoaderWrapper from "@/components/common/loaders/LoaderWrapper";
-import { useGetUser } from "@/state/users/api/use-get-user";
+import { useGetUser } from "@/features//users/api/use-get-user";
 
 import ChangePassword from "../components/ChangePassword";
 import PersonalInfo from "../components/PersonalInfo";

@@ -6,7 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { FaqData } from "@/features/faq/widgets/faqData";
+import { FaqData } from "@/screens/faq/widgets/faqData";
 const FaqAccordion = ({ faqItem }: { faqItem: FaqData }) => {
   return (
     <div className="mt-12">

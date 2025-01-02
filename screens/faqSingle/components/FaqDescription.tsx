@@ -1,6 +1,6 @@
 import React from "react";
 
-import { FaqData } from "@/features/faq/widgets/faqData";
+import { FaqData } from "@/screens/faq/widgets/faqData";
 
 const FaqDescription = ({ faqItem }: { faqItem: FaqData }) => {
   return (

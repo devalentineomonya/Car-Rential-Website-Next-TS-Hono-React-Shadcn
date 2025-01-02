@@ -12,7 +12,7 @@ import {
   } from "@/components/ui/alert-dialog";
 import { Icons } from "@/components/ui/icons";
 import { useDeleteCar } from "@/hooks/use-delete-car";
-import { useDeleteCarMutation } from "@/state/cars/api/use-delete-car";
+import { useDeleteCarMutation } from "@/features//cars/api/use-delete-car";
 
 const DeleteCarDialog = () => {
   const { isOpen, onClose, id } = useDeleteCar();

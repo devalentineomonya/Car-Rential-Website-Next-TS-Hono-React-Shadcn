@@ -1,6 +1,6 @@
 "use client";
-import AddCarSheet from "@/features/cars/components/AddCarSheet";
-import UpdateCarSheet from "@/features/cars/components/UpdateCarSheet";
+import AddCarSheet from "@/screens/cars/components/AddCarSheet";
+import UpdateCarSheet from "@/screens/cars/components/UpdateCarSheet";
 
 export const SheetProvider = () => {
   return (

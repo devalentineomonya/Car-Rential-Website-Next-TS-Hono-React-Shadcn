@@ -30,7 +30,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useNewCar } from "@/hooks/use-new-car";
-import { useGetCars } from "@/state/cars/api/use-get-cars";
+import { useGetCars } from "@/features//cars/api/use-get-cars";
 
 import { columns } from "../widgets/TableColumns";
 
@@ -80,7 +80,7 @@ const CarsTable = () => {
             <Input
               placeholder="Filter cars..."
               value={
-                (table.getColumn("name")?.getFilterValue() as string) ?? ""  
+                (table.getColumn("name")?.getFilterValue() as string) ?? ""
               }
               onChange={(event) =>
                 table.getColumn("name")?.setFilterValue(event.target.value)

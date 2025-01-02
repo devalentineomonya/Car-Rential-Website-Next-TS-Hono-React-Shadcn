@@ -1,6 +1,6 @@
 "use client";
 
-import DeleteCarDialog from "@/features/cars/components/DeleteCarDialog";
+import DeleteCarDialog from "@/screens/cars/components/DeleteCarDialog";
 
 export const ModalProvider = () => {
   return (

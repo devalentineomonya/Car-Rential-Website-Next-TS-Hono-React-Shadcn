@@ -2,8 +2,8 @@ import React from "react";
 
 import MainLayout from "@/components/common/layouts/MainLayout";
 import HeaderBanner from "@/components/common/shared/HeaderBanner";
-import Summary from "@/features/car/components/Summary";
-import CarInfo from "@/features/car/widgets/CarInfo";
+import Summary from "@/screens/car/components/Summary";
+import CarInfo from "@/screens/car/widgets/CarInfo";
 
 const page = () => {
   return (

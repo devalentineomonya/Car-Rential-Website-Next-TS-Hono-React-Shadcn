@@ -32,7 +32,7 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { dynamicSchema } from "@/db/schema";
 import { useNewCar } from "@/hooks/use-new-car";
 import { cn } from "@/lib/utils";
-import { useAddCar } from "@/state/cars/api/use-add-car";
+import { useAddCar } from "@/features//cars/api/use-add-car";
 import { INPUT_CLASSNAME } from "@/utils/constants";
 
 import DateManufactured from "./DateManufactured";

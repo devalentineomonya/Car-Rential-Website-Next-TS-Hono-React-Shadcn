@@ -6,8 +6,8 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/ui/icons";
 import { Input } from "@/components/ui/input";
-import { useDeleteImage } from "@/state/cars/api/use-delete-image";
-import { useUploadImage } from "@/state/cars/api/use-upload-image";
+import { useDeleteImage } from "@/features//cars/api/use-delete-image";
+import { useUploadImage } from "@/features//cars/api/use-upload-image";
 
 interface FilePreview {
   file: File;
