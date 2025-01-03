@@ -10,7 +10,7 @@ import { users } from "@/db/schema";
 
 import { createUser } from "./users";
 
-const app = new Hono().post("/", async (c) => {
+const app = new Hono().post("/", async (c) => {     
   const SIGNING_SECRET = process.env.SIGNING_SECRET;
 
   if (!SIGNING_SECRET) {
