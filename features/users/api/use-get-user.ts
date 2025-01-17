@@ -10,12 +10,17 @@ export const useGetUser = (clerkId?: string) => {
       const response = await client.api.users[":clerkId?"].$get({
         param: { clerkId: clerkId },
       });
-      if (!response.ok) {
-        throw new Error("Failed to fetch user");
-      }
       const userData = await response.json();
+      if (!response.ok || !userData.success) {
+        if ('message' in userData) {
+          throw new Error(userData.message || "Failed to fetch user");
+        }
+      }
       console.log("Response", userData);
-      return userData.data;
+      if ('data' in userData) {
+        return userData.data;
+      }
+      throw new Error("Failed to fetch user data");
     },
   });
   return query;

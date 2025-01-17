@@ -18,7 +18,7 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
-import { UserSidebarType } from "@/utils/sidebarData"
+import { UserSidebarType } from "@/utils/sidebarData";
 
 export function NavMain({ items }: { items: UserSidebarType["navMain"] }) {
   return (
@@ -31,7 +31,7 @@ export function NavMain({ items }: { items: UserSidebarType["navMain"] }) {
               <SidebarMenuItem key={item.title}>
                 <SidebarMenuButton asChild tooltip={item.title}>
                   <Link href={item.url || "#"}>
-                    {item.icon && item.icon}
+                    {item.icon}
                     <span>{item.title}</span>
                   </Link>
                 </SidebarMenuButton>
@@ -49,7 +49,7 @@ export function NavMain({ items }: { items: UserSidebarType["navMain"] }) {
                 {item.items ? (
                   <CollapsibleTrigger asChild>
                     <SidebarMenuButton tooltip={item.title}>
-                      {item.icon && item.icon}
+                      {item.icon}
                       <span>{item.title}</span>
                       <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
                     </SidebarMenuButton>
@@ -57,7 +57,7 @@ export function NavMain({ items }: { items: UserSidebarType["navMain"] }) {
                 ) : (
                   <SidebarMenuButton asChild tooltip={item.title}>
                     <Link href={item.url || "#"}>
-                      {item.icon && item.icon}
+                      {item.icon}
                       <span>{item.title}</span>
                     </Link>
                   </SidebarMenuButton>

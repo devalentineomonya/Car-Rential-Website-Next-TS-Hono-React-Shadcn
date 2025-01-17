@@ -49,7 +49,7 @@ const PersonalInfo = ({ data }: { data: PersonalInfoSchema }) => {
       location: data.location || "",
     },
   });
-
+  console.log(data);
   useEffect(() => {
     const defaultValues = {
       id: data.id || "",
@@ -66,12 +66,15 @@ const PersonalInfo = ({ data }: { data: PersonalInfoSchema }) => {
 
   console.log("Data", data);
   console.log("Form Data", form.getValues());
-  function onSubmit(data: PersonalInfoSchema) {
+  async function onSubmit(data: PersonalInfoSchema) {
     try {
-      const response = updateUser.mutate(data);
-      console.log("Response", response);
+      const response = await updateUser.mutateAsync(data);
+      if (response) {
+        toast.success("User updated successfully!");
+      }
     } catch (error: unknown) {
-      const errorMessage = error instanceof Error ? error.message : "Failed to update user";
+      const errorMessage =
+        error instanceof Error ? error.message : "Failed to update user";
       toast.error(errorMessage);
     }
   }

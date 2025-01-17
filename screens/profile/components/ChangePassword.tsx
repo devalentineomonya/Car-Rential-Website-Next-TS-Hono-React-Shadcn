@@ -43,20 +43,20 @@ const ChangePassword = () => {
 
   async function onSubmit(data: FormData) {
     try {
-      let response;
       if (isPasswordLogin) {
-        response = await updatePassword.mutateAsync(
+        const response = await updatePassword.mutateAsync(
           data as z.infer<typeof schemaWithCurrentPassword>
         );
         toast.success(response.message || "Password updated successfully.");
       } else {
-        response = await setPassword.mutateAsync(
+        const response = await setPassword.mutateAsync(
           data as z.infer<typeof schemaWithoutCurrentPassword>
         );
         toast.success(response.message || "Password set successfully.");
       }
     } catch (error: unknown) {
-      const errorMessage = error instanceof Error ? error.message : "Failed to update password.";
+      const errorMessage =
+        error instanceof Error ? error.message : "Failed to update password.";
       toast.error(errorMessage);
     }
   }
@@ -160,4 +160,3 @@ const ChangePassword = () => {
 };
 
 export default ChangePassword;
-

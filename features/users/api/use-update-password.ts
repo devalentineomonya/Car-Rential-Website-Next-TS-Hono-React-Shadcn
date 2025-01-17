@@ -13,10 +13,12 @@ export const useSetPassword = () => {
       const response = await client.api.user["set-password"].$put({
         json: data,
       });
+
+      const result = await response.json();
       if (!response.ok) {
-        throw new Error("Failed to set password");
+        throw new Error(result.message || "Failed to set password");
       }
-      return response.json();
+      return result;
     },
   });
   return mutation;

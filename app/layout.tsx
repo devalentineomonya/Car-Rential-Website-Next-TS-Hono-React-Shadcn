@@ -10,7 +10,7 @@ import { ModalProvider } from "@/providers/modal-provider";
 import ProgressProvider from "@/providers/progress-provider";
 import { QueryProvider } from "@/providers/query-provider";
 import { SheetProvider } from "@/providers/sheet-provider";
-import { ThemeProvider } from "@/providers/theme-provider";
+// import { ThemeProvider } from "@/providers/theme-provider";
 
 const grotesk = Space_Grotesk({
   weight: ["400", "700"],
@@ -36,19 +36,19 @@ export default function RootLayout({
         <body className={`${grotesk.className} antialiased relative`}>
           <ProgressProvider>
             <QueryProvider>
-              <ThemeProvider
+              {/* <ThemeProvider
                 attribute="class"
                 defaultTheme="system"
                 enableSystem
                 disableTransitionOnChange
-              >
+              > */}
                 <SheetProvider />
                 <ModalProvider />
                 <NavbarMain />
                 {children}
                 <Footer />
                 <Toaster />
-              </ThemeProvider>
+              {/* </ThemeProvider> */}
             </QueryProvider>
           </ProgressProvider>
         </body>

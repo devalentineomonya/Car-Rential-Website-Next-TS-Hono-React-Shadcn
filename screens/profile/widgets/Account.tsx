@@ -11,7 +11,7 @@ import ProfileImage from "../components/ProfileImage";
 
 const Account = () => {
   const { user, isLoaded, isSignedIn } = useUser();
-  const { data, isLoading } = useGetUser(user?.id);
+  const { data, isLoading, isError,error } = useGetUser(user?.id);
   if (!isSignedIn || !user?.id) return toast.error("Not logged in or user not found");
 
 
@@ -25,6 +25,9 @@ const Account = () => {
     address: "",
     phone: "",
   };
+  if(isError){
+    toast.error( error.message || "An error occurred while fetching user data");
+  }
 
   return (
     <LoaderWrapper isLoading={!isLoaded || isLoading}>

@@ -121,7 +121,7 @@ const app = new Hono()
           email: true,
         },
       });
-      if (data) {
+      if (!data) {
         return c.json(
           {
             success: false,

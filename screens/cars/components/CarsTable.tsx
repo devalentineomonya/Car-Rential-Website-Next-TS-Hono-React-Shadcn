@@ -29,13 +29,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useNewCar } from "@/hooks/use-new-car";
 import { useGetCars } from "@/features//cars/api/use-get-cars";
+import { useNewCar } from "@/hooks/use-new-car";
 
 import { columns } from "../widgets/TableColumns";
 
+import CarTableLoader from "./CarTableLoader";
 import { CarTablePagination } from "./CarTablePagination";
-import DataTableSkeleton from "./CarTableSkeleton";
 const CarsTable = () => {
   const { data, isLoading } = useGetCars();
   const [sorting, setSorting] = React.useState<SortingState>([]);
@@ -61,18 +61,9 @@ const CarsTable = () => {
       columnFilters,
     },
   });
-  if (isLoading)
-    return (
-      <DataTableSkeleton
-        columnCount={6}
-        searchableColumnCount={1}
-        filterableColumnCount={2}
-        cellWidths={["10rem", "40rem", "12rem", "12rem", "8rem", "8rem"]}
-        shrinkZero
-      />
-    );
+  if (isLoading) return <CarTableLoader />;
   return (
-    <Card className="mt-6">
+    <Card className="mt-6 shadow-none border-none">
       <CardHeader className="flex-row items-center justify-between">
         <div>
           <CardTitle>Cars</CardTitle>
@@ -94,54 +85,55 @@ const CarsTable = () => {
         </Button>
       </CardHeader>
       <CardContent>
-        <div className="rounded-md border">
-          <Table>
-            <TableHeader>
-              {table.getHeaderGroups().map((headerGroup) => (
-                <TableRow key={headerGroup.id}>
-                  {headerGroup.headers.map((header) => (
-                    <TableHead key={header.id}>
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
-                    </TableHead>
+        <Table>
+          <TableHeader>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <TableRow key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                  <TableHead key={header.id}>
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                  </TableHead>
+                ))}
+              </TableRow>
+            ))}
+          </TableHeader>
+          <TableBody>
+            {table.getRowModel().rows?.length ? (
+              table.getRowModel().rows.map((row) => (
+                <TableRow
+                  key={row.id}
+                  data-state={row.getIsSelected() && "selected"}
+                >
+                  {row.getVisibleCells().map((cell) => (
+                    <TableCell
+                      className="py-2 whitespace-nowrap shrink-0"
+                      key={cell.id}
+                    >
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
+                    </TableCell>
                   ))}
                 </TableRow>
-              ))}
-            </TableHeader>
-            <TableBody>
-              {table.getRowModel().rows?.length ? (
-                table.getRowModel().rows.map((row) => (
-                  <TableRow
-                    key={row.id}
-                    data-state={row.getIsSelected() && "selected"}
-                  >
-                    {row.getVisibleCells().map((cell) => (
-                      <TableCell className="py-2 whitespace-nowrap shrink-0" key={cell.id}>
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext()
-                        )}
-                      </TableCell>
-                    ))}
-                  </TableRow>
-                ))
-              ) : (
-                <TableRow>
-                  <TableCell
-                    colSpan={columns.length}
-                    className="h-24 text-center"
-                  >
-                    No results.
-                  </TableCell>
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </div>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center"
+                >
+                  No results.
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
       </CardContent>
       <CardFooter className="flex justify-between">
         <CarTablePagination table={table} />
