@@ -88,9 +88,9 @@ const CarsTable = () => {
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
+              <TableRow className="h-14 bg-gray-50 " key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <TableHead key={header.id}>
+                  <TableHead className="text-gray-900 font-semibold" key={header.id}>
                     {header.isPlaceholder
                       ? null
                       : flexRender(

@@ -1,6 +1,6 @@
 "use client";
 
-import { useUser , SignOutButton } from "@clerk/nextjs";
+import { useUser, useClerk } from "@clerk/nextjs";
 import {
   BadgeCheck,
   Bell,
@@ -10,6 +10,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import Link from "next/link";
+import { toast } from "sonner";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -31,6 +32,20 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export function NavUser() {
   const { isMobile } = useSidebar();
+  const { signOut } = useClerk();
+  const handleLogOut = async () => {
+    const id = toast.loading("Logging out...");
+    try {
+      await signOut({ redirectUrl: "/" });
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : "Failed to logout";
+      toast.error(errorMessage);
+    } finally {
+      toast.dismiss(id);
+    }
+    signOut({ redirectUrl: "/" });
+  };
   const { user, isLoaded, isSignedIn } = useUser();
   return (
     <SidebarMenu>
@@ -121,12 +136,10 @@ export function NavUser() {
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <SignOutButton redirectUrl="/">
-              <DropdownMenuItem>
-                <LogOut />
-                Log out
-              </DropdownMenuItem>
-            </SignOutButton>
+            <DropdownMenuItem onClick={handleLogOut} role="button" tabIndex={0}>
+              <LogOut />
+              Log out
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </SidebarMenuItem>

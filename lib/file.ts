@@ -33,12 +33,12 @@ export const uploadToCloudinary = async (filePath: string): Promise<string> => {
 
 /**
  * Deletes an image from Cloudinary.
- * @param {string} imageName - The public ID of the image to delete.
+ * @param {string} publicId - The public ID of the image to delete.
  * @returns {Promise<object>} The response from Cloudinary.
  */
-export const deleteFromCloudinary = async (imageName: string): Promise<boolean> => {
+export const deleteFromCloudinary = async (publicId: string): Promise<boolean> => {
   try {
-    const response = await cloudinary.uploader.destroy(imageName);
+    const response = await cloudinary.uploader.destroy(publicId);
     return response.result === "ok"
 
   } catch (error) {

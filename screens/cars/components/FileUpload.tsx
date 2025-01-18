@@ -6,8 +6,8 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/ui/icons";
 import { Input } from "@/components/ui/input";
-import { useDeleteImage } from "@/features//cars/api/use-delete-image";
-import { useUploadImage } from "@/features//cars/api/use-upload-image";
+import { useDeleteImage } from "@/features/cars/api/use-delete-image";
+import { useUploadImage } from "@/features/cars/api/use-upload-image";
 
 interface FilePreview {
   file: File;
@@ -64,9 +64,10 @@ const deleteImage = useDeleteImage()
       toast.loading("Deleting image...");
       // Extract public ID from the URL
       const publicId = url.split("/").slice(-1).join("").replace(/\.[^/.]+$/, "");
-
+      const {id } = useEditCar();
       // Call the deleteImage mutation
       await deleteImage.mutateAsync(publicId);
+
 
       // Update the state
       if (isExistingFile) {
@@ -168,8 +169,7 @@ const PreviewItem: React.FC<{ src: string; alt: string; onRemove: () => void }> 
         onClick={onRemove}
         className="absolute top-1 right-1 h-7 w-7 bg-red-500 text-white rounded-lg"
       >
-        <Icons.spinner className="animate-spin w-4 h-4" /> {/* Optional spinner */}
-        <RiCloseFill className="w-4 h-4" />
+            <RiCloseFill className="w-4 h-4" />
       </Button>
     </div>
   );
