@@ -28,7 +28,7 @@ const app = new Hono()
         file: c.req.valid("form").file,
       });
       return c.json({ success: true, message: "Image updated" }, 200);
-    }
+    },
   )
   .put("/remove-image", clerkMiddleware(), async (c) => {
     const auth = getAuth(c);
@@ -54,9 +54,9 @@ const app = new Hono()
       });
       return c.json(
         { success: true, message: "Password updated", data: response },
-        200
+        200,
       );
-    }
+    },
   )
   .put(
     "/change-password",
@@ -74,19 +74,19 @@ const app = new Hono()
         password: currentPassword,
         userId: auth.userId,
       });
-      console.log("isValidPassword", { isValidPassword });
+
       if (!isValidPassword) {
         return c.json(
           { success: false, message: "Invalid current password" },
-          400
+          400,
         );
       }
       const response = await client.users.updateUser(auth.userId, {
         password: newPassword,
       });
-      console.log(response);
+
       return c.json({ success: true, message: "Password updated" }, 200);
-    }
+    },
   );
 
 export default app;

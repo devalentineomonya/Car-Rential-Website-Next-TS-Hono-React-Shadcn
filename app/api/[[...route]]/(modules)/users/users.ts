@@ -23,7 +23,7 @@ const updateUserSchema = insertUserSchema
   .omit({ createdAt: true, updatedAt: true });
 
 export const createUser = async (
-  userData: z.infer<typeof createUserSchema>
+  userData: z.infer<typeof createUserSchema>,
 ) => {
   try {
     const [data] = await db
@@ -47,7 +47,7 @@ export const createUser = async (
 };
 
 export const updateUser = async (
-  userData: z.infer<typeof updateUserSchema>
+  userData: z.infer<typeof updateUserSchema>,
 ) => {
   const { id, clerk_id, ...safeUpdate } = userData;
   try {
@@ -105,7 +105,7 @@ const app = new Hono()
       if (!clerkId) {
         return c.json(
           { success: false, message: "Missing or invalid Clerk ID" },
-          400
+          400,
         );
       }
       const data = await db.query.users.findFirst({
@@ -127,12 +127,12 @@ const app = new Hono()
             success: false,
             message: "User with the specified id was not found.",
           },
-          404
+          404,
         );
       }
 
       return c.json({ success: true, data }, 200);
-    }
+    },
   )
 
   /*===============
@@ -150,7 +150,7 @@ const app = new Hono()
         email: true,
         address: true,
         phone: true,
-      })
+      }),
     ),
     async (c) => {
       const auth = getAuth(c);
@@ -173,10 +173,10 @@ const app = new Hono()
       } else {
         return c.json(
           { success: false, message: "Error creating user in DB" },
-          500
+          500,
         );
       }
-    }
+    },
   )
 
   /*===============
@@ -212,10 +212,10 @@ const app = new Hono()
       } else {
         return c.json(
           { success: false, message: "Error updating user in DB" },
-          500
+          500,
         );
       }
-    }
+    },
   );
 
 export default app;

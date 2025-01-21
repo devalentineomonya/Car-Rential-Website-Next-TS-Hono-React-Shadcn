@@ -29,12 +29,12 @@ routes.onError((err, c) => {
   ) {
     return c.json(
       { success: false, message: err.errors[0].message },
-      err.status as unknown as ContentfulStatusCode
+      err.status as unknown as ContentfulStatusCode,
     );
   }
   return c.json(
     { success: false, message: "Internal server error", error: err.message },
-    500
+    500,
   );
 });
 

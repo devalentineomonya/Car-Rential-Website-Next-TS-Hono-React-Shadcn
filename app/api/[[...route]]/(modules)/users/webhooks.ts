@@ -10,7 +10,7 @@ import { users } from "@/db/schema";
 
 import { createUser } from "./users";
 
-const app = new Hono().post("/", async (c) => {     
+const app = new Hono().post("/", async (c) => {
   const SIGNING_SECRET = process.env.SIGNING_SECRET;
 
   if (!SIGNING_SECRET) {
@@ -20,7 +20,7 @@ const app = new Hono().post("/", async (c) => {
         message:
           "Error: Please add SIGNING_SECRET from Clerk Dashboard to .env or .env.local",
       },
-      500
+      500,
     );
   }
 
@@ -34,7 +34,7 @@ const app = new Hono().post("/", async (c) => {
   if (!svix_id || !svix_timestamp || !svix_signature) {
     return c.json(
       { success: false, message: "Error: Missing Svix headers" },
-      400
+      400,
     );
   }
 
@@ -53,7 +53,7 @@ const app = new Hono().post("/", async (c) => {
     console.error("Error: Could not verify webhook:", err);
     return c.json(
       { success: false, message: "Error: Verification error" },
-      400
+      400,
     );
   }
 
@@ -64,7 +64,7 @@ const app = new Hono().post("/", async (c) => {
     `Received webhook with ID ${id} and event type of ${eventType}`,
     payload,
     "emailAddresses",
-    payload.email_addresses
+    payload.email_addresses,
   );
 
   if (eventType === "user.created") {
@@ -111,7 +111,7 @@ const app = new Hono().post("/", async (c) => {
       console.error("Error creating user:", err);
       return c.json(
         { success: false, message: "Error creating user in DB" },
-        500
+        500,
       );
     }
   }
