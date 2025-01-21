@@ -5,9 +5,15 @@
     "plugin:import/recommended",
     "plugin:import/typescript",
     "plugin:react/recommended",
-    "next/core-web-vitals"
+    "next/core-web-vitals",
+    "plugin:prettier/recommended"
   ],
-  "plugins": ["@typescript-eslint", "import"],
+  "plugins": ["@typescript-eslint", "import", "prettier"],
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 2020,
@@ -17,6 +23,8 @@
     }
   },
   "rules": {
+    "camelcase": ["error", { "properties":"alway" }],
+    "no-underscore-dangle": ["error", { "allow": [] }],
     "no-duplicate-imports": ["error"],
     "import/order": [
       "error",
@@ -34,11 +42,24 @@
       }
     ],
     "@typescript-eslint/no-unused-vars": "warn",
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "import/extensions": [
+      "error",
+      "never",
+      {
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "prettier/prettier": "error"
   },
   "settings": {
     "react": {
       "version": "detect"
+    },
+    "import/resolver": {
+      "typescript": {}
     }
   }
 }
