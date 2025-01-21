@@ -13,7 +13,7 @@ const About = () => {
       <Mission />
       <Vision />
       <Network />
-      <LocationMap/>
+      <LocationMap />
     </>
   );
 };

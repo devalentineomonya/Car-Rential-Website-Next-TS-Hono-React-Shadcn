@@ -1,13 +1,13 @@
 import React from "react";
 
 import BreadCrumb from "@/components/common/sidebar/BreadCrumb";
-import { AppSidebar } from "@/components/common/sidebar/Sidebar"
-import { Separator } from "@/components/ui/separator"
+import { AppSidebar } from "@/components/common/sidebar/Sidebar";
+import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 import { userSidebar } from "@/utils/sidebarData";
 
 export default function UserLayout({
@@ -26,9 +26,7 @@ export default function UserLayout({
             <BreadCrumb />
           </div>
         </header>
-        <main className="flex flex-1 flex-col gap-4 p-4 pt-0">
-          {children}
-        </main>
+        <main className="flex flex-1 flex-col gap-4 p-4 pt-0">{children}</main>
       </SidebarInset>
     </SidebarProvider>
   );
