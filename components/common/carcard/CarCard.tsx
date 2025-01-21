@@ -6,7 +6,12 @@ import { GiGearStickPattern, GiGearStick } from "react-icons/gi";
 import { IoCarSportOutline } from "react-icons/io5";
 
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Car } from "@/types/car";
 interface CarCardProps {
@@ -18,10 +23,16 @@ const CarCard: React.FC<CarCardProps> = ({ car }) => {
     <Card className="rounded-md w-full hover:scale-105 transition-all ease-in-out duration-300 max-h-fit">
       <CardHeader className="p-2 flex-row items-center justify-between">
         <div className="flex items-center gap-x-2 cursor-default">
-          <Badge variant="outline" className="rounded-md px-1 flex items-center gap-x-1">
+          <Badge
+            variant="outline"
+            className="rounded-md px-1 flex items-center gap-x-1"
+          >
             <FaStar className="text-yellow-400 mr-1" size={18} />
             <p className="text-sm flex items-center gap-x-1">
-              {car.rating.toFixed(1)} <span className="font-medium text-xs">&#40; {car.reviews} &#41;</span>
+              {car.rating.toFixed(1)}{" "}
+              <span className="font-medium text-xs">
+                &#40; {car.reviews} &#41;
+              </span>
             </p>
           </Badge>
           <Badge
@@ -38,7 +49,6 @@ const CarCard: React.FC<CarCardProps> = ({ car }) => {
           src={car.image}
           alt={car.name}
           className="bg-background mix-blend-multiply group-hover/image:translate-x-2 transition-all ease-in-out duration-300 group-hover/image:scale-105"
-      
         />
       </CardContent>
       <CardFooter className="p-3 flex-col item-start justify-center">

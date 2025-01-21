@@ -16,7 +16,9 @@ import { CompanyInfo } from "./CompanyInfo";
 export function AppSidebar({
   data,
   ...props
-}: React.ComponentProps<typeof Sidebar> & { data: AdminSidebarType | UserSidebarType }) {
+}: React.ComponentProps<typeof Sidebar> & {
+  data: AdminSidebarType | UserSidebarType;
+}) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>

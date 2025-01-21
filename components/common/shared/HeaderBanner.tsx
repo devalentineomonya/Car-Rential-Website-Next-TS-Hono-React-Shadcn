@@ -30,7 +30,10 @@ const HeaderBanner = () => {
             {paths.map((path, index) => {
               if (path) {
                 return (
-                  <p className=" flex items-center gap-x-2 capitalize" key={index}>
+                  <p
+                    className=" flex items-center gap-x-2 capitalize"
+                    key={index}
+                  >
                     <span>
                       <ChevronRight />
                     </span>
