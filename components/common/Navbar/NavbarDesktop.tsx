@@ -14,7 +14,7 @@ import MainLayout from "../layouts/MainLayout";
 
 import { navigationLinks } from "./navigationLinks";
 const Navbar = () => {
-  const { user, isSignedIn,} = useUser();
+  const { user, isSignedIn } = useUser();
   return (
     <header className="h-11 px-2 w-full sticky top-0 z-40 shadow-card dark:shadow-none bg-background text-foreground max-md:hidden shadow-sm border-b border-b-border">
       <MainLayout>

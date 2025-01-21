@@ -8,7 +8,6 @@ import { MdOutlineMarkEmailUnread } from "react-icons/md";
 import { Button } from "@/components/ui/button";
 import Nairobi from "@/public/images/nairobi.png";
 
-
 import MainLayout from "../layouts/MainLayout";
 const NavbarCenter = () => {
   return (
@@ -35,7 +34,7 @@ const NavbarCenter = () => {
 
           <div className="flex items-center gap-x-2">
             <Button
-            variant="secondary"
+              variant="secondary"
               asChild
               size="sm"
               className="px-3 ml-3 bg-background rounded-md text-foreground shadow-md"
@@ -47,7 +46,11 @@ const NavbarCenter = () => {
                 </Link>
               </div>
             </Button>
-            <Image src={Nairobi} alt="Nairobi" className="w-24 aspect-video max-md:hidden" />
+            <Image
+              src={Nairobi}
+              alt="Nairobi"
+              className="w-24 aspect-video max-md:hidden"
+            />
             <div className="max-md:hidden">
               <h5 className="font-semibold text-slate-800 text-lg whitespace-nowrap">
                 Location

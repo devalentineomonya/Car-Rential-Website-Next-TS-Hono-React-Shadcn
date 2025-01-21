@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -15,7 +15,6 @@ import { noNavbarOrFooter } from "@/utils/constants";
 
 import FooterForm from "./FooterForm";
 import { footerLinks } from "./footerLinks";
-
 
 const FooterSection = ({
   title,
@@ -47,9 +46,16 @@ const FooterSection = ({
 
 const Footer = () => {
   const pathname = usePathname();
-  const hideNavbarOrFooter = noNavbarOrFooter.some(route => pathname.includes(route));
+  const hideNavbarOrFooter = noNavbarOrFooter.some((route) =>
+    pathname.includes(route),
+  );
   return (
-    <footer className={cn("border-t flex items-center justify-center bg-background", hideNavbarOrFooter && "hidden")}>
+    <footer
+      className={cn(
+        "border-t flex items-center justify-center bg-background",
+        hideNavbarOrFooter && "hidden",
+      )}
+    >
       <div className="container max-w-6xl px-4 py-12">
         <div className="grid grid-cols-12 max-sm:gap-y-6">
           <FooterSection title="Solutions" items={footerLinks.solutions} />

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { CgFacebook , CgInstagram } from "react-icons/cg";
+import { CgFacebook, CgInstagram } from "react-icons/cg";
 import { HiMiniPhoneArrowUpRight } from "react-icons/hi2";
 import { PiXLogoBold, PiYoutubeLogoFill } from "react-icons/pi";
 

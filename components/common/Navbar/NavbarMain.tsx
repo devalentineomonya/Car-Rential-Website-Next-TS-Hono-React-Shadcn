@@ -12,7 +12,7 @@ import NavbarMobile from "./NavbarMobile";
 const NavbarMain = () => {
   const pathname = usePathname();
   const hideNavbarOrFooter = noNavbarOrFooter.some((route) =>
-    pathname.includes(route)
+    pathname.includes(route),
   );
 
   return (
