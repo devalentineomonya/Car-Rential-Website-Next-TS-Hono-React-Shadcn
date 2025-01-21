@@ -17,7 +17,7 @@ export const useUpdateUser = () => {
           lastName: data.lastName ?? null,
           location: data.location ?? null,
           address: data.address ?? null,
-          phone: data.phone ?? null
+          phone: data.phone ?? null,
         },
       });
       if (!response.ok) {

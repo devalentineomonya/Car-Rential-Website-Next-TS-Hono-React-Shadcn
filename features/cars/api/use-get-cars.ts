@@ -7,7 +7,7 @@ export const useGetCars = () => {
     queryKey: ["cars"],
     queryFn: async () => {
       const response = await client.api.cars.$get();
-      if (!response.ok) {   
+      if (!response.ok) {
         throw new Error("Failed to fetch cars");
       }
       const { data } = await response.json();

@@ -5,7 +5,6 @@ import { client } from "@/lib/hono";
 export const useUploadImage = () => {
   const uploadImage = useMutation({
     mutationFn: async (images: File[]) => {
-      console.log("images", images);
       const response = await client.api.cars.images.$post({
         form: {
           images,

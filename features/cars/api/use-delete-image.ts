@@ -1,19 +1,16 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { client } from "@/lib/hono";
 
 export const useDeleteImage = () => {
+  const queryClient = useQueryClient();
+  let carIdString: string;
   const deleteImage = useMutation({
-    mutationFn: async ({
-      publicId,
-      carId,
-    }: {
-      publicId: string;
-      carId: string;
-    }) => {
-      const response = await client.api.cars.images[":publicId"].$delete({
+    mutationFn: async ({ url, carId }: { url: string; carId: string }) => {
+      carIdString = carId;
+      const response = await client.api.cars.images[":url"].$delete({
         param: {
-          publicId,
+          url,
         },
         json: { carId },
       });
@@ -22,6 +19,13 @@ export const useDeleteImage = () => {
       }
       return response.json();
     },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [`car-${carIdString}`] });
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: [`car-${carIdString}`] });
+    },
   });
+
   return deleteImage;
 };

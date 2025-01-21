@@ -5,7 +5,7 @@ import { client } from "@/lib/hono";
 export const useGetCar = (id?: string) => {
   return useQuery({
     enabled: !!id,
-    queryKey: ["car", { id }],
+    queryKey: [`car-${id}`],
     queryFn: async () => {
       const response = await client.api.cars[":id"].$get({
         param: {

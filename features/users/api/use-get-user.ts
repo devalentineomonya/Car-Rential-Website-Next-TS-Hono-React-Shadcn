@@ -12,12 +12,12 @@ export const useGetUser = (clerkId?: string) => {
       });
       const userData = await response.json();
       if (!response.ok || !userData.success) {
-        if ('message' in userData) {
+        if ("message" in userData) {
           throw new Error(userData.message || "Failed to fetch user");
         }
       }
-      console.log("Response", userData);
-      if ('data' in userData) {
+
+      if ("data" in userData) {
         return userData.data;
       }
       throw new Error("Failed to fetch user data");
