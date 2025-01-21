@@ -82,7 +82,7 @@ export default function SignUpPage() {
                               <Label>Email address</Label>
                             </Clerk.Label>
                             <Clerk.Input type="email" required asChild>
-                                <Input className={INPUT_CLASSNAME} />
+                              <Input className={INPUT_CLASSNAME} />
                             </Clerk.Input>
                             <Clerk.FieldError className="block text-sm text-destructive" />
                           </Clerk.Field>
@@ -157,8 +157,9 @@ export default function SignUpPage() {
                                             "data-[status=cursor]:ring-1 data-[status=cursor]:ring-ring",
                                             {
                                               "z-10 ring-2 ring-ring ring-offset-background":
-                                                status === "cursor" || status === "selected",
-                                            }
+                                                status === "cursor" ||
+                                                status === "selected",
+                                            },
                                           )}
                                         >
                                           {value}
