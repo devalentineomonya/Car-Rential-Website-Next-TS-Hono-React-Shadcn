@@ -18,10 +18,8 @@ export const users = pgTable("users", {
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
 
-
 export const userRelations = relations(users, ({ many }) => ({
   cars: many(cars),
 }));
-
 
 export const insertUserSchema = createInsertSchema(users);

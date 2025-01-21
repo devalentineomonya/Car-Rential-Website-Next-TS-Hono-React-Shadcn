@@ -1,2 +1,2 @@
-export * from "./models/users"
-export * from "./models/cars"
+export * from "./models/users";
+export * from "./models/cars";

@@ -10,8 +10,7 @@ import {
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 
-import {users} from "./users"
-
+import { users } from "./users";
 
 // Cars Table
 export const cars = pgTable("cars", {
@@ -66,11 +65,11 @@ export const dynamicSchema = z
     id: z.string().optional(),
     pricePerDay: z.preprocess(
       (val) => (val === "" || isNaN(Number(val)) ? undefined : Number(val)),
-      z.number().min(0).optional()
+      z.number().min(0).optional(),
     ),
     pricePerKm: z.preprocess(
       (val) => (val === "" || isNaN(Number(val)) ? undefined : Number(val)),
-      z.number().min(0).optional()
+      z.number().min(0).optional(),
     ),
     images: z.array(z.string()),
     carPurpose: z.string().optional(),
@@ -79,7 +78,7 @@ export const dynamicSchema = z
     isForDelivery: z.boolean().optional(),
     dateManufactured: z.preprocess(
       (val) => (typeof val === "string" ? new Date(val) : val),
-      z.date()
+      z.date(),
     ),
     mileage: z.number().min(0, "Mileage must be 0 or greater").optional(),
     engineSize: z
@@ -112,5 +111,5 @@ export const dynamicSchema = z
       message:
         "Price per km is required when car is available for hire or delivery",
       path: ["pricePerKm"],
-    }
+    },
   );
