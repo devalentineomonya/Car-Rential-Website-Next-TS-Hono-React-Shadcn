@@ -4,7 +4,7 @@ import React from "react";
 
 import { Alert, AlertDescription } from "@/components/ui/alert";
 const LoginBanner = () => {
-  const {  isSignedIn } = useUser();
+  const { isSignedIn } = useUser();
   return (
     <Alert className="bg-muted p-2 mt-6">
       <AlertDescription className="flex justify-between items-center">

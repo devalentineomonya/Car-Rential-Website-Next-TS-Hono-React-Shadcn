@@ -18,10 +18,9 @@ const Driver = () => {
             Deval Driver&apos;s Driver
           </h2>
           <p className="text-muted-foreground">
-            At Deval Driver, our Driver is to create a seamless and enjoyable car
-            rental experience for our customers.
+            At Deval Driver, our Driver is to create a seamless and enjoyable
+            car rental experience for our customers.
           </p>
-       
         </div>
       </div>
     </MainLayout>

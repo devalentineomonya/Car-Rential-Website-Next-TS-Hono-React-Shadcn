@@ -29,7 +29,7 @@ import {
 } from "@/components/ui/sheet";
 import { Textarea } from "@/components/ui/textarea";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import { dynamicSchema } from "@/db/schema";
+import { insertCarSchema } from "@/db/schema";
 import { useGetCar } from "@/features/cars/api/use-get-car";
 import { useUpdateCar } from "@/features/cars/api/use-update-car";
 import { useEditCar } from "@/hooks/use-edit-car";
@@ -41,16 +41,23 @@ import FileUpload from "./FileUpload";
 import FormInputField from "./FormInput";
 import FormSelect from "./FormSelect";
 
+const carUpdateSchema = insertCarSchema.omit({ images: true }).merge(
+  z.object({
+    images: z.array(z.string()),
+    carPurpose: z.string(),
+  }),
+);
+
 const EditCarSheet: React.FC = () => {
   const { isOpen, onClose, id } = useEditCar();
   const { data, isLoading, isError } = useGetCar(id);
 
   const updateCar = useUpdateCar();
   const [files, setFiles] = useState<string[]>([]);
- type FormData = z.infer<typeof dynamicSchema>
+  type FormData = z.infer<typeof carUpdateSchema>;
 
   const formMethods = useForm<FormData>({
-    resolver: zodResolver(dynamicSchema),
+    resolver: zodResolver(carUpdateSchema),
     defaultValues: {} as FormData,
   });
 
@@ -63,7 +70,11 @@ const EditCarSheet: React.FC = () => {
     } else if (data) {
       reset({
         ...data,
-        dateManufactured: data.dateManufactured ? new Date(data.dateManufactured) : undefined,
+        createdAt: data.createdAt ? new Date(data.createdAt) : undefined,
+        updatedAt: data.updatedAt ? new Date(data.updatedAt) : undefined,
+        dateManufactured: data.dateManufactured
+          ? new Date(data.dateManufactured)
+          : undefined,
         pricePerDay: data.pricePerDay ?? undefined,
         pricePerKm: data.pricePerKm ?? undefined,
       });
@@ -71,12 +82,16 @@ const EditCarSheet: React.FC = () => {
   }, [data, isError, reset]);
 
   useEffect(() => {
-    const purposeMap: Record<string, { isForRent: boolean; isForHire: boolean; isForDelivery: boolean }> = {
+    const purposeMap: Record<
+      string,
+      { isForRent: boolean; isForHire: boolean; isForDelivery: boolean }
+    > = {
       rent: { isForRent: true, isForHire: false, isForDelivery: false },
       ride: { isForRent: false, isForHire: true, isForDelivery: false },
       deliver: { isForRent: false, isForHire: false, isForDelivery: true },
     };
-    const purpose = purposeMap[carPurpose as keyof typeof purposeMap] ?? purposeMap.rent;
+    const purpose =
+      purposeMap[carPurpose as keyof typeof purposeMap] ?? purposeMap.rent;
     setValue("isForRent", purpose.isForRent);
     setValue("isForHire", purpose.isForHire);
     setValue("isForDelivery", purpose.isForDelivery);
@@ -93,23 +108,27 @@ const EditCarSheet: React.FC = () => {
   ];
 
   const onSubmit = async (data: FormData) => {
+    if (!id) {
+      return toast.error("Car id was not found");
+    }
+    const dataWithId = { ...data, id };
     try {
-      await updateCar.mutateAsync(data);
-      toast.success("Car added successfully!");
+      const response = await updateCar.mutateAsync(dataWithId);
+      if (response) {
+        toast.success("Car added successfully!");
+      }
       onClose();
     } catch (error) {
       const errorMessage =
         error instanceof ZodError
           ? "Invalid form data."
           : error instanceof Error
-          ? error.message
-          : "Failed to add car.";
+            ? error.message
+            : "Failed to add car.";
       toast.error(errorMessage);
     }
   };
 
-//   console.log("defaultValues", defaultValues)
-  console.log("FormValues", formMethods.getValues())
   return (
     <Sheet open={isOpen} onOpenChange={onClose}>
       <SheetContent className="w-full sm:max-w-4xl">
@@ -245,9 +264,9 @@ const EditCarSheet: React.FC = () => {
                   />
                   <FormInputField
                     name="engineSize"
-                    label="Engine Size"
-                    max={6}
-                    min={3}
+                    label="Engine Size (cc)"
+                    max={8000}
+                    min={500}
                     placeholder="2.0L"
                     type="number"
                   />
@@ -333,7 +352,10 @@ const EditCarSheet: React.FC = () => {
                     <label className="block text-sm font-medium text-muted-foreground">
                       Upload Images
                     </label>
-                    <FileUpload existingFiles={data?.images} onFilesChange={setFiles} />
+                    <FileUpload
+                      existingFiles={data?.images}
+                      onFilesChange={setFiles}
+                    />
                   </div>
                 </div>
 

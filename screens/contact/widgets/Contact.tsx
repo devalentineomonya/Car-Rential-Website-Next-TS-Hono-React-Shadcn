@@ -8,7 +8,7 @@ import ContactSummary from "../components/ContactSummary";
 const ContactWidget = () => {
   return (
     <MainLayout>
-         <div className="flex-1 pr-2 mt-24 max-lg:px-2 ">
+      <div className="flex-1 pr-2 mt-24 max-lg:px-2 ">
         <h2 className="text-3xl font-semibold text-foreground mb-8 ">
           Connect with Us
         </h2>
@@ -18,7 +18,7 @@ const ContactWidget = () => {
         <ContactForm />
         <ContactSummary />
       </div>
-      <LocationMap/>
+      <LocationMap />
     </MainLayout>
   );
 };

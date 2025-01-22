@@ -6,7 +6,7 @@ const FaqSingle = ({ params }: { params: { faq: string } }) => {
   const faqItem = faqData.find(
     (item) =>
       item.name.toLowerCase().replaceAll(" ", "_") ===
-      params.faq.toString().toLowerCase()
+      params.faq.toString().toLowerCase(),
   );
   if (!faqItem) {
     redirect("/faq");

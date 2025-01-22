@@ -1,13 +1,13 @@
-import React from 'react'
+import React from "react";
 
-import CarsTable from '../components/CarsTable'
+import CarsTable from "../components/CarsTable";
 
 const CarManagement = () => {
   return (
     <div>
-        <CarsTable/>
+      <CarsTable />
     </div>
-  )
-}
+  );
+};
 
-export default CarManagement
+export default CarManagement;

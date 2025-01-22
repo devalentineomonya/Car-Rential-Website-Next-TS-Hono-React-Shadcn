@@ -5,42 +5,47 @@ import { IoCarSportOutline } from "react-icons/io5";
 import { PiFanLight } from "react-icons/pi";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardTitle, CardHeader, CardContent, CardFooter } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator"
-
+import {
+  Card,
+  CardTitle,
+  CardHeader,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 
 const Summary = () => {
   const carFeatures = [
     {
       icon: IoCarSportOutline,
       label: "Hatchback",
-      value: "123"
+      value: "123",
     },
     {
       icon: GiGearStickPattern,
       label: "Transmission",
-      value: "123"
+      value: "123",
     },
     {
       icon: BsFuelPump,
       label: "Fuel Type",
-      value: "123"
+      value: "123",
     },
     {
       icon: GiGearStick,
       label: "Gears",
-      value: "123"
+      value: "123",
     },
     {
       icon: GiCarDoor,
       label: "Doors",
-      value: "123"
+      value: "123",
     },
     {
       icon: PiFanLight,
       label: "Air Condition",
-      value: "123"
-    }
+      value: "123",
+    },
   ];
 
   return (
@@ -60,8 +65,8 @@ const Summary = () => {
         <div className="flex flex-col gap-3">
           <ul className="flex flex-col gap-3">
             {carFeatures.map((feature, index) => (
-              <li 
-                key={index} 
+              <li
+                key={index}
                 className="flex-shrink-0 flex items-center justify-between gap-x-1 space-y-4 text-base font-medium text-muted-foreground"
               >
                 <label className="flex items-center gap-x-2">
@@ -79,7 +84,7 @@ const Summary = () => {
         <Button>Book Now</Button>
         <Button variant="outline">Car Demo</Button>
         <Button variant="outline" size="icon">
-          <BsWhatsapp/>
+          <BsWhatsapp />
         </Button>
       </CardFooter>
     </Card>

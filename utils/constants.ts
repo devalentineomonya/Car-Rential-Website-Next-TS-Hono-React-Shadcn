@@ -33,7 +33,7 @@ export const locations = [
 const PASSWORD_MIN_LENGTH = 8;
 const PASSWORD_MAX_LENGTH = 100;
 
- const errorMessages = {
+const errorMessages = {
   required: "This field is required",
   minLength: (field: string) =>
     `${field} must be at least ${PASSWORD_MIN_LENGTH} characters`,
@@ -44,16 +44,16 @@ const PASSWORD_MAX_LENGTH = 100;
     "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character",
 } as const;
 
- const passwordValidation = z
+const passwordValidation = z
   .string({ required_error: errorMessages.required })
   .min(PASSWORD_MIN_LENGTH, { message: errorMessages.minLength("Password") })
   .max(PASSWORD_MAX_LENGTH, { message: errorMessages.maxLength("Password") })
   .regex(
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]+$/,
-    { message: errorMessages.passwordComplexity }
+    { message: errorMessages.passwordComplexity },
   );
 
-  export const schemaWithCurrentPassword = z
+export const schemaWithCurrentPassword = z
   .object({
     currentPassword: passwordValidation,
     newPassword: passwordValidation,

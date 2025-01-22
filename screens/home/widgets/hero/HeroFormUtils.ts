@@ -7,4 +7,4 @@ export const heroFormSchema = z.object({
   pickUpDateTime: z.date().nullable().optional(),
   rentFromDateTime: z.date().nullable().optional(),
   rentToDateTime: z.date().nullable().optional(),
-})
+});

@@ -2,7 +2,7 @@ import React from "react";
 
 import CarCard from "@/components/common/carcard/CarCard";
 import MainLayout from "@/components/common/layouts/MainLayout";
-import car2 from "@/public/images/car2.png"
+import car2 from "@/public/images/car2.png";
 
 import CarFilter from "../components/CarFilter";
 import CarPagination from "../components/CarPagination";
@@ -46,7 +46,7 @@ const CarList = () => {
           <CarCard car={carData} />
         </div>
       </div>
-      <CarPagination/>
+      <CarPagination />
     </MainLayout>
   );
 };

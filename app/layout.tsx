@@ -42,12 +42,12 @@ export default function RootLayout({
                 enableSystem
                 disableTransitionOnChange
               > */}
-                <SheetProvider />
-                <ModalProvider />
-                <NavbarMain />
-                {children}
-                <Footer />
-                <Toaster />
+              <SheetProvider />
+              <ModalProvider />
+              <NavbarMain />
+              {children}
+              <Footer />
+              <Toaster />
               {/* </ThemeProvider> */}
             </QueryProvider>
           </ProgressProvider>

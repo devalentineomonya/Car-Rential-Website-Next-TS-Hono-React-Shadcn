@@ -55,17 +55,20 @@ const About = () => {
                   className="border-none"
                 >
                   <AccordionTrigger>{service.title}</AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground">{service.content}</AccordionContent>
+                  <AccordionContent className="text-muted-foreground">
+                    {service.content}
+                  </AccordionContent>
                 </AccordionItem>
               </Accordion>
             ))}
           </div>
         </div>
         <div className="flex-1 pl-2 max-lg:mt-6">
-        <h2 className="max-lg:block hidden text-3xl font-semibold text-foreground my-8 ">
+          <h2 className="max-lg:block hidden text-3xl font-semibold text-foreground my-8 ">
             Welcome to our motor services
           </h2>
-            <Image src={about} alt="About section Image" /></div>
+          <Image src={about} alt="About section Image" />
+        </div>
       </div>
     </MainLayout>
   );

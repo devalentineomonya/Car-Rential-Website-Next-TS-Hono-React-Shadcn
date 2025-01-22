@@ -13,7 +13,7 @@ const FakeCardBackground: React.FC<{ featured?: boolean }> = ({ featured }) => (
     <div
       className={cn(
         featured ? "shadow-md" : "shadow",
-        "absolute right-0 w-1/2 h-full bg-white rounded-lg"
+        "absolute right-0 w-1/2 h-full bg-white rounded-lg",
       )}
     />
   </div>
@@ -26,10 +26,8 @@ const FakeCardBorder: React.FC<{ featured?: boolean }> = ({ featured }) => (
   >
     <div
       className={cn(
-        featured
-          ? "ring-2 ring-gray-600"
-          : "ring-1 ring-black ring-opacity-5",
-        "absolute right-0 w-1/2 h-full rounded-lg"
+        featured ? "ring-2 ring-gray-600" : "ring-1 ring-black ring-opacity-5",
+        "absolute right-0 w-1/2 h-full rounded-lg",
       )}
     />
   </div>
@@ -38,15 +36,9 @@ const FakeCardBorder: React.FC<{ featured?: boolean }> = ({ featured }) => (
 const CheckmarkCell: React.FC<{ value: boolean }> = ({ value }) => (
   <>
     {value ? (
-      <CheckIcon
-        className="mx-auto h-5 w-5 text-gray-600"
-        aria-hidden="true"
-      />
+      <CheckIcon className="mx-auto h-5 w-5 text-gray-600" aria-hidden="true" />
     ) : (
-      <XIcon
-        className="mx-auto h-5 w-5 text-gray-400"
-        aria-hidden="true"
-      />
+      <XIcon className="mx-auto h-5 w-5 text-gray-400" aria-hidden="true" />
     )}
     <span className="sr-only">{value ? "Yes" : "No"}</span>
   </>
@@ -68,7 +60,7 @@ const PricingSection: React.FC<{
           featured
             ? "ring-2 ring-gray-600 shadow-md"
             : "ring-1 ring-black ring-opacity-5 shadow",
-          "relative py-3 px-4 bg-white rounded-lg sm:p-0 sm:bg-transparent sm:rounded-none sm:ring-0 sm:shadow-none"
+          "relative py-3 px-4 bg-white rounded-lg sm:p-0 sm:bg-transparent sm:rounded-none sm:ring-0 sm:shadow-none",
         )}
       >
         <dl className="divide-y divide-gray-200">
@@ -81,13 +73,14 @@ const PricingSection: React.FC<{
                 {item.title}
               </dt>
               <dd className="flex items-center justify-end sm:px-4 sm:justify-center">
-                {isFeature && typeof item.tiers[planIndex].value === "string" ? (
+                {isFeature &&
+                typeof item.tiers[planIndex].value === "string" ? (
                   <span
                     className={cn(
                       item.tiers[planIndex].featured
                         ? "text-gray-600"
                         : "text-gray-900",
-                      "text-sm font-medium"
+                      "text-sm font-medium",
                     )}
                   >
                     {item.tiers[planIndex].value}
@@ -120,13 +113,13 @@ const MobilePricing: React.FC<{
           <div
             className={cn(
               plan.featured ? "border-gray-600" : "border-transparent",
-              "-mt-px pt-6 border-t-2 sm:w-1/2"
+              "-mt-px pt-6 border-t-2 sm:w-1/2",
             )}
           >
             <h3
               className={cn(
                 plan.featured ? "text-gray-600" : "text-gray-900",
-                "text-sm font-bold"
+                "text-sm font-bold",
               )}
             >
               {plan.title}

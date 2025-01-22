@@ -28,7 +28,9 @@ const HeroFormRideSelect = ({
         key={ride.value}
         htmlFor={ride.value}
         className={`flex items-center justify-center flex-col cursor-pointer ${
-          selectedRide === ride.value ? "text-black dark:text-white " : "text-gray-600 dark:text-gray-300"
+          selectedRide === ride.value
+            ? "text-black dark:text-white "
+            : "text-gray-600 dark:text-gray-300"
         }`}
       >
         <RadioGroupItem id={ride.value} value={ride.value} hidden aria-hidden />
@@ -41,7 +43,9 @@ const HeroFormRideSelect = ({
         >
           {ride.icon}
         </span>
-        <span className="font-normal text-center w-full mt-1">{ride.label}</span>
+        <span className="font-normal text-center w-full mt-1">
+          {ride.label}
+        </span>
       </FormLabel>
     ))}
   </RadioGroup>

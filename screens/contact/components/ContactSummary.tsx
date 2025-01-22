@@ -15,12 +15,20 @@ const ContactSummary = () => (
     <p>Say something to start a live chat!</p>
     <ul className="my-12 space-y-5">
       {[
-        { icon: <LuPhoneCall size={48} />, text: "(+254) 768 133 220", href: "#" },
-        { icon: <LuMail size={48} />, text: "devalentineke@gmail.com", href: "#" },
-        { 
-          icon: <CiLocationOn size={48} />, 
-          text: "1234 Elm Street, Suite 567", 
-          extra: <p>Nairobi, Kenya</p>, 
+        {
+          icon: <LuPhoneCall size={48} />,
+          text: "(+254) 768 133 220",
+          href: "#",
+        },
+        {
+          icon: <LuMail size={48} />,
+          text: "devalentineke@gmail.com",
+          href: "#",
+        },
+        {
+          icon: <CiLocationOn size={48} />,
+          text: "1234 Elm Street, Suite 567",
+          extra: <p>Nairobi, Kenya</p>,
           href: "#",
         },
       ].map(({ icon, text, extra, href }, i) => (

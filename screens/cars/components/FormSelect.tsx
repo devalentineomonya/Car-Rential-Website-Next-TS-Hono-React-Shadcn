@@ -1,8 +1,20 @@
 import React from "react";
 import { useFormContext } from "react-hook-form";
 
-import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  FormField,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormMessage,
+} from "@/components/ui/form";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { INPUT_CLASSNAME } from "@/utils/constants";
 
 interface FormSelectProps {
@@ -12,7 +24,12 @@ interface FormSelectProps {
   options: { value: string; label: string }[];
 }
 
-const FormSelect: React.FC<FormSelectProps> = ({ name, label, placeholder, options }) => {
+const FormSelect: React.FC<FormSelectProps> = ({
+  name,
+  label,
+  placeholder,
+  options,
+}) => {
   const { control } = useFormContext();
   return (
     <FormField

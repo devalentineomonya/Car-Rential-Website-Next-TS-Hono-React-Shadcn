@@ -44,11 +44,15 @@ const DatePicker: React.FC<DatePickerProps> = ({ label, name }) => {
                   className={cn(
                     INPUT_CLASSNAME,
                     "justify-start mt-2",
-                    !field.value && "text-muted-foreground"
+                    !field.value && "text-muted-foreground",
                   )}
                 >
                   <CalendarIcon className="mr-2 h-4 w-4" />
-                  {field.value ? format(field.value, "PPP") : <span>Pick a date</span>}
+                  {field.value ? (
+                    format(field.value, "PPP")
+                  ) : (
+                    <span>Pick a date</span>
+                  )}
                 </Button>
               </PopoverTrigger>
               <PopoverContent className="w-auto p-0">

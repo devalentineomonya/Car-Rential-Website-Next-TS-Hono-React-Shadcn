@@ -12,18 +12,15 @@ const FakeCardBackgrounds: React.FC<{ plans: PlanTypes[] }> = ({ plans }) => (
   >
     <div className="w-1/4 pr-4" />
     {plans.map((plan, index) => (
-      <div 
-        key={plan.title} 
-        className={cn(
-          index === plans.length - 1 ? "pl-4" : "px-4", 
-          "w-1/4"
-        )}
+      <div
+        key={plan.title}
+        className={cn(index === plans.length - 1 ? "pl-4" : "px-4", "w-1/4")}
       >
-        <div 
+        <div
           className={cn(
-            "w-full h-full bg-white rounded-lg", 
-            plan.featured ? "shadow-md" : "shadow"
-          )} 
+            "w-full h-full bg-white rounded-lg",
+            plan.featured ? "shadow-md" : "shadow",
+          )}
         />
       </div>
     ))}
@@ -37,36 +34,33 @@ const FakeCardBorders: React.FC<{ plans: PlanTypes[] }> = ({ plans }) => (
   >
     <div className="w-1/4 pr-4" />
     {plans.map((plan, index) => (
-      <div 
-        key={plan.title} 
-        className={cn(
-          index === plans.length - 1 ? "pl-4" : "px-4", 
-          "w-1/4"
-        )}
+      <div
+        key={plan.title}
+        className={cn(index === plans.length - 1 ? "pl-4" : "px-4", "w-1/4")}
       >
-        <div 
+        <div
           className={cn(
             "w-full h-full rounded-lg",
-            plan.featured 
-              ? "ring-2 ring-gray-600 ring-opacity-100" 
-              : "ring-1 ring-black ring-opacity-5"
-          )} 
+            plan.featured
+              ? "ring-2 ring-gray-600 ring-opacity-100"
+              : "ring-1 ring-black ring-opacity-5",
+          )}
         />
       </div>
     ))}
   </div>
 );
 
-const RenderCell: React.FC<{ 
-  value: string | boolean, 
-  featured?: boolean 
+const RenderCell: React.FC<{
+  value: string | boolean;
+  featured?: boolean;
 }> = ({ value, featured }) => {
   if (typeof value === "string") {
     return (
       <span
         className={cn(
           featured ? "text-gray-600" : "text-gray-900",
-          "text-sm font-medium"
+          "text-sm font-medium",
         )}
       >
         {value}
@@ -82,14 +76,9 @@ const RenderCell: React.FC<{
           aria-hidden="true"
         />
       ) : (
-        <XIcon
-          className="mx-auto h-5 w-5 text-gray-400"
-          aria-hidden="true"
-        />
+        <XIcon className="mx-auto h-5 w-5 text-gray-400" aria-hidden="true" />
       )}
-      <span className="sr-only">
-        {value === true ? "Yes" : "No"}
-      </span>
+      <span className="sr-only">{value === true ? "Yes" : "No"}</span>
     </>
   );
 };
@@ -109,9 +98,7 @@ const ComparisonTable: React.FC<{
       <thead>
         <tr className="text-left">
           <th scope="col">
-            <span className="sr-only">
-              {isFeature ? "Feature" : "Perk"}
-            </span>
+            <span className="sr-only">{isFeature ? "Feature" : "Perk"}</span>
           </th>
           {plans.map((plan) => (
             <th key={plan.title} scope="col">
@@ -134,13 +121,13 @@ const ComparisonTable: React.FC<{
                 key={tier.title}
                 className={cn(
                   index === item.tiers.length - 1 ? "pl-4" : "px-4",
-                  "relative w-1/4 py-0 text-center"
+                  "relative w-1/4 py-0 text-center",
                 )}
               >
                 <span className="relative w-full h-full py-3">
-                  <RenderCell 
-                    value={tier.value} 
-                    featured={tier.featured && isFeature} 
+                  <RenderCell
+                    value={tier.value}
+                    featured={tier.featured && isFeature}
                   />
                 </span>
               </td>
@@ -160,8 +147,8 @@ const DesktopPricing: React.FC<{
   perks: PerkTypes[];
 }> = ({ plans, features, perks }) => {
   return (
-    <section 
-      aria-labelledby="comparison-heading" 
+    <section
+      aria-labelledby="comparison-heading"
       className="hidden lg:block pb-24"
     >
       <h2 id="comparison-heading" className="sr-only">
@@ -181,44 +168,33 @@ const DesktopPricing: React.FC<{
               aria-hidden="true"
               className={cn(
                 index === plans.length - 1 ? "" : "pr-4",
-                "-mt-px pl-4 w-1/4"
+                "-mt-px pl-4 w-1/4",
               )}
             >
               <div
                 className={cn(
                   plan.featured ? "border-gray-600" : "border-transparent",
-                  "py-6 border-t-2"
+                  "py-6 border-t-2",
                 )}
               >
                 <p
                   className={cn(
                     plan.featured ? "text-gray-600" : "text-gray-900",
-                    "text-sm font-bold"
+                    "text-sm font-bold",
                   )}
                 >
                   {plan.title}
                 </p>
-                <p className="mt-2 text-sm text-gray-500">
-                  {plan.description}
-                </p>
+                <p className="mt-2 text-sm text-gray-500">{plan.description}</p>
               </div>
             </div>
           ))}
         </div>
 
-        <ComparisonTable 
-          items={features} 
-          plans={plans} 
-          isFeature={true} 
-        />
+        <ComparisonTable items={features} plans={plans} isFeature={true} />
 
-        <h3 className="mt-10 text-sm font-bold text-gray-900">
-          Other perks
-        </h3>
-        <ComparisonTable 
-          items={perks} 
-          plans={plans} 
-        />
+        <h3 className="mt-10 text-sm font-bold text-gray-900">Other perks</h3>
+        <ComparisonTable items={perks} plans={plans} />
       </div>
     </section>
   );

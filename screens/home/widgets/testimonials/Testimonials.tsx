@@ -1,50 +1,57 @@
-'use client'
+"use client";
 
-import Autoplay from "embla-carousel-autoplay"
-import React from "react"
+import Autoplay from "embla-carousel-autoplay";
+import React from "react";
 
-import MainLayout from "@/components/common/layouts/MainLayout"
-import { Button } from "@/components/ui/button"
+import MainLayout from "@/components/common/layouts/MainLayout";
+import { Button } from "@/components/ui/button";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   type CarouselApi,
-} from "@/components/ui/carousel"
+} from "@/components/ui/carousel";
 
-import TestimonialCard from "../../components/TestimonialCard"
+import TestimonialCard from "../../components/TestimonialCard";
 
 const testimonials = [
   { id: 1, content: "Great service! Highly recommended.", author: "John Doe" },
-  { id: 2, content: "Quick and efficient. Will use again.", author: "Jane Smith" },
+  {
+    id: 2,
+    content: "Quick and efficient. Will use again.",
+    author: "Jane Smith",
+  },
   { id: 3, content: "Excellent work on my car.", author: "Mike Johnson" },
   { id: 4, content: "Professional and friendly staff.", author: "Emily Brown" },
-  { id: 5, content: "Fair prices and quality results.", author: "David Wilson" },
+  {
+    id: 5,
+    content: "Fair prices and quality results.",
+    author: "David Wilson",
+  },
   { id: 6, content: "They went above and beyond.", author: "Sarah Taylor" },
   { id: 7, content: "Best auto service in town!", author: "Chris Anderson" },
-]
-
+];
 
 export default function Testimonials() {
-  const [api, setApi] = React.useState<CarouselApi>()
-  const [selectedIndex, setSelectedIndex] = React.useState(0)
+  const [api, setApi] = React.useState<CarouselApi>();
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
 
   React.useEffect(() => {
     if (!api) {
-      return
+      return;
     }
 
     const onSelect = () => {
-      setSelectedIndex(api.selectedScrollSnap())
-    }
+      setSelectedIndex(api.selectedScrollSnap());
+    };
 
-    api.on("select", onSelect)
-    onSelect()
+    api.on("select", onSelect);
+    onSelect();
 
     return () => {
-      api.off("select", onSelect)
-    }
-  }, [api])
+      api.off("select", onSelect);
+    };
+  }, [api]);
 
   return (
     <MainLayout>
@@ -69,7 +76,10 @@ export default function Testimonials() {
         >
           <CarouselContent>
             {testimonials.map((testimonial) => (
-              <CarouselItem key={testimonial.id} className="w-full md:basis-1/2 lg:basis-1/2">
+              <CarouselItem
+                key={testimonial.id}
+                className="w-full md:basis-1/2 lg:basis-1/2"
+              >
                 <TestimonialCard />
               </CarouselItem>
             ))}
@@ -92,5 +102,5 @@ export default function Testimonials() {
         </div>
       </div>
     </MainLayout>
-  )
+  );
 }

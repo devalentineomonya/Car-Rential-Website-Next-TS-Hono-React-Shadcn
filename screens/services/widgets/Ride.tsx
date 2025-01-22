@@ -21,7 +21,6 @@ const Ride = () => {
             At Deval Ride, our Ride is to create a seamless and enjoyable car
             rental experience for our customers.
           </p>
-       
         </div>
       </div>
     </MainLayout>

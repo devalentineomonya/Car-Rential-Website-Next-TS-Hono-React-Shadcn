@@ -1,5 +1,5 @@
 import { useFormContext } from "react-hook-form";
-import {  IoMdNavigate } from "react-icons/io";
+import { IoMdNavigate } from "react-icons/io";
 import { toast } from "sonner";
 
 import {
@@ -25,7 +25,6 @@ const HeroFormInputField = ({
   icon: React.ReactNode;
 }) => {
   const form = useFormContext();
- 
 
   const handleLocationRequest = () => {
     if (navigator.geolocation) {
@@ -36,7 +35,7 @@ const HeroFormInputField = ({
         },
         (error) => {
           console.error("Location error:", error);
-        }
+        },
       );
     } else {
       toast.error("Geolocation is not supported by this browser.");
@@ -59,13 +58,11 @@ const HeroFormInputField = ({
             placeholder={placeholder}
           />
 
-      
-            <IoMdNavigate
-              size={20}
-              className= {cn("cursor-pointer",!indicator && "rotate-180")} 
-              onClick={handleLocationRequest}
-            />
-        
+          <IoMdNavigate
+            size={20}
+            className={cn("cursor-pointer", !indicator && "rotate-180")}
+            onClick={handleLocationRequest}
+          />
 
           {indicator && (
             <span className="h-12 w-0.5 bg-foreground absolute top-9 z-10 ml-1.5"></span>

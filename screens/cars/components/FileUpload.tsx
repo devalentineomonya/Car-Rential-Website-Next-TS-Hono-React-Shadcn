@@ -8,6 +8,7 @@ import { Icons } from "@/components/ui/icons";
 import { Input } from "@/components/ui/input";
 import { useDeleteImage } from "@/features/cars/api/use-delete-image";
 import { useUploadImage } from "@/features/cars/api/use-upload-image";
+import { useEditCar } from "@/hooks/use-edit-car";
 
 interface FilePreview {
   file: File;
@@ -20,9 +21,12 @@ interface FileUploadProps {
   existingFiles?: string[];
 }
 
-const FileUpload: React.FC<FileUploadProps> = ({ existingFiles = [], onFilesChange }) => {
-const deleteImage = useDeleteImage()
-
+const FileUpload: React.FC<FileUploadProps> = ({
+  existingFiles = [],
+  onFilesChange,
+}) => {
+  const deleteImage = useDeleteImage();
+  const { id } = useEditCar();
 
   const [filePreviews, setFilePreviews] = useState<FilePreview[]>([]);
   const uploadImage = useUploadImage();
@@ -48,7 +52,7 @@ const deleteImage = useDeleteImage()
         prev.map((preview, index) => ({
           ...preview,
           uploadedUrl: response.images[index],
-        }))
+        })),
       );
 
       onFilesChange(response.images);
@@ -59,17 +63,19 @@ const deleteImage = useDeleteImage()
     }
   };
 
-  const removeFile = async (index: number, url: string, isExistingFile = false) => {
+  const removeFile = async (
+    index: number,
+    url: string,
+    isExistingFile = false,
+  ) => {
+    const toastId = toast.loading("Deleting image...");
     try {
-      toast.loading("Deleting image...");
-      // Extract public ID from the URL
-      const publicId = url.split("/").slice(-1).join("").replace(/\.[^/.]+$/, "");
-      const {id } = useEditCar();
-      // Call the deleteImage mutation
-      await deleteImage.mutateAsync(publicId);
+      if (!id) {
+        return toast.error("Car id is not set");
+      }
+      const encoded = encodeURIComponent(url);
+      await deleteImage.mutateAsync({ url: encoded, carId: id });
 
-
-      // Update the state
       if (isExistingFile) {
         onFilesChange(existingFiles.filter((_, i) => i !== index));
       } else {
@@ -85,6 +91,8 @@ const deleteImage = useDeleteImage()
     } catch (error) {
       console.error("Error deleting image:", error);
       toast.error("Failed to delete image. Please try again.");
+    } finally {
+      toast.dismiss(toastId);
     }
   };
 
@@ -96,7 +104,7 @@ const deleteImage = useDeleteImage()
             key={`existing-${index}`}
             src={url}
             alt={`Existing Preview ${index + 1}`}
-            onRemove={() => removeFile(index, url,true)}
+            onRemove={() => removeFile(index, url, true)}
           />
         ))}
         {filePreviews.map((preview, index) => (
@@ -104,7 +112,7 @@ const deleteImage = useDeleteImage()
             key={`new-${index}`}
             src={preview.previewUrl}
             alt={`New Preview ${index + 1}`}
-            onRemove={() => removeFile(index,(preview.uploadedUrl || ""))}
+            onRemove={() => removeFile(index, preview.uploadedUrl || "")}
           />
         ))}
       </div>
@@ -148,29 +156,29 @@ const deleteImage = useDeleteImage()
   );
 };
 
-const PreviewItem: React.FC<{ src: string; alt: string; onRemove: () => void }> = ({
-    src,
-    alt,
-    onRemove,
-  }) => (
-    <div className="relative">
-      <Image
-        width={100}
-        height={100}
-        quality={100}
-        src={src}
-        alt={alt}
-        className="w-full h-32 object-cover rounded"
-      />
-      <Button
-        variant="destructive"
-        size="icon"
-        type="button"
-        onClick={onRemove}
-        className="absolute top-1 right-1 h-7 w-7 bg-red-500 text-white rounded-lg"
-      >
-            <RiCloseFill className="w-4 h-4" />
-      </Button>
-    </div>
-  );
+const PreviewItem: React.FC<{
+  src: string;
+  alt: string;
+  onRemove: () => void;
+}> = ({ src, alt, onRemove }) => (
+  <div className="relative">
+    <Image
+      width={100}
+      height={100}
+      quality={100}
+      src={src}
+      alt={alt}
+      className="w-full h-32 object-cover rounded"
+    />
+    <Button
+      variant="destructive"
+      size="icon"
+      type="button"
+      onClick={onRemove}
+      className="absolute top-1 right-1 h-7 w-7 bg-red-500 text-white rounded-lg"
+    >
+      <RiCloseFill className="w-4 h-4" />
+    </Button>
+  </div>
+);
 export default FileUpload;

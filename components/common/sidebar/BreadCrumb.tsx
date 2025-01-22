@@ -40,7 +40,7 @@ const BreadCrumb = () => {
               </BreadcrumbItem>
               {!isLast && (
                 <BreadcrumbSeparator
-                  key={`${path}-separator`}
+                  key={`${path}-separator-${Math.random().toString()}`}
                   className="hidden md:block"
                 />
               )}

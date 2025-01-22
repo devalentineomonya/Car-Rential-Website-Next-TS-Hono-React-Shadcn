@@ -19,8 +19,6 @@ import carSix from "@/public/images/car6.jpg";
 import carSeven from "@/public/images/car7.jpg";
 import carEight from "@/public/images/car8.jpg";
 
-
-
 import HeroForm from "../../components/HeroForm";
 
 const messages: { [key: string]: { message: string } } = {

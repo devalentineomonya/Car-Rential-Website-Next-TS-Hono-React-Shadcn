@@ -16,11 +16,6 @@ import HeroFormDateTimePicker from "./HeroFormDateTimePicker";
 import HeroFormInputField from "./HeroFormInputField";
 import HeroFormRideSelect from "./HeroFormRideSelect";
 
-
-
-
-
-
 const HeroForm = ({ setRide }: { setRide: (ride: string) => void }) => {
   const form = useForm<z.infer<typeof heroFormSchema>>({
     resolver: zodResolver(heroFormSchema),
@@ -44,7 +39,6 @@ const HeroForm = ({ setRide }: { setRide: (ride: string) => void }) => {
     updatedDate.setHours(hours, minutes, 0, 0);
     return updatedDate;
   };
-  console.log(form.formState.errors);
 
   const onSubmit = async (data: z.infer<typeof heroFormSchema>) => {
     try {
@@ -110,8 +104,6 @@ const HeroForm = ({ setRide }: { setRide: (ride: string) => void }) => {
         data.rentFromDateTime = rentFromDateTime ?? undefined;
         data.rentToDateTime = rentToDateTime ?? undefined;
       }
-
-      console.log("Form Data:", data);
     } catch (error) {
       console.error("Form submission error:", error);
     }
@@ -132,7 +124,7 @@ const HeroForm = ({ setRide }: { setRide: (ride: string) => void }) => {
         {selectedRide !== "rent" && (
           <>
             <HeroFormInputField
-            error={form.formState.errors.from?.message}
+              error={form.formState.errors.from?.message}
               name="from"
               placeholder={
                 selectedRide === "ride" ? "Ride From" : "Deliver From"
@@ -141,7 +133,7 @@ const HeroForm = ({ setRide }: { setRide: (ride: string) => void }) => {
               icon={<GoDotFill size={20} />}
             />
             <HeroFormInputField
-            error={form.formState.errors.to?.message}
+              error={form.formState.errors.to?.message}
               name="to"
               placeholder={selectedRide === "ride" ? "Ride To" : "Deliver To"}
               icon={<IoMdSquare size={14} />}
@@ -151,7 +143,7 @@ const HeroForm = ({ setRide }: { setRide: (ride: string) => void }) => {
 
         {selectedRide === "ride" && (
           <HeroFormDateTimePicker
-          error={form.formState.errors.pickUpDateTime?.message}
+            error={form.formState.errors.pickUpDateTime?.message}
             placeholder="Pick-up Date & Time"
             selectedDate={pickUpDate}
             onDateChange={setPickUpDate}
@@ -163,7 +155,7 @@ const HeroForm = ({ setRide }: { setRide: (ride: string) => void }) => {
         {selectedRide === "rent" && (
           <>
             <HeroFormDateTimePicker
-            error={form.formState.errors.rentFromDateTime?.message}
+              error={form.formState.errors.rentFromDateTime?.message}
               placeholder="Rent From"
               selectedDate={rentFromDate}
               onDateChange={setRentFromDate}
@@ -171,7 +163,7 @@ const HeroForm = ({ setRide }: { setRide: (ride: string) => void }) => {
               onTimeChange={setRentFromTime}
             />
             <HeroFormDateTimePicker
-            error={form.formState.errors.rentToDateTime?.message}
+              error={form.formState.errors.rentToDateTime?.message}
               placeholder="Rent To"
               selectedDate={rentToDate}
               onDateChange={setRentToDate}
@@ -181,11 +173,14 @@ const HeroForm = ({ setRide }: { setRide: (ride: string) => void }) => {
           </>
         )}
 
-        <Button size="lg" type="submit" className="group font-medium flex items-center gap-x-2">
+        <Button
+          size="lg"
+          type="submit"
+          className="group font-medium flex items-center gap-x-2"
+        >
           <span>See Pricing</span>
-          <IoNavigate className="group-hover:translate-x-3 group-hover:-translate-y-2 transition-all ease-in-out duration-300"/>
+          <IoNavigate className="group-hover:translate-x-3 group-hover:-translate-y-2 transition-all ease-in-out duration-300" />
         </Button>
-    
       </form>
     </Form>
   );

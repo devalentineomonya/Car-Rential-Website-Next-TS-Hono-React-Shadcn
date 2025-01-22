@@ -58,7 +58,7 @@ const CarFilterSchema = z
     },
     {
       message: "You have to select at least one item from any filter category.",
-    }
+    },
   );
 
 const CarFilter = () => {
@@ -73,15 +73,15 @@ const CarFilter = () => {
         <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
           <code className="text-white">{JSON.stringify(data, null, 2)}</code>
         </pre>
-      </div>
+      </div>,
     );
   }
 
   const renderFilter = (
     fieldName: keyof z.infer<typeof CarFilterSchema>,
-    items: { id: string; label: string }[]
+    items: { id: string; label: string }[],
   ) => (
-    <AccordionItem  value={fieldName}>
+    <AccordionItem value={fieldName}>
       <AccordionTrigger
         className="[&[data-state=open]>.chevronPlus]:rotate-45"
         icon={<FiPlus className="chevronPlus" />}
@@ -104,7 +104,7 @@ const CarFilter = () => {
                         return checked
                           ? field.onChange([...(field.value ?? []), item.id])
                           : field.onChange(
-                              field.value?.filter((value) => value !== item.id)
+                              field.value?.filter((value) => value !== item.id),
                             );
                       }}
                     />

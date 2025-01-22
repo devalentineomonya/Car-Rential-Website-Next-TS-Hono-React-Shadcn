@@ -30,9 +30,9 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { dynamicSchema } from "@/db/schema";
+import { useAddCar } from "@/features/cars/api/use-add-car";
 import { useNewCar } from "@/hooks/use-new-car";
 import { cn } from "@/lib/utils";
-import { useAddCar } from "@/features//cars/api/use-add-car";
 import { INPUT_CLASSNAME } from "@/utils/constants";
 
 import DateManufactured from "./DateManufactured";
@@ -53,7 +53,7 @@ const AddCarSheet: React.FC = () => {
       isForDelivery: false,
       isAvailable: true,
     }),
-    [user]
+    [user],
   );
 
   const formMethods = useForm<z.infer<typeof dynamicSchema>>({
@@ -97,13 +97,12 @@ const AddCarSheet: React.FC = () => {
         error instanceof ZodError
           ? "Invalid form data."
           : error instanceof Error
-          ? error.message
-          : "Failed to add car.";
+            ? error.message
+            : "Failed to add car.";
       toast.error(errorMessage);
     }
   };
-  console.log(formMethods.getValues());
-  console.log(formMethods.formState.errors);
+
   return (
     <Sheet open={isOpen} onOpenChange={onClose}>
       <SheetContent className="w-full sm:max-w-4xl">
@@ -326,7 +325,7 @@ const AddCarSheet: React.FC = () => {
                   Cancel
                 </Button>
                 <Button type="submit" disabled={addCar.isPending}>
-                  {addCar.isPending ?(
+                  {addCar.isPending ? (
                     <div className="flex items-center space-x-2">
                       <Icons.spinner className="animate-spin size-6" />
                       <span>Adding...</span>

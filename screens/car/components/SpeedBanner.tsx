@@ -9,15 +9,23 @@ const SpeedBanner = () => {
         <div className="flex items-center gap-x-3">
           <SlSpeedometer size={32} className="text-foreground" />
           <div>
-            <h3 className="text-xl lg:text-2xl font-semibold text-foreground">Unlimited KMs</h3>
-            <p className="text-base lg:text-lg font-medium text-muted-foreground">Endless Km with no extra charge</p>
+            <h3 className="text-xl lg:text-2xl font-semibold text-foreground">
+              Unlimited KMs
+            </h3>
+            <p className="text-base lg:text-lg font-medium text-muted-foreground">
+              Endless Km with no extra charge
+            </p>
           </div>
         </div>
         <div className="flex items-center gap-x-3">
           <SlLockOpen size={32} className="text-foreground" />
           <div>
-            <h3 className="text-xl lg:text-2xl font-semibold text-foreground">Unlimited KMs</h3>
-            <p className="text-base lg:text-lg font-medium text-muted-foreground">Endless Km with no extra charge</p>
+            <h3 className="text-xl lg:text-2xl font-semibold text-foreground">
+              Unlimited KMs
+            </h3>
+            <p className="text-base lg:text-lg font-medium text-muted-foreground">
+              Endless Km with no extra charge
+            </p>
           </div>
         </div>
       </AlertDescription>

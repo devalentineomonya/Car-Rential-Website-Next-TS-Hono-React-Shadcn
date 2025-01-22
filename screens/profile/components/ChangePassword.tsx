@@ -37,7 +37,9 @@ const ChangePassword = () => {
 
   const form = useForm<FormData>({
     resolver: zodResolver(
-      isPasswordLogin ? schemaWithCurrentPassword : schemaWithoutCurrentPassword
+      isPasswordLogin
+        ? schemaWithCurrentPassword
+        : schemaWithoutCurrentPassword,
     ),
   });
 
@@ -45,12 +47,12 @@ const ChangePassword = () => {
     try {
       if (isPasswordLogin) {
         const response = await updatePassword.mutateAsync(
-          data as z.infer<typeof schemaWithCurrentPassword>
+          data as z.infer<typeof schemaWithCurrentPassword>,
         );
         toast.success(response.message || "Password updated successfully.");
       } else {
         const response = await setPassword.mutateAsync(
-          data as z.infer<typeof schemaWithoutCurrentPassword>
+          data as z.infer<typeof schemaWithoutCurrentPassword>,
         );
         toast.success(response.message || "Password set successfully.");
       }
@@ -149,8 +151,8 @@ const ChangePassword = () => {
                   ? "Updating..."
                   : "Change Password"
                 : setPassword.isPending
-                ? "Setting..."
-                : "Set Password"}
+                  ? "Setting..."
+                  : "Set Password"}
             </Button>
           </form>
         </Form>

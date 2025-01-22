@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link"
+import Link from "next/link";
 import React from "react";
 
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
@@ -17,8 +17,11 @@ const LearnMoreCard = () => {
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus magni
           explicabo molestias recusandae repudiandae, dolor.
         </p>
-        <Link className="text-base font-semibold hover:underline" href="blogs/console">
-        Read more
+        <Link
+          className="text-base font-semibold hover:underline"
+          href="blogs/console"
+        >
+          Read more
         </Link>
       </CardFooter>
     </Card>

@@ -1,29 +1,29 @@
-import { type Table } from "@tanstack/react-table"
+import { type Table } from "@tanstack/react-table";
 import {
   ChevronLeft,
   ChevronRight,
   ChevronsLeft,
   ChevronsRight,
-} from "lucide-react"
+} from "lucide-react";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from "@/components/ui/select";
 
-interface CarTablePaginationProps<TData> {
-  table: Table<TData>
-  pageSizeOptions?: number[]
+interface TablePaginationProps<TData> {
+  table: Table<TData>;
+  pageSizeOptions?: number[];
 }
 
-export function CarTablePagination<TData>({
+export function TablePagination<TData>({
   table,
   pageSizeOptions = [10, 20, 30, 40, 50],
-}: CarTablePaginationProps<TData>) {
+}: TablePaginationProps<TData>) {
   return (
     <div className="flex w-full flex-col-reverse items-center justify-between gap-4 overflow-auto p-1 sm:flex-row sm:gap-8">
       <div className="flex-1 whitespace-nowrap text-sm text-muted-foreground">
@@ -36,7 +36,7 @@ export function CarTablePagination<TData>({
           <Select
             value={`${table.getState().pagination.pageSize}`}
             onValueChange={(value) => {
-              table.setPageSize(Number(value))
+              table.setPageSize(Number(value));
             }}
           >
             <SelectTrigger className="h-8 w-[4.5rem]">
@@ -98,5 +98,5 @@ export function CarTablePagination<TData>({
         </div>
       </div>
     </div>
-  )
+  );
 }

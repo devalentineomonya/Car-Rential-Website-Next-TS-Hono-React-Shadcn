@@ -7,7 +7,7 @@ const Cars = () => {
   return (
     <>
       <HeaderBanner />
-      <CarList/>
+      <CarList />
     </>
   );
 };

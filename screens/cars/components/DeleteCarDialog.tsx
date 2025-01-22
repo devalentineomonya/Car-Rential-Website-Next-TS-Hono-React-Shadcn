@@ -9,10 +9,10 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  } from "@/components/ui/alert-dialog";
+} from "@/components/ui/alert-dialog";
 import { Icons } from "@/components/ui/icons";
+import { useDeleteCarMutation } from "@/features/cars/api/use-delete-car";
 import { useDeleteCar } from "@/hooks/use-delete-car";
-import { useDeleteCarMutation } from "@/features//cars/api/use-delete-car";
 
 const DeleteCarDialog = () => {
   const { isOpen, onClose, id } = useDeleteCar();
@@ -23,7 +23,7 @@ const DeleteCarDialog = () => {
       const response = await deleteCar.mutateAsync(id);
       if (response.id) {
         toast.success(`Car ${response.id} has been deleted successfully`);
-        onClose()
+        onClose();
       }
     } catch (error) {
       console.log(error);

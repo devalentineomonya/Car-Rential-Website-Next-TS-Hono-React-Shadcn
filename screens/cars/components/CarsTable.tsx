@@ -34,13 +34,13 @@ import { useNewCar } from "@/hooks/use-new-car";
 
 import { columns } from "../widgets/TableColumns";
 
-import CarTableLoader from "./CarTableLoader";
-import { CarTablePagination } from "./CarTablePagination";
+import TableLoader from "../../../components/common/loaders/TableLoader";
+import { TablePagination } from "../../../components/pagination/TablePagination";
 const CarsTable = () => {
   const { data, isLoading } = useGetCars();
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    []
+    [],
   );
 
   const { onOpen } = useNewCar();
@@ -61,7 +61,7 @@ const CarsTable = () => {
       columnFilters,
     },
   });
-  if (isLoading) return <CarTableLoader />;
+  if (isLoading) return <TableLoader />;
   return (
     <Card className="mt-6 shadow-none border-none">
       <CardHeader className="flex-row items-center justify-between">
@@ -90,12 +90,15 @@ const CarsTable = () => {
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow className="h-14 bg-gray-50 " key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <TableHead className="text-gray-900 font-semibold" key={header.id}>
+                  <TableHead
+                    className="text-gray-900 font-semibold"
+                    key={header.id}
+                  >
                     {header.isPlaceholder
                       ? null
                       : flexRender(
                           header.column.columnDef.header,
-                          header.getContext()
+                          header.getContext(),
                         )}
                   </TableHead>
                 ))}
@@ -116,7 +119,7 @@ const CarsTable = () => {
                     >
                       {flexRender(
                         cell.column.columnDef.cell,
-                        cell.getContext()
+                        cell.getContext(),
                       )}
                     </TableCell>
                   ))}
@@ -136,7 +139,7 @@ const CarsTable = () => {
         </Table>
       </CardContent>
       <CardFooter className="flex justify-between">
-        <CarTablePagination table={table} />
+        <TablePagination table={table} />
       </CardFooter>
     </Card>
   );

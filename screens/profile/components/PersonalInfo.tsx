@@ -49,7 +49,7 @@ const PersonalInfo = ({ data }: { data: PersonalInfoSchema }) => {
       location: data.location || "",
     },
   });
-  console.log(data);
+
   useEffect(() => {
     const defaultValues = {
       id: data.id || "",
@@ -64,8 +64,6 @@ const PersonalInfo = ({ data }: { data: PersonalInfoSchema }) => {
     form.reset(defaultValues);
   }, [data, form]);
 
-  console.log("Data", data);
-  console.log("Form Data", form.getValues());
   async function onSubmit(data: PersonalInfoSchema) {
     try {
       const response = await updateUser.mutateAsync(data);

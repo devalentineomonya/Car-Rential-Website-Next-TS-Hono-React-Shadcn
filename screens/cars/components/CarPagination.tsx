@@ -10,7 +10,7 @@ import {
 
 const CarPagination = () => {
   return (
-<Pagination className="my-12">
+    <Pagination className="my-12">
       <PaginationContent>
         <PaginationItem>
           <PaginationPrevious href="#" />
