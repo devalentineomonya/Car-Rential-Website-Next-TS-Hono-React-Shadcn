@@ -8,7 +8,7 @@ import {
   getSortedRowModel,
   ColumnFiltersState,
   getFilteredRowModel,
-} from "@tanstack/react-table";
+} from "@tanstack/react-table"; 
 import React from "react";
 
 
