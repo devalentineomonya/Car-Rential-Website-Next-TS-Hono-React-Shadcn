@@ -23,7 +23,7 @@
     }
   },
   "rules": {
-    "camelcase": ["error", { "properties":"alway" }],
+    "camelcase": ["error", { "properties":"" }],
     "no-underscore-dangle": ["error", { "allow": [] }],
     "no-duplicate-imports": ["error"],
     "import/order": [
