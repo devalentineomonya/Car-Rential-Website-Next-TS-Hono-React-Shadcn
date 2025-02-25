@@ -100,7 +100,7 @@ export const columns: ColumnDef<TableTypes>[] = [
     cell: ({ row }) => row.original.address,
   },
   {
-    accessorKey: "phone",
+    accessorKey: "  ",
     header: "Phone",
     cell: ({ row }) => row.original.phone,
   },
@@ -117,7 +117,7 @@ export const columns: ColumnDef<TableTypes>[] = [
     ),
   },
   {
-    id: "actions",
+    id: "actions",              
     cell: UserActions,
   },
 ];
