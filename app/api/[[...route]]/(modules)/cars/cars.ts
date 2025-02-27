@@ -68,7 +68,6 @@ const app = new Hono()
       insertCarSchema
         .omit({
           images: true,
-          id:true
         })
         .merge(
           z.object({

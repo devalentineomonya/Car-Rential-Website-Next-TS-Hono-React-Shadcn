@@ -54,62 +54,12 @@ export const carRelations = relations(cars, ({ one }) => ({
   }),
 }));
 
-// Zod Schema for Cars
-export const insertCarSchema = createInsertSchema(cars);
-export const selectCarSchema = createSelectSchema(cars);
+const carPurposeEnum = z.enum(["ride", "deliver", "rent"]);
+export type CarPurpose = z.infer<typeof carPurposeEnum>;
 
-// Dynamic Validation Schema
-export const dynamicSchema = z
-  .object({
-    ...insertCarSchema.shape,
-    id: z.string().optional(),
-    pricePerDay: z.preprocess(
-      (val) => (val === "" || isNaN(Number(val)) ? undefined : Number(val)),
-      z.number().min(0).optional(),
-    ),
-    pricePerKm: z.preprocess(
-      (val) => (val === "" || isNaN(Number(val)) ? undefined : Number(val)),
-      z.number().min(0).optional(),
-    ),
-    images: z.array(z.string()),
-    carPurpose: z.string().optional(),
-    isForRent: z.boolean().optional(),
-    isForHire: z.boolean().optional(),
-    isForDelivery: z.boolean().optional(),
-    dateManufactured: z.preprocess(
-      (val) => (typeof val === "string" ? new Date(val) : val),
-      z.date(),
-    ),
-    mileage: z.number().min(0, "Mileage must be 0 or greater").optional(),
-    engineSize: z
-      .number()
-      .min(500, "Engine size must be at least 500cc")
-      .max(8000, "Engine size cannot exceed 8000cc")
-      .optional(),
-    doors: z
-      .number()
-      .min(2, "Number of doors must be at least 2")
-      .max(6, "Number of doors cannot exceed 6")
-      .optional(),
-    cylinders: z
-      .number()
-      .min(3, "Cylinders must be at least 3")
-      .max(12, "Cylinders cannot exceed 12")
-      .optional(),
-  })
-  .omit({ createdAt: true, updatedAt: true })
-  .refine((data) => (data.isForRent ? data.pricePerDay !== undefined : true), {
-    message: "Price per day is required when car is available for rent",
-    path: ["pricePerDay"],
-  })
-  .refine(
-    (data) =>
-      data.isForHire || data.isForDelivery
-        ? data.pricePerKm !== undefined
-        : true,
-    {
-      message:
-        "Price per km is required when car is available for hire or delivery",
-      path: ["pricePerKm"],
-    },
-  );
+
+export const insertCarSchema = createInsertSchema(cars).extend({
+  carPurpose: carPurposeEnum
+});
+
+export const selectCarSchema = createSelectSchema(cars);
