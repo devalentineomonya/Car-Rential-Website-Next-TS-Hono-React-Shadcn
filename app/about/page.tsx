@@ -1,8 +1,11 @@
-import React from "react";
 import dynamic from "next/dynamic";
-const LocationMap = dynamic(() => import("@/components/common/shared/LocationMap"), {
-  ssr: false,
-});
+import React from "react";
+const LocationMap = dynamic(
+  () => import("@/components/common/shared/LocationMap"),
+  {
+    ssr: false,
+  },
+);
 
 import HeaderBanner from "@/components/common/shared/HeaderBanner";
 import Mission from "@/screens/about/widgets/Mission";

@@ -9,7 +9,12 @@ export const useAddCar = () => {
     mutationFn: async (data: z.infer<typeof insertCarSchema>) => {
       const { images, ...rest } = data;
       const response = await client.api.cars.$post({
-        json: { ...rest, images: Array.isArray(images) ? images.filter((img): img is string => img !== null) : [] },
+        json: {
+          ...rest,
+          images: Array.isArray(images)
+            ? images.filter((img): img is string => img !== null)
+            : [],
+        },
       });
       if (!response.ok) {
         const errorData = await response.json();

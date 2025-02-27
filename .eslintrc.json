@@ -23,7 +23,8 @@
     }
   },
   "rules": {
-    "camelcase": ["error", { "properties":"" }],
+    "import/no-unresolved": "error",
+    // "camelcase": ["error", { "properties": "always" }],
     "no-underscore-dangle": ["error", { "allow": [] }],
     "no-duplicate-imports": ["error"],
     "import/order": [
@@ -47,9 +48,9 @@
     "import/extensions": [
       "error",
       "never",
-      {
-        "ts": "never",
-        "tsx": "never"
+        {
+            "ts": "never",
+            "tsx": "never"
       }
     ],
     "prettier/prettier": "error"

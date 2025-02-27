@@ -10,7 +10,9 @@ export const useAddCar = () => {
       const response = await client.api.cars.$post({
         json: {
           ...data,
-          images: Array.isArray(data.images) ? data.images.filter((img): img is string => img !== null) : [],
+          images: Array.isArray(data.images)
+            ? data.images.filter((img): img is string => img !== null)
+            : [],
         },
       });
       if (!response.ok) {

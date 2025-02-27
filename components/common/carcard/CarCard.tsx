@@ -21,7 +21,7 @@ interface CarCardProps {
 
 const CarCard: React.FC<CarCardProps> = ({ car }) => {
   return (
-    <Link href={car.link || ""  }>
+    <Link href={car.link || ""}>
       <Card className="rounded-md w-full hover:scale-105 transition-all ease-in-out duration-300 max-h-fit">
         <CardHeader className="p-2 flex-row items-center justify-between">
           <div className="flex items-center gap-x-2 cursor-default">

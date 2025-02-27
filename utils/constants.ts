@@ -45,7 +45,7 @@ const errorMessages = {
 } as const;
 
 const passwordValidation = z
-  .string({ required_error: errorMessages.required })
+  .string({ message: errorMessages.required })
   .min(PASSWORD_MIN_LENGTH, { message: errorMessages.minLength("Password") })
   .max(PASSWORD_MAX_LENGTH, { message: errorMessages.maxLength("Password") })
   .regex(

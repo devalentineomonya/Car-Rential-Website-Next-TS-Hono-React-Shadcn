@@ -11,7 +11,8 @@ import {
 } from "@tanstack/react-table";
 import React from "react";
 
-
+import TableLoader from "@/components/common/loaders/TableLoader";
+import { TablePagination } from "@/components/pagination/TablePagination";
 import {
   Card,
   CardContent,
@@ -28,13 +29,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-
+import { useGetUsers } from "@/features/users/api/use-get-users";
 
 import { columns } from "../widgets/TableColumns";
-
-import TableLoader from "@/components/common/loaders/TableLoader";
-import { TablePagination } from "@/components/pagination/TablePagination";
-import { useGetUsers } from "@/features/users/api/use-get-users";
 
 const UsersTable = () => {
   const { data, isLoading } = useGetUsers();
@@ -79,7 +76,6 @@ const UsersTable = () => {
             />
           </div>
         </div>
-
       </CardHeader>
       <CardContent>
         <Table>

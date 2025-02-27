@@ -9,7 +9,7 @@ import {
   ColumnFiltersState,
   getFilteredRowModel,
 } from "@tanstack/react-table";
-import { Plus } from "lucide-react";
+import { Plus, ArrowUp, ArrowDown } from "lucide-react";
 import React from "react";
 
 import { Button } from "@/components/ui/button";
@@ -31,11 +31,9 @@ import {
 import { useGetCars } from "@/features//cars/api/use-get-cars";
 import { useNewCar } from "@/hooks/use-new-car";
 
-import { columns } from "../widgets/TableColumns";
-
 import TableLoader from "../../../components/common/loaders/TableLoader";
 import { TablePagination } from "../../../components/pagination/TablePagination";
-import { ArrowUp, ArrowDown } from "lucide-react";
+import { columns } from "../widgets/TableColumns";
 
 const CarsTable = () => {
   const { data, isLoading } = useGetCars();

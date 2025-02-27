@@ -3,6 +3,7 @@
 import { ColumnDef, Row } from "@tanstack/react-table";
 import { MoreHorizontal } from "lucide-react";
 import Image from "rc-image";
+import { GoArrowLeft, GoArrowRight } from "react-icons/go";
 import {
   GrRotateLeft,
   GrRotateRight,
@@ -10,13 +11,11 @@ import {
   GrZoomOut,
   GrClose,
 } from "react-icons/gr";
-import { GoArrowLeft, GoArrowRight } from "react-icons/go";
 import { IoIosSwap } from "react-icons/io";
 import { z } from "zod";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -37,7 +36,6 @@ const refinedSchema = selectCarSchema.extend({
 });
 
 export type TableTypes = z.infer<typeof refinedSchema>;
-
 
 const CarActions = ({ row }: { row: Row<TableTypes> }) => {
   const car = row.original;

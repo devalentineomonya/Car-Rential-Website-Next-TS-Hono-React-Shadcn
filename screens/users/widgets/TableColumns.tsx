@@ -1,5 +1,7 @@
 import { ColumnDef, Row } from "@tanstack/react-table";
 import { MoreHorizontal } from "lucide-react";
+import { z } from "zod";
+
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -11,10 +13,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { z } from "zod";
 import { insertUserSchema } from "@/db/schema";
-import { useEditUser } from "@/hooks/use-edit-user";
 import { useDeleteUser } from "@/hooks/use-delete-user";
+import { useEditUser } from "@/hooks/use-edit-user";
 
 type TableTypes = z.infer<typeof insertUserSchema>;
 
@@ -117,7 +118,7 @@ export const columns: ColumnDef<TableTypes>[] = [
     ),
   },
   {
-    id: "actions",              
+    id: "actions",
     cell: UserActions,
   },
 ];

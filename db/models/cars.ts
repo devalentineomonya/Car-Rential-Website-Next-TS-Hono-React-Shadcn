@@ -57,9 +57,8 @@ export const carRelations = relations(cars, ({ one }) => ({
 const carPurposeEnum = z.enum(["ride", "deliver", "rent"]);
 export type CarPurpose = z.infer<typeof carPurposeEnum>;
 
-
 export const insertCarSchema = createInsertSchema(cars).extend({
-  carPurpose: carPurposeEnum
+  carPurpose: carPurposeEnum,
 });
 
 export const selectCarSchema = createSelectSchema(cars);

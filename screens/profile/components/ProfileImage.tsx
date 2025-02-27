@@ -27,11 +27,11 @@ import {
 import { Icons } from "@/components/ui/icons";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import userAvatar from "@/public/images/avatar.png";
 import {
   useUpdateImage,
   useRemoveImage,
 } from "@/features//users/api/use-update-image";
+import userAvatar from "@/public/images/avatar.png";
 
 const MAX_FILE_SIZE = 8000 * 1024;
 const ALLOWED_FILE_TYPES = ["image/jpeg", "image/png", "image/gif"];

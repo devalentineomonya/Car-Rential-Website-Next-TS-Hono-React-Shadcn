@@ -12,7 +12,7 @@
     "studio": "drizzle-kit studio",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
-      "format": "npx prettier --check  --write '**/*.{ts,tsx}'"
+    "format": "npx prettier --check  --write '**/*.{ts,tsx}'"
   },
   "husky": {
     "hooks": {
@@ -68,7 +68,7 @@
     "drizzle-zod": "^0.5.1",
     "embla-carousel-autoplay": "^8.3.1",
     "embla-carousel-fade": "^8.3.1",
-    "embla-carousel-react": "^8.3.1",   
+    "embla-carousel-react": "^8.3.1",
     "hono": "^4.6.11",
     "leaflet": "^1.9.4",
     "leaflet-defaulticon-compatibility": "^0.1.2",
@@ -76,6 +76,7 @@
     "next": "^14.2.20",
     "next-cloudinary": "^6.16.0",
     "next-nprogress-bar": "^2.3.15",
+    "next-themes": "^0.4.4",
     "rc-image": "^7.11.0",
     "react": "^18.3.1",
     "react-day-picker": "^8.10.1",

@@ -74,7 +74,6 @@ const EditCarSheet: React.FC = () => {
     if (isError) {
       toast.error("Failed to fetch car data");
     } else if (data) {
-
       const purposeMap = {
         rent: { isForRent: true, isForHire: false, isForDelivery: false },
         ride: { isForRent: false, isForHire: true, isForDelivery: false },
@@ -103,7 +102,11 @@ const EditCarSheet: React.FC = () => {
     if (!id) {
       return toast.error("Car id was not found");
     }
-    const dataWithId = { ...data, id, carPurpose: data.carPurpose as "ride" | "deliver" | "rent" };
+    const dataWithId = {
+      ...data,
+      id,
+      carPurpose: data.carPurpose as "ride" | "deliver" | "rent",
+    };
     try {
       const response = await updateCar.mutateAsync(dataWithId);
       if (response) {

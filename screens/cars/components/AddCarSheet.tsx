@@ -61,16 +61,25 @@ const AddCarSheet: React.FC = () => {
     defaultValues,
   });
   const { handleSubmit, watch, setValue } = formMethods;
-        const carPurpose = watch("carPurpose" as const);
+  const carPurpose = watch("carPurpose" as const);
 
   useEffect(() => {
     const purposeMap = {
       rent: { isForRent: true, isForHire: false, isForDelivery: false },
       ride: { isForRent: false, isForHire: true, isForDelivery: false },
-      deliver: { isForRent: false, isForHire: false, isForDelivery: true } as const,
+      deliver: {
+        isForRent: false,
+        isForHire: false,
+        isForDelivery: true,
+      } as const,
     } as const;
     const purpose =
-      purposeMap[carPurpose as keyof typeof purposeMap] ?? purposeMap.rent as { isForRent: boolean; isForHire: boolean; isForDelivery: boolean };
+      purposeMap[carPurpose as keyof typeof purposeMap] ??
+      (purposeMap.rent as {
+        isForRent: boolean;
+        isForHire: boolean;
+        isForDelivery: boolean;
+      });
     setValue("isForRent", purpose.isForRent);
     setValue("isForHire", purpose.isForHire);
     setValue("isForDelivery", purpose.isForDelivery);
