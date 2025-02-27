@@ -1,7 +1,11 @@
 import React from "react";
+import dynamic from "next/dynamic";
+
+const LocationMap = dynamic(() => import("@/components/common/shared/LocationMap"), {
+  ssr: false,
+});
 
 import MainLayout from "@/components/common/layouts/MainLayout";
-import LocationMap from "@/components/common/shared/LocationMap";
 
 import ContactForm from "../components/ContactForm";
 import ContactSummary from "../components/ContactSummary";
