@@ -8,7 +8,7 @@ import {
   getSortedRowModel,
   ColumnFiltersState,
   getFilteredRowModel,
-} from "@tanstack/react-table"; 
+} from "@tanstack/react-table";
 import React from "react";
 
 
@@ -46,7 +46,7 @@ const UsersTable = () => {
   const [rowSelection, setRowSelection] = React.useState({});
   const table = useReactTable({
     data: data ?? [],
-    columns,
+    columns: columns as any,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     onSortingChange: setSorting,
