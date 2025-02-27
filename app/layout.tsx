@@ -3,14 +3,13 @@ import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
 
-import NavbarPrimary from "@/components/navbar/NavbarPrimary";
 import FooterMain from "@/components/footer/FooterMain";
+import NavbarPrimary from "@/components/navbar/NavbarPrimary";
 import { Toaster } from "@/components/ui/sonner";
 import { ModalProvider } from "@/providers/modal-provider";
 import ProgressProvider from "@/providers/progress-provider";
 import { QueryProvider } from "@/providers/query-provider";
 import { SheetProvider } from "@/providers/sheet-provider";
-
 
 const grotesk = Space_Grotesk({
   weight: ["400", "700"],
@@ -38,7 +37,7 @@ export default function RootLayout({
             <QueryProvider>
               <SheetProvider />
               <ModalProvider />
-              <NavbarPrimary/>
+              <NavbarPrimary />
               {children}
               <FooterMain />
               <Toaster />
