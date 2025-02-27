@@ -23,7 +23,7 @@ const CarList = () => {
   };
   return (
     <MainLayout>
-      <div className="flex-1 pr-2 mt-24 max-lg:px-2">
+      <div className="flex-1 pr-2 mt-24 mb-12 max-lg:px-2">
         <h2 className="text-3xl font-semibold text-foreground mb-8 ">
           Our Top Cars
         </h2>
@@ -34,6 +34,8 @@ const CarList = () => {
             <CarFilter />
           </div>
         </div>
+        <div>
+
         <div className="flex-1 grid md:grid-cols-2 lg:grid-cols-3 gap-3 max-h-fit">
           <CarCard car={carData} />
           <CarCard car={carData} />
@@ -45,8 +47,9 @@ const CarList = () => {
           <CarCard car={carData} />
           <CarCard car={carData} />
         </div>
-      </div>
       <CarPagination />
+        </div>
+      </div>
     </MainLayout>
   );
 };

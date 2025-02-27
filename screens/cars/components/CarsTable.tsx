@@ -17,7 +17,6 @@ import {
   Card,
   CardContent,
   CardHeader,
-  CardTitle,
   CardFooter,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -36,6 +35,8 @@ import { columns } from "../widgets/TableColumns";
 
 import TableLoader from "../../../components/common/loaders/TableLoader";
 import { TablePagination } from "../../../components/pagination/TablePagination";
+import { ArrowUp, ArrowDown } from "lucide-react";
+
 const CarsTable = () => {
   const { data, isLoading } = useGetCars();
   const [sorting, setSorting] = React.useState<SortingState>([]);
@@ -44,29 +45,25 @@ const CarsTable = () => {
   );
 
   const { onOpen } = useNewCar();
-  const [rowSelection, setRowSelection] = React.useState({});
   const table = useReactTable({
     data: data ?? [],
-    columns,
+    columns: columns as any,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     onSortingChange: setSorting,
-    getSortedRowModel: getSortedRowModel(),
     onColumnFiltersChange: setColumnFilters,
+    getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
-    onRowSelectionChange: setRowSelection,
     state: {
       sorting,
-      rowSelection,
       columnFilters,
     },
   });
   if (isLoading) return <TableLoader />;
   return (
-    <Card className="mt-6 shadow-none border-none">
+    <Card className="mt-6 shadow-none border px-2">
       <CardHeader className="flex-row items-center justify-between">
         <div>
-          <CardTitle>Cars</CardTitle>
           <div className="flex items-center py-4">
             <Input
               placeholder="Filter cars..."
@@ -84,22 +81,29 @@ const CarsTable = () => {
           <Plus className="mr-3" /> Add New
         </Button>
       </CardHeader>
-      <CardContent>
+      <CardContent className="px-0 overflow-x-auto">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow className="h-14 bg-gray-50 " key={headerGroup.id}>
+              <TableRow className="h-12 bg-gray-50 " key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
                   <TableHead
-                    className="text-gray-900 font-semibold"
+                    className="text-gray-900 font-semibold cursor-pointer hover:bg-gray-100"
                     key={header.id}
+                    onClick={header.column.getToggleSortingHandler()}
                   >
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
+                    {header.isPlaceholder ? null : (
+                      <div className="flex items-center gap-2">
+                        {flexRender(
                           header.column.columnDef.header,
                           header.getContext(),
                         )}
+                        {{
+                          asc: <ArrowUp className="h-4 w-4" />,
+                          desc: <ArrowDown className="h-4 w-4" />,
+                        }[header.column.getIsSorted() as string] ?? null}
+                      </div>
+                    )}
                   </TableHead>
                 ))}
               </TableRow>
@@ -109,8 +113,8 @@ const CarsTable = () => {
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
+                  className="hover:bg-transparent data-[state=selected]:bg-transparent"
                   key={row.id}
-                  data-state={row.getIsSelected() && "selected"}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell

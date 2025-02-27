@@ -58,44 +58,36 @@ const EditCarSheet: React.FC = () => {
 
   const formMethods = useForm<FormData>({
     resolver: zodResolver(carUpdateSchema),
-    defaultValues: {} as FormData,
+    defaultValues: {
+      images: [],
+      carPurpose: "",
+      isForRent: false,
+      isForHire: false,
+      isForDelivery: false,
+      // Add other default values as necessary based on your schema
+    },
   });
 
   const { handleSubmit, watch, setValue, reset } = formMethods;
   const carPurpose = watch("carPurpose");
-
   useEffect(() => {
     if (isError) {
       toast.error("Failed to fetch car data");
     } else if (data) {
-      reset({
-        ...data,
-        createdAt: data.createdAt ? new Date(data.createdAt) : undefined,
-        updatedAt: data.updatedAt ? new Date(data.updatedAt) : undefined,
-        dateManufactured: data.dateManufactured
-          ? new Date(data.dateManufactured)
-          : undefined,
-        pricePerDay: data.pricePerDay ?? undefined,
-        pricePerKm: data.pricePerKm ?? undefined,
-      });
-    }
-  }, [data, isError, reset]);
 
-  useEffect(() => {
-    const purposeMap: Record<
-      string,
-      { isForRent: boolean; isForHire: boolean; isForDelivery: boolean }
-    > = {
-      rent: { isForRent: true, isForHire: false, isForDelivery: false },
-      ride: { isForRent: false, isForHire: true, isForDelivery: false },
-      deliver: { isForRent: false, isForHire: false, isForDelivery: true },
-    };
-    const purpose =
-      purposeMap[carPurpose as keyof typeof purposeMap] ?? purposeMap.rent;
-    setValue("isForRent", purpose.isForRent);
-    setValue("isForHire", purpose.isForHire);
-    setValue("isForDelivery", purpose.isForDelivery);
-  }, [carPurpose, setValue]);
+      const purposeMap = {
+        rent: { isForRent: true, isForHire: false, isForDelivery: false },
+        ride: { isForRent: false, isForHire: true, isForDelivery: false },
+        deliver: { isForRent: false, isForHire: false, isForDelivery: true },
+      };
+
+      const purpose =
+        purposeMap[carPurpose as keyof typeof purposeMap] ?? purposeMap.rent;
+      setValue("isForRent", purpose.isForRent);
+      setValue("isForHire", purpose.isForHire);
+      setValue("isForDelivery", purpose.isForDelivery);
+    }
+  }, [carPurpose, data, isError, reset, setValue]);
 
   useEffect(() => {
     setValue("images", files);
@@ -111,11 +103,11 @@ const EditCarSheet: React.FC = () => {
     if (!id) {
       return toast.error("Car id was not found");
     }
-    const dataWithId = { ...data, id };
+    const dataWithId = { ...data, id, carPurpose: data.carPurpose as "ride" | "deliver" | "rent" };
     try {
       const response = await updateCar.mutateAsync(dataWithId);
       if (response) {
-        toast.success("Car added successfully!");
+        toast.success("Car updated successfully!");
       }
       onClose();
     } catch (error) {

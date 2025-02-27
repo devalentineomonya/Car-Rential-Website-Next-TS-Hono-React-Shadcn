@@ -29,7 +29,7 @@ import {
 } from "@/components/ui/sheet";
 import { Textarea } from "@/components/ui/textarea";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import { dynamicSchema } from "@/db/schema";
+import { insertCarSchema } from "@/db/schema";
 import { useAddCar } from "@/features/cars/api/use-add-car";
 import { useNewCar } from "@/hooks/use-new-car";
 import { cn } from "@/lib/utils";
@@ -56,22 +56,21 @@ const AddCarSheet: React.FC = () => {
     [user],
   );
 
-  const formMethods = useForm<z.infer<typeof dynamicSchema>>({
-    resolver: zodResolver(dynamicSchema),
+  const formMethods = useForm<z.infer<typeof insertCarSchema>>({
+    resolver: zodResolver(insertCarSchema),
     defaultValues,
   });
-
   const { handleSubmit, watch, setValue } = formMethods;
-  const carPurpose = watch("carPurpose");
+        const carPurpose = watch("carPurpose" as const);
 
   useEffect(() => {
     const purposeMap = {
       rent: { isForRent: true, isForHire: false, isForDelivery: false },
       ride: { isForRent: false, isForHire: true, isForDelivery: false },
-      deliver: { isForRent: false, isForHire: false, isForDelivery: true },
+      deliver: { isForRent: false, isForHire: false, isForDelivery: true } as const,
     } as const;
     const purpose =
-      purposeMap[carPurpose as keyof typeof purposeMap] ?? purposeMap.rent;
+      purposeMap[carPurpose as keyof typeof purposeMap] ?? purposeMap.rent as { isForRent: boolean; isForHire: boolean; isForDelivery: boolean };
     setValue("isForRent", purpose.isForRent);
     setValue("isForHire", purpose.isForHire);
     setValue("isForDelivery", purpose.isForDelivery);
@@ -87,7 +86,7 @@ const AddCarSheet: React.FC = () => {
     setValue("images", files);
   }, [files, setValue]);
 
-  const onSubmit = async (data: z.infer<typeof dynamicSchema>) => {
+  const onSubmit = async (data: z.infer<typeof insertCarSchema>) => {
     try {
       await addCar.mutateAsync(data);
       toast.success("Car added successfully!");

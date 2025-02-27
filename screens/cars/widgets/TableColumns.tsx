@@ -16,7 +16,7 @@ import { z } from "zod";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -29,7 +29,6 @@ import { selectCarSchema } from "@/db/schema";
 import { useDeleteCar } from "@/hooks/use-delete-car";
 import { useEditCar } from "@/hooks/use-edit-car";
 
-// Schema refinement with better type safety
 const refinedSchema = selectCarSchema.extend({
   owner: z.object({
     firstName: z.string(),
@@ -37,9 +36,9 @@ const refinedSchema = selectCarSchema.extend({
   }),
 });
 
-type TableTypes = z.infer<typeof refinedSchema>;
+export type TableTypes = z.infer<typeof refinedSchema>;
 
-// Separate CarActions component for clarity
+
 const CarActions = ({ row }: { row: Row<TableTypes> }) => {
   const car = row.original;
   const { onOpen } = useEditCar();
@@ -79,7 +78,6 @@ const CarActions = ({ row }: { row: Row<TableTypes> }) => {
   );
 };
 
-// Define icons as a utility object for better organization
 const icons = {
   rotateLeft: <GrRotateLeft />,
   rotateRight: <GrRotateRight />,
@@ -92,27 +90,7 @@ const icons = {
   flipY: <IoIosSwap style={{ transform: "rotate(90deg)" }} />,
 };
 
-// Columns configuration for the table
 export const columns: ColumnDef<TableTypes>[] = [
-  {
-    id: "select",
-    header: ({ table }) => (
-      <Checkbox
-        checked={table.getIsAllPageRowsSelected()}
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Select row"
-      />
-    ),
-    enableSorting: false,
-    enableHiding: false,
-  },
   {
     accessorKey: "id",
     header: "#",
@@ -137,12 +115,14 @@ export const columns: ColumnDef<TableTypes>[] = [
           >
             <Image
               src={
-                Array.isArray(images) && images[0]
+                Array.isArray(images) &&
+                typeof images[0] === "string" &&
+                images[0]
                   ? images[0]
                   : "/images/car1.png"
               }
               alt={name}
-              className="w-10 aspect-square rounded-md object-cover"
+              className="w-8 aspect-square rounded-md object-cover"
             />
           </Image.PreviewGroup>
           {/* Car Name and Condition */}
@@ -169,6 +149,28 @@ export const columns: ColumnDef<TableTypes>[] = [
       row.original.mileage
         ? `${row.original.mileage.toLocaleString()} km`
         : "N/A",
+  },
+  {
+    accessorKey: "bodyType",
+    header: "Type",
+    enableSorting: true,
+  },
+  {
+    accessorKey: "fuelType",
+    header: "Fuel",
+    enableSorting: true,
+  },
+  {
+    accessorKey: "transmission",
+    header: "Transmission",
+    enableSorting: true,
+  },
+  {
+    accessorKey: "doors",
+    header: "Capacity",
+    cell: ({ row }) => `${row.getValue("doors")} Seats`,
+    enableSorting: true,
+    sortDescFirst: true,
   },
   {
     accessorFn: (row) => `${row.owner?.firstName} ${row.owner?.lastName}`,
