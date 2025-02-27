@@ -15,6 +15,7 @@ const HeaderBanner = () => {
     <div className="h-[18dvh] sm:h-[20dvh] lg:h-[30dvh] relative isolate">
       <Image
         fill
+        priority
         className="object-cover absolute -z-10"
         src={headerBanner}
         alt="Header Banner "

@@ -47,6 +47,7 @@ const NavbarCenter = () => {
               </div>
             </Button>
             <Image
+              priority
               src={Nairobi}
               alt="Nairobi"
               className="w-24 aspect-video max-md:hidden"

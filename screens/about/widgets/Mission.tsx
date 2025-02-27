@@ -31,7 +31,12 @@ const Mission = () => {
           <h2 className="max-lg:block hidden text-3xl font-semibold text-foreground my-8 ">
             Deval ride&apos;s Mission
           </h2>
-          <Image src={mission} alt="Mission section Image" />
+          <Image
+            priority
+            src={mission}
+            alt="Mission section Image"
+            className="w-full h-full object-cover"
+          />
         </div>
       </div>
     </MainLayout>

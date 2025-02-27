@@ -1,7 +1,7 @@
 "use client";
 import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -12,10 +12,10 @@ import {
 } from "@/components/ui/carousel";
 
 const CarImageCarousel = () => {
-  const [api, setApi] = React.useState<CarouselApi>();
-  const [selectedIndex, setSelectedIndex] = React.useState(0);
+  const [api, setApi] = useState<CarouselApi>();
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!api) {
       return;
     }
@@ -51,6 +51,7 @@ const CarImageCarousel = () => {
         <CarouselContent className="h-full">
           <CarouselItem className="w-full aspect-video">
             <Image
+              priority
               src="/images/car-1.png"
               alt="car"
               fill

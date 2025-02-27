@@ -11,7 +11,12 @@ const Vision = () => {
           <h2 className="max-lg:block hidden text-3xl font-semibold text-foreground my-8 ">
             Deval ride&apos;s Vision
           </h2>
-          <Image src={vision} alt="Vision section Image" />
+          <Image
+            priority
+            src={vision}
+            alt="Vision section Image"
+            className="w-full h-full object-cover"
+          />
         </div>
         <div className="flex-1 pr-2 max-lg:mt-6">
           <h2 className="max-lg:hidden text-3xl font-semibold text-foreground my-8 ">

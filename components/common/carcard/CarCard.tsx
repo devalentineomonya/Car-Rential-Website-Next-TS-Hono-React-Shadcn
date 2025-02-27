@@ -53,6 +53,9 @@ const CarCard: React.FC<CarCardProps> = ({ car }) => {
           <Image
             src={car.image}
             alt={car.name}
+            width={500}
+            height={500}
+            priority
             className="bg-background mix-blend-multiply group-hover/image:translate-x-2 transition-all ease-in-out duration-300 group-hover/image:scale-105"
           />
         </CardContent>

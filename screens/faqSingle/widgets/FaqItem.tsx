@@ -18,7 +18,12 @@ const FaqItem = ({ faqItem }: { faqItem: FaqData }) => {
           <FaqAccordion faqItem={faqItem} />
         </div>
         <div className="col-span-4 pl-6 hidden lg:block">
-          <Image src={faqItem.image} alt={faqItem.name} />
+          <Image
+            priority
+            src={faqItem.image}
+            alt={faqItem.name}
+            className="w-full h-full object-cover"
+          />
         </div>
       </div>
     </MainLayout>

@@ -34,7 +34,7 @@ const FeaturedCard: React.FC<FeaturedCardProps> = ({
             </Link>
           </div>
           <div className="col-span-5 flex items-center max-h-36  relative">
-            <Image src={image} alt={name} className="object-contain" />
+            <Image priority src={image} alt={name} className="object-contain" />
           </div>
         </div>
       </CardContent>
