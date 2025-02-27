@@ -1,14 +1,14 @@
 import React from "react";
 
 import BreadCrumb from "@/components/common/sidebar/BreadCrumb";
-import { AppSidebar } from "@/components/common/sidebar/Sidebar";
+// import { AppSidebar } from "@/components/common/sidebar/Sidebar";
 import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { adminSidebar } from "@/utils/sidebarData";
+// import { adminSidebar } from "@/utils/sidebarData";
 
 export default function AdminLayout({
   children,
@@ -17,7 +17,7 @@ export default function AdminLayout({
 }) {
   return (
     <SidebarProvider>
-      <AppSidebar data={adminSidebar} />
+      {/* <AppSidebar data={adminSidebar} /> */}
       <SidebarInset>
         <header
           className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear
