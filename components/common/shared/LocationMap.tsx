@@ -1,5 +1,5 @@
 "use client";
-import L from "leaflet";
+import {Icon} from "leaflet";
 import React from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
@@ -8,7 +8,7 @@ import "leaflet-defaulticon-compatibility";
 import MainLayout from "@/components/common/layouts/MainLayout";
 import { locations } from "@/utils/constants";
 
-const cartoonPinIcon = new L.Icon({
+const cartoonPinIcon = new Icon({
   iconUrl: "/images/pin.png",
   iconSize: [30, 30],
   iconAnchor: [15, 30],

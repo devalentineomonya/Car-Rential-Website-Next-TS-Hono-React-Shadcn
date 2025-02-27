@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import notFoundImage from "@/public/images/notFound.png"
+import notFoundImage from "@/public/images/notFound.png";
+
 const NotFound = () => {
   return (
     <div className="flex-1 flex flex-col items-center justify-center pr-2 mt-24 max-lg:px-2 min-h-[75dvh]">

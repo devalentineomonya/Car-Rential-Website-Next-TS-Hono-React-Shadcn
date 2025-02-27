@@ -85,7 +85,10 @@ const app = new Hono()
         password: newPassword,
       });
 
-      return c.json({ success: true, message: "Password updated" }, 200);
+      return c.json(
+        { success: true, message: "Password updated", data: response },
+        200,
+      );
     },
   );
 
