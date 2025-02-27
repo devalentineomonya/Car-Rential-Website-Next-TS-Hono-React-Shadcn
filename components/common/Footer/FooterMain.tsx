@@ -44,7 +44,7 @@ const FooterSection = ({
   </div>
 );
 
-const Footer = () => {
+const FooterMain = () => {
   const pathname = usePathname();
   const hideNavbarOrFooter = noNavbarOrFooter.some((route) =>
     pathname.includes(route),
@@ -116,4 +116,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default FooterMain;

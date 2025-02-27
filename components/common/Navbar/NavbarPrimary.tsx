@@ -9,7 +9,7 @@ import NavbarDesktop from "./NavbarDesktop";
 import NavbarHeader from "./NavbarHeader";
 import NavbarMobile from "./NavbarMobile";
 
-const NavbarMain = () => {
+const NavbarPrimary = () => {
   const pathname = usePathname();
   const hideNavbarOrFooter = noNavbarOrFooter.some((route) =>
     pathname.includes(route),
@@ -29,4 +29,4 @@ const NavbarMain = () => {
   );
 };
 
-export default NavbarMain;
+export default NavbarPrimary;

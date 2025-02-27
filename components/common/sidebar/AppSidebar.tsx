@@ -13,12 +13,12 @@ import {
 import { UserSidebarType, AdminSidebarType } from "@/utils/sidebarData";
 
 import { CompanyInfo } from "./CompanyInfo";
-export function AppSidebar({
+const AppSidebar = ({
   data,
   ...props
 }: React.ComponentProps<typeof Sidebar> & {
   data: AdminSidebarType | UserSidebarType;
-}) {
+}) => {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
@@ -33,4 +33,6 @@ export function AppSidebar({
       <SidebarRail />
     </Sidebar>
   );
-}
+};
+
+export default AppSidebar;

@@ -3,8 +3,8 @@ import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
 
-// import Footer from "@/components/common/footer/Footer";
-// import NavbarMain from "@/components/common/navbar/NavbarMain";
+import FooterMain from "@/components/common/footer/FooterMain";
+import NavbarPrimary from "@/components/common/navbar/NavbarPrimary";
 import { Toaster } from "@/components/ui/sonner";
 import { ModalProvider } from "@/providers/modal-provider";
 import ProgressProvider from "@/providers/progress-provider";
@@ -44,9 +44,9 @@ export default function RootLayout({
               >
                 <SheetProvider />
                 <ModalProvider />
-                {/* <NavbarMain /> */}
+                <NavbarPrimary />
                 {children}
-                {/* <Footer /> */}
+                <FooterMain />
                 <Toaster />
               </ThemeProvider>
             </QueryProvider>
