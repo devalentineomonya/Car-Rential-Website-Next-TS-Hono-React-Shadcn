@@ -8,7 +8,7 @@ import { MdOutlineMarkEmailUnread } from "react-icons/md";
 import { Button } from "@/components/ui/button";
 import Nairobi from "@/public/images/nairobi.png";
 
-import MainLayout from "../layouts/MainLayout";
+import MainLayout from "../common/layouts/MainLayout";
 const NavbarCenter = () => {
   return (
     <header className="bg-gray-100 dark:bg-white text-slate-950 h-20 px-2">

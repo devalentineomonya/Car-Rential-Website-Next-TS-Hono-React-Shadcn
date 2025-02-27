@@ -4,7 +4,7 @@ import { CgFacebook, CgInstagram } from "react-icons/cg";
 import { HiMiniPhoneArrowUpRight } from "react-icons/hi2";
 import { PiXLogoBold, PiYoutubeLogoFill } from "react-icons/pi";
 
-import MainLayout from "../layouts/MainLayout";
+import MainLayout from "../common/layouts/MainLayout";
 const NavbarHeader = () => {
   return (
     <header className="bg-background text-foreground h-10 px-2 ">

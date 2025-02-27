@@ -10,7 +10,7 @@ import {
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
 
-import MainLayout from "../layouts/MainLayout";
+import MainLayout from "../common/layouts/MainLayout";
 
 import { navigationLinks } from "./navigationLinks";
 const Navbar = () => {
