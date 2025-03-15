@@ -10,7 +10,7 @@ import {
   getFilteredRowModel,
 } from "@tanstack/react-table";
 import { Plus, ArrowUp, ArrowDown } from "lucide-react";
-import React from "react";
+import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -28,24 +28,22 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useGetCars } from "@/features//cars/api/use-get-cars";
+import { useGetCars } from "@/features/cars/api/use-get-cars";
 import { useNewCar } from "@/hooks/use-new-car";
 
 import TableLoader from "../../../components/common/loaders/TableLoader";
 import { TablePagination } from "../../../components/pagination/TablePagination";
-import { columns } from "../widgets/TableColumns";
+import { columns, TableTypes } from "../widgets/TableColumns";
 
 const CarsTable = () => {
   const { data, isLoading } = useGetCars();
-  const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    [],
-  );
+  const [sorting, setSorting] = useState<SortingState>([]);
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
   const { onOpen } = useNewCar();
-  const table = useReactTable({
+  const table = useReactTable<TableTypes>({
     data: data ?? [],
-    columns: columns as any,
+    columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     onSortingChange: setSorting,
