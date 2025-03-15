@@ -42,7 +42,6 @@ const app = new Hono().post("/", async (c) => {
   const body = JSON.stringify(payload);
   let evt: WebhookEvent;
 
-  // Verify payload with headers
   try {
     evt = wh.verify(body, {
       "svix-id": svix_id,
@@ -82,7 +81,6 @@ const app = new Hono().post("/", async (c) => {
         address: null,
         phone: null,
       };
-      // Check if user already exists
       const existingUser = await db.query.users.findFirst({
         where: eq(users.clerk_id, payload.data.id as string),
       });
