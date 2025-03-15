@@ -54,7 +54,6 @@ const UserActions = ({ row }: { row: Row<TableTypes> }) => {
   );
 };
 
-// Columns configuration for the user table
 export const columns: ColumnDef<TableTypes>[] = [
   {
     id: "select",
