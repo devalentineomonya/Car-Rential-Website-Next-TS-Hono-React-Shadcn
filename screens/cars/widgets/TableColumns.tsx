@@ -135,14 +135,17 @@ export const columns: ColumnDef<TableTypes>[] = [
   {
     accessorKey: "make",
     header: "Make",
+    accessorFn: (row) => row.make,
   },
   {
     accessorKey: "model",
     header: "Model",
+    accessorFn: (row) => row.model,
   },
   {
     accessorKey: "mileage",
     header: "Mileage",
+    accessorFn: (row) => row.mileage,
     cell: ({ row }) =>
       row.original.mileage
         ? `${row.original.mileage.toLocaleString()} km`
@@ -152,32 +155,40 @@ export const columns: ColumnDef<TableTypes>[] = [
     accessorKey: "bodyType",
     header: "Type",
     enableSorting: true,
+    accessorFn: (row) => row.bodyType,
   },
   {
     accessorKey: "fuelType",
     header: "Fuel",
     enableSorting: true,
+    accessorFn: (row) => row.fuelType,
   },
   {
     accessorKey: "transmission",
     header: "Transmission",
     enableSorting: true,
+    accessorFn: (row) => row.transmission,
   },
   {
     accessorKey: "doors",
     header: "Capacity",
-    cell: ({ row }) => `${row.getValue("doors")} Seats`,
     enableSorting: true,
+    accessorFn: (row) => row.doors,
+    cell: ({ row }) => `${row.getValue("doors")} Seats`,
+
     sortDescFirst: true,
   },
   {
-    accessorFn: (row) => `${row.owner?.firstName} ${row.owner?.lastName}`,
     id: "owner",
     header: "Owner",
+    enableSorting: true,
+    accessorFn: (row) => `${row.owner?.firstName} ${row.owner?.lastName}`,
   },
   {
     accessorKey: "pricePerDay",
     header: "Price/Day",
+    enableSorting: true,
+    accessorFn: (row) => row.pricePerDay,
     cell: ({ row }) =>
       row.original.pricePerDay
         ? `$${row.original.pricePerDay.toLocaleString()}`
@@ -186,6 +197,7 @@ export const columns: ColumnDef<TableTypes>[] = [
   {
     accessorKey: "isAvailable",
     header: "Availability",
+    enableSorting: true,
     cell: ({ row }) =>
       row.original.isAvailable ? (
         <Badge variant="outline" className="text-green-600">
@@ -200,6 +212,7 @@ export const columns: ColumnDef<TableTypes>[] = [
   {
     accessorKey: "isForHire",
     header: "Purpose",
+    enableSorting: true,
     cell: ({ row }) => {
       const { isForDelivery, isForHire, isForRent } = row.original;
 
