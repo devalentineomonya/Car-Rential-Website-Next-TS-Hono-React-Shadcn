@@ -12,7 +12,6 @@ import { z } from "zod";
 
 import { users } from "./users";
 
-// Cars Table
 export const cars = pgTable("cars", {
   id: text("id").primaryKey(),
   ownerId: text("owner_id").references(() => users.id, {
@@ -46,7 +45,6 @@ export const cars = pgTable("cars", {
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
 
-// Relations for Cars
 export const carRelations = relations(cars, ({ one }) => ({
   owner: one(users, {
     fields: [cars.ownerId],
