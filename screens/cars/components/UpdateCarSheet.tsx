@@ -64,7 +64,6 @@ const EditCarSheet: React.FC = () => {
       isForRent: false,
       isForHire: false,
       isForDelivery: false,
-      // Add other default values as necessary based on your schema
     },
   });
 
