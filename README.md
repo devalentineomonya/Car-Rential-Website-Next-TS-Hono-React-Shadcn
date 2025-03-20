@@ -1,129 +1,127 @@
 # Car Rental Website
 
-Welcome to the **Car Rental Website** repository! This project is a fully-featured car rental application that provides seamless online booking, ride delivery, and car hiring services. The platform features separate user and admin panels and integrates modern web technologies for a smooth experience.
+Welcome to the **Car Rental Website** – a modern platform for seamless car rentals, bookings, and delivery services. Built with Next.js, Hono, and PostgreSQL, this application offers robust features for users and admins, integrated with secure payments via Paystack.
 
-## Features
+![Tech Stack](https://img.shields.io/badge/Next.js-14.2.3-000000?logo=next.js) ![Drizzle](https://img.shields.io/badge/Drizzle-0.30.8-FFDB1E?logo=postgresql) ![Hono](https://img.shields.io/badge/Hono-4.3.8-FF6B6B) ![Paystack](https://img.shields.io/badge/Paystack-Integration-00A572)
 
-### Core Features
-- **Online Car Rental and Booking:** Avoid long lines by booking your preferred car online.
-- **Delivery Services:** Get your booked car delivered to your location.
-- **Ride Booking and Hiring:** Book rides for your trips or hire cars for a specified duration.
+## ✨ Features
 
-### Admin Panel
-- Manage cars (CRUD operations).
-- Track bookings and payments.
-- Monitor user activity and system performance.
+### **User Features**
+- 🚗 Browse and search available cars by type, price, or location.
+- 📅 Book or hire cars for specific dates and durations.
+- 🚚 Request car delivery to your location.
+- 💳 Secure payments via Paystack integration.
+- 📊 Track bookings, payments, and delivery statuses.
 
-### User Panel
-- Browse available cars.
-- Book, hire, and request delivery services.
-- Track and manage bookings and payments.
+### **Admin Features**
+- 🔧 Full CRUD operations for managing cars, bookings, and users.
+- 📈 Monitor system performance and user activity.
+- 💰 View and manage payment records.
+- 📦 Update car availability and delivery statuses.
 
-### Payment Integration
-- **[Paystack](https://paystack.com):** Secure payment gateway for processing transactions.
+## 🛠️ Tech Stack
 
-### Database
-- **PostgreSQL on Neon:** A modern, high-performance database hosted on Neon for efficient data management.
+**Frontend:**
+- ![Next.js](https://img.shields.io/badge/-Next.js-000000?logo=next.js)
+- ![React](https://img.shields.io/badge/-React-61DAFB?logo=react)
+- ![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?logo=typescript)
+- ![Shadcn/ui](https://img.shields.io/badge/-Shadcn/ui-334155)
 
-## Technologies Used
+**Backend:**
+- ![Hono](https://img.shields.io/badge/-Hono-FF6B6B)
+- ![Node.js](https://img.shields.io/badge/-Node.js-339933?logo=node.js)
 
-### Frontend
-- **Next.js**: For server-side rendering and building a fast, scalable frontend.
-- **React**: For creating reusable UI components.
-- **ShadCN**: For stylish, customizable design components.
+**Database:**
+- ![PostgreSQL](https://img.shields.io/badge/-PostgreSQL-4169E1?logo=postgresql)
+- ![Drizzle](https://img.shields.io/badge/-Drizzle_ORM-FFDB1E)
+- ![Neon](https://img.shields.io/badge/-Neon-00E59B)
 
-### Backend
-- **Hono**: A lightweight, fast web framework for handling API requests.
+**Payment:**
+- ![Paystack](https://img.shields.io/badge/-Paystack-00A572)
 
-### Database
-- **PostgreSQL**: For relational data storage.
-- **Neon**: A cloud-native PostgreSQL platform for enhanced performance and scalability.
+## 🚀 Getting Started
 
-### Payment
-- **Paystack**: To handle secure and reliable payment processing.
+### Prerequisites
+- Node.js ≥18.x
+- PostgreSQL database ([Neon](https://neon.tech) recommended)
+- Paystack API keys
 
-## Installation and Setup
+### Installation
 
-Follow these steps to set up the project locally:
-
-1. **Clone the Repository:**
+1. **Clone the repository**
    ```bash
    git clone https://github.com/devalentineomonya/Car-Rential-Website-Next-TS-Hono-React-Shadcn.git
    cd Car-Rential-Website-Next-TS-Hono-React-Shadcn
    ```
 
-2. **Install Dependencies:**
-   Ensure you have Node.js and npm or Yarn installed, then run:
+2. **Install dependencies**
    ```bash
    npm install
    # or
-   yarn install
+   yarn
    ```
 
-3. **Configure Environment Variables:**
-   Create a `.env` file in the root directory and add the following:
+3. **Set up environment variables**
+   Create `.env` in the root directory:
    ```env
-   DATABASE_URL=your_neon_database_url
-   PAYSTACK_SECRET_KEY=your_paystack_secret_key
-   NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY=your_paystack_public_key
+   DATABASE_URL="postgres://user:password@neon-hostname/project"
+   PAYSTACK_SECRET_KEY="your_paystack_secret_key"
+   NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY="your_paystack_public_key"
    ```
 
-4. **Run the Development Server:**
+4. **Database setup**
+   ```bash
+   # Run drizzle-kit migrations
+   npm run db:generate
+   npm run db:migrate
+   ```
+
+5. **Run the development server**
    ```bash
    npm run dev
    # or
    yarn dev
    ```
-   The application will be available at `http://localhost:3000`.
+   Visit `http://localhost:3000`
 
-5. **Build for Production:**
-   ```bash
-   npm run build
-   ```
+## 📂 Project Structure
 
-## Folder Structure
-
-```
+```bash
 .
-├── components       # Reusable React components
-├── pages            # Next.js pages
-├── public           # Static assets
-├── server           # Hono backend server
-├── styles           # Global and component-specific styles
-├── utils            # Helper functions and utilities
-├── prisma           # Prisma schema for PostgreSQL
-└── .env             # Environment variables
+├── app/                # Next.js app router
+├── components/         # React components
+├── drizzle/            # Drizzle ORM schema and migrations
+├── lib/                # Database connection and utilities
+├── public/             # Static assets
+├── server/             # Hono API routes
+├── types/              # TypeScript types
+└── .env.example        # Environment template
 ```
 
-## Deployment
+## 🔌 Payment Integration
 
-1. Deploy the frontend on platforms like [Vercel](https://vercel.com).
-2. Deploy the backend on your preferred hosting provider.
-3. Use Neon to host the PostgreSQL database.
+The payment system uses **Paystack** with proper type safety and transaction verification:
 
-## Contributing
+```typescript
+// Example Drizzle schema for payments
+import { pgTable, varchar, timestamp } from 'drizzle-orm/pg-core';
 
-Contributions are welcome! Follow these steps to contribute:
+export const payments = pgTable('payments', {
+  id: varchar('id').primaryKey(),
+  amount: varchar('amount').notNull(),
+  status: varchar('status').default('pending'),
+  createdAt: timestamp('created_at').defaultNow(),
+});
+```
 
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature/your-feature`).
-3. Commit your changes (`git commit -m 'Add new feature'`).
-4. Push to the branch (`git push origin feature/your-feature`).
-5. Open a pull request.
+## 🌐 Deployment
 
-## License
+1. **Frontend**: Deploy to [Vercel](https://vercel.com)
+2. **Backend**: Host Hono API on [Cloudflare Workers](https://workers.cloudflare.com)
+3. **Database**: Use [Neon](https://neon.tech) for serverless PostgreSQL
 
-This project is licensed under the [MIT License](LICENSE).
+---
 
-## Acknowledgements
-
-- [Paystack](https://paystack.com)
-- [Neon](https://neon.tech)
-- [Next.js](https://nextjs.org)
-- [Hono](https://hono.dev)
-- [ShadCN](https://shadcn.dev)
-- [PostgreSQL](https://www.postgresql.org)
-
-## Author
-
-Developed by [Valentine Omonya](https://github.com/devalentineomonya).
+Built with ❤️ by [Valentine Omonya](https://github.com/devalentineomonya)  
+[![GitHub Issues](https://img.shields.io/github/issues/devalentineomonya/Car-Rential-Website-Next-TS-Hono-React-Shadcn)](https://github.com/devalentineomonya/Car-Rential-Website-Next-TS-Hono-React-Shadcn/issues)
+```
