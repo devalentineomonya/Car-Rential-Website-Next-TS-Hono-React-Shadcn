@@ -124,4 +124,4 @@ export const payments = pgTable('payments', {
 
 Built with ❤️ by [Valentine Omonya](https://github.com/devalentineomonya)  
 [![GitHub Issues](https://img.shields.io/github/issues/devalentineomonya/Car-Rential-Website-Next-TS-Hono-React-Shadcn)](https://github.com/devalentineomonya/Car-Rential-Website-Next-TS-Hono-React-Shadcn/issues)
-```
+
