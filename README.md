@@ -1,8 +1,10 @@
 # Car Rental Website
 
+![Tech Stack](https://img.shields.io/badge/Next.js-14.2.3-000000?logo=next.js) ![Drizzle](https://img.shields.io/badge/Drizzle-0.30.8-FFDB1E?logo=postgresql) ![Hono](https://img.shields.io/badge/Hono-4.3.8-FF6B6B) ![Paystack](https://img.shields.io/badge/Paystack-Integration-00A572)
+
 Welcome to the **Car Rental Website** – a modern platform for seamless car rentals, bookings, and delivery services. Built with Next.js, Hono, and PostgreSQL, this application offers robust features for users and admins, integrated with secure payments via Paystack.
 
-![Tech Stack](https://img.shields.io/badge/Next.js-14.2.3-000000?logo=next.js) ![Drizzle](https://img.shields.io/badge/Drizzle-0.30.8-FFDB1E?logo=postgresql) ![Hono](https://img.shields.io/badge/Hono-4.3.8-FF6B6B) ![Paystack](https://img.shields.io/badge/Paystack-Integration-00A572)
+![Homepage Preview](https://via.placeholder.com/1280x720.png?text=Car+Rental+Homepage+Preview+%7C+Replace+With+Actual+Screenshot)
 
 ## ✨ Features
 
