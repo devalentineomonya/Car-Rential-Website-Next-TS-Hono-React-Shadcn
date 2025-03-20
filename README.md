@@ -4,7 +4,7 @@
 
 Welcome to the **Car Rental Website** – a modern platform for seamless car rentals, bookings, and delivery services. Built with Next.js, Hono, and PostgreSQL, this application offers robust features for users and admins, integrated with secure payments via Paystack.
 
-![Homepage Preview](https://via.placeholder.com/1280x720.png?text=Car+Rental+Homepage+Preview+%7C+Replace+With+Actual+Screenshot)
+![Homepage Preview](./public/homepage.png)
 
 ## ✨ Features
 
