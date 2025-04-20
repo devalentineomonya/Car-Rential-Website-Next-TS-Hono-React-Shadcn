@@ -3,7 +3,7 @@ import React from "react";
 
 import { cn } from "@/lib/utils";
 
-import { FeatureTypes, PerkTypes, PlanTypes } from "../widgets/pricingData";
+import { RentalPlan, RentalFeature, RentalPerk } from "../widgets/pricingData";
 
 const FakeCardBackground: React.FC<{ featured?: boolean }> = ({ featured }) => (
   <div
@@ -46,7 +46,7 @@ const CheckmarkCell: React.FC<{ value: boolean }> = ({ value }) => (
 
 const PricingSection: React.FC<{
   title: string;
-  items: Array<FeatureTypes | PerkTypes>;
+  items: Array<RentalFeature | RentalPerk>;
   planIndex: number;
   featured?: boolean;
   isFeature?: boolean;
@@ -99,9 +99,9 @@ const PricingSection: React.FC<{
 );
 
 const MobilePricing: React.FC<{
-  plans: PlanTypes[];
-  features: FeatureTypes[];
-  perks: PerkTypes[];
+  plans: RentalPlan[];
+  features: RentalFeature[];
+  perks: RentalPerk[];
 }> = ({ plans, features, perks }) => {
   return (
     <section
