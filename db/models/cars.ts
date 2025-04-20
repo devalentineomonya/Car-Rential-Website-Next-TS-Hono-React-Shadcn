@@ -60,3 +60,5 @@ export const insertCarSchema = createInsertSchema(cars).extend({
 });
 
 export const selectCarSchema = createSelectSchema(cars);
+export type CarType = z.infer<typeof selectCarSchema>
+
