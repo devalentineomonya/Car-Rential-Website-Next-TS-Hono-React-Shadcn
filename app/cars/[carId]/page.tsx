@@ -17,7 +17,7 @@ const page = () => {
             </div>
           </div>
 
-          {/* Main content */}
+
           <div className="flex-1 lg:pl-5">
             <CarInfo />
           </div>
