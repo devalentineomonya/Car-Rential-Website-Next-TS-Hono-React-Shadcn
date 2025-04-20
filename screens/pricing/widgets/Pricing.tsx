@@ -20,9 +20,6 @@ export default function PricingPage() {
               key={plan.title}
               plan={{
                 ...plan,
-                priceLabel: `/day`,
-                periodLabel: "Weekly discount",
-                pricePeriod: plan.priceWeekly,
               }}
             />
           ))}
