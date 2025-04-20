@@ -1,66 +1,62 @@
 {
-  "extends": [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:import/recommended",
-    "plugin:import/typescript",
-    "plugin:react/recommended",
-    "next/core-web-vitals",
-    "plugin:prettier/recommended"
-  ],
-  "plugins": ["@typescript-eslint", "import", "prettier"],
   "env": {
     "browser": true,
     "node": true,
-    "es6": true
+    "es2021": true
   },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:security/recommended",
+    "plugin:unicorn/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    "plugin:eslint-comments/recommended",
+    "plugin:promise/recommended",
+    "plugin:sonarjs/recommended",
+    "plugin:perfectionist/recommended-natural",
+    "plugin:jsdoc/recommended",
+    "plugin:regexp/recommended"
+  ],
   "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "ecmaVersion": 2020,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
-    }
-  },
+  "plugins": [
+    "@typescript-eslint",
+    "security",
+    "unicorn",
+    "import",
+    "eslint-comments",
+    "promise",
+    "sonarjs",
+    "perfectionist",
+    "jsdoc",
+    "regexp"
+  ],
   "rules": {
-    "import/no-unresolved": "error",
-    // "camelcase": ["error", { "properties": "always" }],
-    "no-underscore-dangle": ["error", { "allow": [] }],
-    "no-duplicate-imports": ["error"],
-    "import/order": [
-      "error",
-      {
-        "groups": [
-          "builtin",
-          "external",
-          "internal",
-          "parent",
-          "sibling",
-          "index"
-        ],
-        "newlines-between": "always",
-        "alphabetize": { "order": "asc", "caseInsensitive": true }
-      }
-    ],
-    "@typescript-eslint/no-unused-vars": "warn",
-    "react/react-in-jsx-scope": "off",
-    "@typescript-eslint/explicit-module-boundary-types": "off",
-    "import/extensions": [
-      "error",
-      "never",
-        {
-            "ts": "never",
-            "tsx": "never"
-      }
-    ],
-    "prettier/prettier": "error"
-  },
-  "settings": {
-    "react": {
-      "version": "detect"
-    },
-    "import/resolver": {
-      "typescript": {}
-    }
+    "max-lines": ["error", 200], 
+    "max-lines-per-function": ["error", 50], 
+    "max-params": ["error", 3], 
+    "max-depth": ["error", 3], 
+    "complexity": ["error", 10], 
+    "unicorn/filename-case": ["error", { "case": "camelCase" }],
+    "unicorn/no-array-reduce": "error",
+    "unicorn/no-for-loop": "error",
+    "unicorn/no-null": "error",
+    "unicorn/prevent-abbreviations": "error",
+    "import/no-default-export": "error",
+    "import/no-relative-packages": "error",
+    "import/order": ["error", { "groups": ["builtin", "external", "internal"] }],
+    "perfectionist/sort-imports": ["error", { "type": "natural" }],
+    "perfectionist/sort-objects": ["error", { "type": "asc" }],
+    "promise/catch-or-return": "error",
+    "promise/no-return-wrap": "error",
+    "sonarjs/cognitive-complexity": ["error", 10],
+    "sonarjs/no-duplicate-string": "error",
+    "sonarjs/no-identical-functions": "error",
+    "sonarjs/no-nested-template-literals": "error",
+    "security/detect-object-injection": "error",
+    "jsdoc/require-jsdoc": "error",
+    "jsdoc/check-alignment": "error",
+    "regexp/no-unused-capturing-group": "error"
   }
 }

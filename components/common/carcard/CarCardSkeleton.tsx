@@ -4,8 +4,8 @@ import {
   CardHeader,
   CardFooter,
 } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
 import { Separator } from "@/components/ui/separator";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const CarCardSkeleton = () => (
   <Card className="rounded-md w-full max-h-fit">
