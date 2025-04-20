@@ -3,23 +3,12 @@ import React from "react";
 import { FaCarSide } from "react-icons/fa6";
 
 import CarCard from "@/components/common/carcard/CarCard";
+import CarCardSkeleton from "@/components/common/carcard/CarCardSkeleton";
 import MainLayout from "@/components/common/layouts/MainLayout";
-import car2 from "@/public/images/car2.png";
 
+import { useListCars } from "@/features/cars/api/use-list-cars";
 const TopCars = () => {
-  const carData = {
-    name: "Ford Focus",
-    rating: 4.7,
-    reviews: 126,
-    availability: "Available Now",
-    image: car2,
-    pricePerHour: 500,
-    bodyType: "Hatchback",
-    transmission: "Manual",
-    fuelType: "Diesel",
-    gears: 5,
-    link: "/cars/ford-focus",
-  };
+  const { data: cars, isPending } = useListCars({ limit: 8 });
   return (
     <MainLayout>
       <div className="flex-1 pr-2 max-lg:mt-6">
@@ -37,14 +26,11 @@ const TopCars = () => {
         </Link>
       </div>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pt-4 pb-12 max-xl:px-3">
-        <CarCard car={carData} />
-        <CarCard car={carData} />
-        <CarCard car={carData} />
-        <CarCard car={carData} />
-        <CarCard car={carData} />
-        <CarCard car={carData} />
-        <CarCard car={carData} />
-        <CarCard car={carData} />
+        {isPending
+          ? Array(8)
+              .fill(0)
+              .map((_, index) => <CarCardSkeleton key={`skeleton-${index}`} />)
+          : cars?.slice(0, 8).map((car) => <CarCard key={car.id} car={car as any} />)}
       </div>
     </MainLayout>
   );

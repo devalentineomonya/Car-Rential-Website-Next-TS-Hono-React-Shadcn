@@ -1,7 +1,7 @@
 import { clerkMiddleware, getAuth } from "@hono/clerk-auth";
 import { zValidator } from "@hono/zod-validator";
 import { createId } from "@paralleldrive/cuid2";
-import { eq } from "drizzle-orm";
+import { eq, inArray, and, or } from "drizzle-orm";
 import { Hono } from "hono";
 import { z } from "zod";
 
@@ -29,7 +29,65 @@ const app = new Hono()
     return c.json({ success: true, data: fetchedCars }, 200);
   })
   .get("/list", async (c) => {
-    const listedCars = await db.query.cars.findMany({
+    const query = c.req.query();
+
+    const filters = {
+      purpose: query.for?.split(",").filter(Boolean) || [],
+      colors: query.color?.split(",").filter(Boolean) || [],
+      categories: query.category?.split(",").filter(Boolean) || [],
+      models: query.model?.split(",").filter(Boolean) || [],
+      makes: query.make?.split(",").filter(Boolean) || [],
+      fuelTypes: query.fuelType?.split(",").filter(Boolean) || [],
+      drivetrains: query.drivetrain?.split(",").filter(Boolean) || [],
+      limit: Number(query.limit) || 20,
+    };
+
+    const conditions = [];
+
+    if (filters.purpose.length > 0) {
+      const purposeConditions = filters.purpose
+        .map((purpose) => {
+          switch (purpose.toLowerCase()) {
+            case "hire":
+              return eq(cars.isForHire, true);
+            case "rent":
+              return eq(cars.isForRent, true);
+            case "delivery":
+              return eq(cars.isForDelivery, true);
+          }
+        })
+        .filter(Boolean);
+
+      if (purposeConditions.length > 0) {
+        conditions.push(or(...purposeConditions));
+      }
+    }
+
+    if (filters.colors.length > 0) {
+      conditions.push(inArray(cars.color, filters.colors));
+    }
+
+    if (filters.categories.length > 0) {
+      conditions.push(inArray(cars.bodyType, filters.categories));
+    }
+
+    if (filters.models.length > 0) {
+      conditions.push(inArray(cars.model, filters.models));
+    }
+
+    if (filters.makes.length > 0) {
+      conditions.push(inArray(cars.make, filters.makes));
+    }
+
+    if (filters.fuelTypes.length > 0) {
+      conditions.push(inArray(cars.fuelType, filters.fuelTypes));
+    }
+
+    if (filters.drivetrains.length > 0) {
+      conditions.push(inArray(cars.driveType, filters.drivetrains));
+    }
+
+    const queryBuilder = db.query.cars.findMany({
       columns: {
         id: true,
         name: true,
@@ -44,16 +102,23 @@ const app = new Hono()
         model: true,
         features: true,
       },
+      where: and(...conditions),
+      limit: filters.limit,
     });
+
+    const listedCars = await queryBuilder;
 
     return c.json({
       success: true,
       data: listedCars.map((car) => ({
         ...car,
-
         displayName: `${car.make} ${car.model}`,
         seatCount: car.doors,
       })),
+      meta: {
+        results: listedCars.length,
+        limit: filters.limit,
+      },
     });
   })
   .get(
