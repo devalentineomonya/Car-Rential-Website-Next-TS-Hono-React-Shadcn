@@ -14,15 +14,21 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { Car } from "@/types/car";
+import { CarType } from "@/db/schema";
+
 interface CarCardProps {
-  car: Car;
+  car: CarType & { rating: number; reviews: number };
+  orientation?: "grid" | "list";
 }
 
-const CarCard: React.FC<CarCardProps> = ({ car }) => {
+const CarCard: React.FC<CarCardProps> = ({ car, orientation = "grid" }) => {
   return (
-    <Link href={car.link || ""}>
-      <Card className="rounded-md w-full hover:scale-105 transition-all ease-in-out duration-300 max-h-fit">
+    <Link href={`cars/${car.id}`}>
+      <Card
+        className={`rounded-md w-full hover:scale-105 transition-all ease-in-out duration-300 max-h-fit ${
+          orientation === "list" ? "flex" : ""
+        }`}
+      >
         <CardHeader className="p-2 flex-row items-center justify-between">
           <div className="flex items-center gap-x-2 cursor-default">
             <Badge
@@ -31,27 +37,45 @@ const CarCard: React.FC<CarCardProps> = ({ car }) => {
             >
               <FaStar className="text-yellow-400 mr-1" size={18} />
               <p className="text-sm flex items-center gap-x-1">
-                {car.rating.toFixed(1)}{" "}
+                {car.rating}
+                {/*.toFixed(1)}{" "}*/}
                 <span className="font-medium text-xs">
                   &#40; {car.reviews} &#41;
                 </span>
               </p>
             </Badge>
-            <Badge
-              variant="outline"
-              className="rounded-md py-1 px-1 bg-green-50 hover:bg-green-100 text-green-600 hover:text-green-800"
-            >
-              {car.availability}
-            </Badge>
+            {car.isAvailable ? (
+              <Badge
+                variant="outline"
+                className="rounded-md py-1 px-1 bg-green-50 hover:bg-green-100 text-green-600 hover:text-green-800"
+              >
+                Available Now
+              </Badge>
+            ) : (
+              <Badge
+                variant="outline"
+                className="rounded-md py-1 px-1 bg-red-50 hover:bg-red-100 text-red-600 hover:text-red-800"
+              >
+                Already Taken
+              </Badge>
+            )}
           </div>
           <FaRegHeart
             className="hover:fill-pink-700 cursor-pointer"
             size={24}
           />
         </CardHeader>
-        <CardContent className="justify-center p-3 overflow-hidden bg-background group/image">
+        <CardContent
+          className={`justify-center p-3 overflow-hidden bg-background group/image ${
+            orientation === "list" ? "w-1/3" : ""
+          }`}
+        >
           <Image
-            src={car.image}
+            src={
+              Array.isArray(car.images) && car.images[0]
+                ? String(car.images[0])
+                : ""
+            }
             alt={car.name}
             width={500}
             height={500}
@@ -67,7 +91,7 @@ const CarCard: React.FC<CarCardProps> = ({ car }) => {
             <div className="w-full flex items-center justify-between font-medium text-foreground text-lg">
               <h1>{car.bodyType}</h1>
               <p>
-                Ks {car.pricePerHour}
+                Ks {car.isForDelivery ? car.pricePerKm : car.pricePerDay}
                 <span className="text-sm font-normal text-muted-foreground">
                   /hour
                 </span>
