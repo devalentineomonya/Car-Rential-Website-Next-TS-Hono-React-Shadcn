@@ -3,9 +3,9 @@ import React from "react";
 
 import { cn } from "@/lib/utils";
 
-import { PlanTypes, FeatureTypes, PerkTypes } from "../widgets/pricingData";
+import { RentalPlan, RentalFeature, RentalPerk } from "../widgets/pricingData";
 
-const FakeCardBackgrounds: React.FC<{ plans: PlanTypes[] }> = ({ plans }) => (
+const FakeCardBackgrounds: React.FC<{ plans: RentalPlan[] }> = ({ plans }) => (
   <div
     className="absolute inset-0 flex items-stretch pointer-events-none"
     aria-hidden="true"
@@ -27,7 +27,7 @@ const FakeCardBackgrounds: React.FC<{ plans: PlanTypes[] }> = ({ plans }) => (
   </div>
 );
 
-const FakeCardBorders: React.FC<{ plans: PlanTypes[] }> = ({ plans }) => (
+const FakeCardBorders: React.FC<{ plans: RentalPlan[] }> = ({ plans }) => (
   <div
     className="absolute inset-0 flex items-stretch pointer-events-none"
     aria-hidden="true"
@@ -84,8 +84,8 @@ const RenderCell: React.FC<{
 };
 
 const ComparisonTable: React.FC<{
-  items: Array<FeatureTypes | PerkTypes>;
-  plans: PlanTypes[];
+  items: Array<RentalFeature | RentalPerk>;
+  plans: RentalPlan[];
   isFeature?: boolean;
 }> = ({ items, plans, isFeature }) => (
   <div className="mt-6 relative">
@@ -142,9 +142,9 @@ const ComparisonTable: React.FC<{
 );
 
 const DesktopPricing: React.FC<{
-  plans: PlanTypes[];
-  features: FeatureTypes[];
-  perks: PerkTypes[];
+  plans: RentalPlan[];
+  features: RentalFeature[];
+  perks: RentalPerk[];
 }> = ({ plans, features, perks }) => {
   return (
     <section
