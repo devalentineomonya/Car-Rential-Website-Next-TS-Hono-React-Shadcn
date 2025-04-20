@@ -61,21 +61,22 @@ const CarFilterSchema = z
     },
   );
 
-const CarFilter = () => {
+interface CarFilterProps {
+  onFilterChange: (filters: z.infer<typeof CarFilterSchema>) => void;
+}
+
+const CarFilter = ({ onFilterChange }: CarFilterProps) => {
   const form = useForm<z.infer<typeof CarFilterSchema>>({
     resolver: zodResolver(CarFilterSchema),
   });
 
   function onSubmit(data: z.infer<typeof CarFilterSchema>) {
-    toast.info(
-      <div>
-        <p>You submitted the following values:</p>
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      </div>,
-    );
+    onFilterChange(data);
   }
+  const clearFilters = () => {
+    form.reset();
+    onFilterChange({});
+  };
 
   const renderFilter = (
     fieldName: keyof z.infer<typeof CarFilterSchema>,
@@ -133,7 +134,13 @@ const CarFilter = () => {
             {renderFilter("drivetrain", drivetrains)}
           </Accordion>
           <FormMessage />
-          <Button type="submit">Filter</Button>
+          <div className="flex gap-2">
+            <Button type="button" variant="outline" onClick={clearFilters}>
+              Clear
+            </Button>
+
+            <Button type="submit">Filter</Button>
+          </div>
         </form>
       </Form>
     </div>

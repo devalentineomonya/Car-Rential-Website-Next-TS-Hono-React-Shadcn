@@ -1,8 +1,8 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 
 import CarCard from "@/components/common/carcard/CarCard";
-import CarCardSkeleton from "@/components/common/carcard/CarCardSkeleton"
+import CarCardSkeleton from "@/components/common/carcard/CarCardSkeleton";
 import MainLayout from "@/components/common/layouts/MainLayout";
 
 import CarFilter from "../components/CarFilter";
@@ -12,18 +12,18 @@ import ItemsPerPageController from "../components/ItemsPerPageController";
 import SortByController from "../components/SortByController";
 import { ListFilter } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useListCars } from "@/features/cars/api/use-list-cars";
+import { ListCarsParams, useListCars } from "@/features/cars/api/use-list-cars";
 
 const CarList = () => {
-  const { data, isPending } = useListCars();
-
+  const [filters, setFilters] = useState<ListCarsParams>({});
+  const { data, isPending } = useListCars(filters);
   return (
     <MainLayout>
       <div className="flex-1 pr-2 mt-24 mb-12 max-lg:px-2"></div>
       <div className="max-lg:px-2 flex gap-4 pb-8">
         <div className="w-60 shrink-0 max-sm:hidden">
           <div className="sticky top-20">
-            <CarFilter />
+            <CarFilter onFilterChange={setFilters} />
           </div>
         </div>
         <div>

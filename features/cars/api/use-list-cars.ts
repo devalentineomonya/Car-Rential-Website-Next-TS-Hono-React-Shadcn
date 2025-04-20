@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { client } from "@/lib/hono";
 
-interface ListCarsParams {
+export interface ListCarsParams {
   for?: string[];
   color?: string[];
   category?: string[];
