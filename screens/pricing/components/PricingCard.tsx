@@ -6,10 +6,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
-import { PlanTypes } from "../widgets/pricingData";
+import { RentalPlan } from "../widgets/pricingData";
 
 interface PricingCardProps {
-  plan: PlanTypes;
+  plan: RentalPlan;
 }
 
 const PricingCard: React.FC<PricingCardProps> = ({ plan }) => {
@@ -49,7 +49,7 @@ const PricingCard: React.FC<PricingCardProps> = ({ plan }) => {
                 "text-4xl font-extrabold tracking-tight",
               )}
             >
-              ${plan.priceMonthly}
+              ${plan.priceDaily}
             </p>
             <div className="ml-4">
               <p
@@ -58,7 +58,7 @@ const PricingCard: React.FC<PricingCardProps> = ({ plan }) => {
                   "text-sm",
                 )}
               >
-                USD / mo
+                USD / day
               </p>
               <p
                 className={cn(
@@ -66,7 +66,7 @@ const PricingCard: React.FC<PricingCardProps> = ({ plan }) => {
                   "text-sm",
                 )}
               >
-                Billed yearly (${plan.priceYearly})
+                Billed weekly (${plan.priceWeekly})
               </p>
             </div>
           </div>
