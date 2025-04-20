@@ -42,7 +42,20 @@ const CarsTable = () => {
 
   const { onOpen } = useNewCar();
   const table = useReactTable<TableTypes>({
-    data: data ?? [],
+    data: data
+      ? data.map((car) => ({
+          ...car,
+          owner: car.owner
+            ? {
+                firstName: car.owner.firstName ?? "",
+                lastName: car.owner.lastName ?? "",
+              }
+            : { firstName: "", lastName: "" },
+          createdAt: new Date(car.createdAt),
+          updatedAt: new Date(car.updatedAt),
+          dateManufactured: new Date(car.dateManufactured),
+        }))
+      : [],
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
