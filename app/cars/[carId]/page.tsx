@@ -17,7 +17,6 @@ const page = () => {
             </div>
           </div>
 
-
           <div className="flex-1 lg:pl-5">
             <CarInfo />
           </div>
