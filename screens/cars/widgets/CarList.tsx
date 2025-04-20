@@ -82,7 +82,7 @@ const CarList = () => {
                   .map((_, index) => (
                     <SkeletonCarCard key={`skeleton-${index}`} />
                   ))
-              : data?.map((car) => <CarCard car={car} key={car.id} />)}
+              : data?.map((car) => <CarCard car={car as any} key={car.id} />)}
           </div>
           <CarPagination />
         </div>

@@ -114,7 +114,7 @@ const CarCard: React.FC<CarCardProps> = ({ car, orientation = "grid" }) => {
             </div>
             <div className="flex-shrink-0 flex items-center gap-x-1 text-sm text-muted-foreground">
               <GiGearStick size={20} className="text-foreground" />
-              <span>{car.gears}</span>
+              <span>{car.condition}</span>
             </div>
           </div>
         </CardFooter>
