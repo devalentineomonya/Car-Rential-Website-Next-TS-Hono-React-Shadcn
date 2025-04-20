@@ -13,21 +13,21 @@ const Featured = () => {
       description:
         "Experience a fast, comfortable, and reliable ride service tailored to your needs.",
       image: ride,
-      link: "Cars?category=ride",
+      link: "cars?category=ride",
     },
     {
       name: "Delivery",
       description:
         "Enjoy seamless and efficient package delivery with real-time tracking.",
       image: delivery,
-      link: "Cars?category=delivery",
+      link: "cars?category=delivery",
     },
     {
       name: "Rent",
       description:
         "Indulge in luxurious car rentals that offer flexibility and convenience at your pace.",
       image: rent,
-      link: "Cars?category=rent",
+      link: "cars?category=rent",
     },
   ];
   return (
