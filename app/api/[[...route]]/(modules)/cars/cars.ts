@@ -9,7 +9,11 @@ import { db } from "@/db/drizzle";
 import { insertCarSchema, cars, users } from "@/db/schema";
 
 const app = new Hono()
-  .get("/", async (c) => {
+  .get("/", clerkMiddleware(), async (c) => {
+    const auth = getAuth(c);
+    if (!auth?.userId) {
+      return c.json({ success: false, message: "Unauthorized user" }, 401);
+    }
     const fetchedCars = await db.query.cars.findMany({
       with: {
         owner: {
@@ -24,6 +28,34 @@ const app = new Hono()
 
     return c.json({ success: true, data: fetchedCars }, 200);
   })
+  .get("/list", async (c) => {
+    const listedCars = await db.query.cars.findMany({
+      columns: {
+        id: true,
+        name: true,
+        images: true,
+        isAvailable: true,
+        pricePerDay: true,
+        bodyType: true,
+        transmission: true,
+        fuelType: true,
+        doors: true,
+        make: true,
+        model: true,
+        features: true,
+      },
+    });
+
+    return c.json({
+      success: true,
+      data: listedCars.map((car) => ({
+        ...car,
+
+        displayName: `${car.make} ${car.model}`,
+        seatCount: car.doors,
+      })),
+    });
+  })
   .get(
     "/:id",
     zValidator(
@@ -32,12 +64,7 @@ const app = new Hono()
         id: z.string().optional(),
       }),
     ),
-    clerkMiddleware(),
     async (c) => {
-      const auth = getAuth(c);
-      if (!auth?.userId) {
-        return c.json({ success: false, message: "Unauthorized user" }, 401);
-      }
       const { id } = c.req.valid("param");
       if (!id) {
         return c.json({ success: false, message: "Car ID is required" }, 400);
