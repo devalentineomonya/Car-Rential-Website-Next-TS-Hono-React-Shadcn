@@ -17,43 +17,43 @@ export const userSidebar = {
     },
 
     {
-      title: "My Rides",
+      title: "Rides",
       icon: <IoCarSportOutline />,
       items: [
         {
-          title: "Current Bookings",
+          title: "Current",
           url: "/user/bookings/current",
         },
         {
-          title: "Booking History",
+          title: "History",
           url: "/user/bookings/history",
         },
       ],
     },
     {
-      title: "My Deliveries",
+      title: "Deliveries",
       icon: <IoCarSportOutline />,
       items: [
         {
-          title: "Current Bookings",
+          title: "Current",
           url: "/user/bookings/current",
         },
         {
-          title: "Booking History",
+          title: "History",
           url: "/user/bookings/history",
         },
       ],
     },
     {
-      title: "My Hires",
+      title: "Hires",
       icon: <GiCarKey />,
       items: [
         {
-          title: "Current Bookings",
+          title: "Current",
           url: "/user/bookings/current",
         },
         {
-          title: "Booking History",
+          title: "History",
           url: "/user/bookings/history",
         },
       ],
@@ -63,11 +63,11 @@ export const userSidebar = {
       icon: <TbCreditCardPay />,
       items: [
         {
-          title: "Payment Methods",
+          title: "Methods",
           url: "/user/payments/methods",
         },
         {
-          title: "Payment History",
+          title: "History",
           url: "/user/payments/history",
         },
       ],
@@ -94,63 +94,63 @@ export const adminSidebar = {
       isActive: true,
     },
     {
-      title: "Car Management",
+      title: "Cars",
       icon: <Car />,
-      items: [{ title: "View Cars", url: "/admin/cars" }],
+      items: [{ title: "View", url: "/admin/cars" }],
     },
     {
-      title: "User Management",
+      title: "Users",
       icon: <PiUsersThree />,
-      items: [{ title: "View Users", url: "/admin/users" }],
+      items: [{ title: "View", url: "/admin/users" }],
     },
     {
-      title: "Drivers Management",
+      title: "Drivers",
       icon: <Car />,
       items: [
-        { title: "View Drivers", url: "/admin/drivers" },
-        { title: "Pending Approvals", url: "/admin/drivers/pending" },
+        { title: "View", url: "/admin/drivers" },
+        { title: "Approvals", url: "/admin/drivers/pending" },
       ],
     },
     {
       title: "Rides",
       icon: <GiCarSeat />,
       items: [
-        { title: "All Rides", url: "/admin/rides" },
-        { title: "Pending Approvals", url: "/admin/rides/pending" },
+        { title: "View", url: "/admin/rides" },
+        { title: "Approvals", url: "/admin/rides/pending" },
       ],
     },
     {
       title: "Rentals",
       icon: <GiCarKey />,
       items: [
-        { title: "All Rentals", url: "/admin/rentals" },
-        { title: "Pending Approvals", url: "/admin/rentals/pending" },
+        { title: "View", url: "/admin/rentals" },
+        { title: "Approvals", url: "/admin/rentals/pending" },
       ],
     },
     {
       title: "Deliveries",
       icon: <IoCarSportOutline />,
       items: [
-        { title: "All Deliveries", url: "/admin/deliveries" },
-        { title: "Pending Approvals", url: "/admin/deliveries/pending" },
+        { title: "Views", url: "/admin/deliveries" },
+        { title: "Approvals", url: "/admin/deliveries/pending" },
       ],
     },
 
     {
       title: "Payments",
       icon: <TbCreditCardPay />,
-      items: [{ title: "Sales Reports", url: "/admin/payments" }],
+      items: [{ title: "Sales", url: "/admin/payments" }],
     },
 
     {
       title: "Reports",
       icon: <TbReportAnalytics />,
       items: [
-        { title: "Cars Reports", url: "/admin/reports/cars" },
-        { title: "Bookings Reports", url: "/admin/reports/bookings" },
-        { title: "Deliveries Reports", url: "/admin/reports/deliveries" },
-        { title: "Rentals Reports", url: "/admin/reports/rentals" },
-        { title: "User Analytics", url: "/admin/reports/analytics" },
+        { title: "Cars", url: "/admin/reports/cars" },
+        { title: "Bookings", url: "/admin/reports/bookings" },
+        { title: "Deliveries", url: "/admin/reports/deliveries" },
+        { title: "Rentals", url: "/admin/reports/rentals" },
+        { title: "Users", url: "/admin/reports/analytics" },
       ],
     },
   ],
