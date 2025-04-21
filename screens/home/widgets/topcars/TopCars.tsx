@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import React from "react";
 import { FaCarSide } from "react-icons/fa6";
@@ -30,7 +31,9 @@ const TopCars = () => {
           ? Array(8)
               .fill(0)
               .map((_, index) => <CarCardSkeleton key={`skeleton-${index}`} />)
-          : cars?.slice(0, 8).map((car) => <CarCard key={car.id} car={car as any} />)}
+          : cars
+              ?.slice(0, 8)
+              .map((car) => <CarCard key={car.id} car={car as any} />)}
       </div>
     </MainLayout>
   );
