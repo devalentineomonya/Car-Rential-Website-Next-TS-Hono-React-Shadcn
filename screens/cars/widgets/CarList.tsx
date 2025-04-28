@@ -39,7 +39,7 @@ const CarList = () => {
               <OrientationController />
             </div>
           </div>
-          <div className="flex-1 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 max-h-fit">
+          <div className="flex-1 sm:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 max-h-fit">
             {isPending
               ? Array(8)
                   .fill(0)
