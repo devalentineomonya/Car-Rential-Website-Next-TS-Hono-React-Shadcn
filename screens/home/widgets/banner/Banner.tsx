@@ -32,7 +32,10 @@ const Banner = () => {
             <div className="max-w-fit">
               <Link
                 className="group bg-white text-slate-950 py-2 rounded-md flex px-4 mt-3 items-center gap-x-2  "
-                href="/careers"
+                href="/become-a-driver"
+                title="Become a Driver"
+                aria-label="Become a Driver"
+                
               >
                 <span>Become a Driver</span>
                 <FaCarSide className="group-hover:translate-x-2  transition-all ease-in-out duration-300" />
