@@ -5,6 +5,7 @@ export const noNavbarOrFooter = [
   "/sign-up",
   "/admin",
   "/user",
+  "/become-a-driver/register"
 ] as const;
 
 export const locations = [
