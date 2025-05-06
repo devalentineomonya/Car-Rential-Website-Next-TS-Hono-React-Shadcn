@@ -1,30 +1,74 @@
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
-
-import notFoundImage from "@/public/images/notFound.png";
+import { ChevronRight } from "lucide-react";
 
 const NotFound = () => {
   return (
-    <div className="flex-1 flex flex-col items-center justify-center pr-2 mt-24 max-lg:px-2 min-h-[60dvh]">
-      <h1 className="text-2xl font-bold">Are you Lost?</h1>
-      <Image
-        src={notFoundImage}
-        alt="404"
-        width={500}
-        height={500}
-        priority
-        className="my-4"
-      />
-      <p className="text-gray-500">
-        The page you are looking for does not exist.
-      </p>
-      <Link
-        href="/"
-        className="inline-block py-2 bg-primary text-white px-4 rounded-md mt-4"
-      >
-        Go back to the home page
-      </Link>
+    <div className="min-h-[85dvh] flex items-center justify-center bg-gradient-to-br from-slate-50 to-indigo-50 px-4">
+      <div className="max-w-3xl w-full text-center space-y-6">
+        {/* Animated 404 Number */}
+        <div className="relative inline-block">
+          <span className="text-[10rem] font-black bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+            404
+          </span>
+          <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/20 to-purple-600/20 blur-2xl rounded-full" />
+        </div>
+
+        {/* Illustration */}
+        <div className="relative w-64 h-64 mx-auto animate-float">
+          <Image
+            src="/404-illustration.svg"
+            alt="404 illustration"
+            fill
+            priority
+            className="object-contain"
+          />
+        </div>
+
+        {/* Content */}
+        <div className="space-y-4">
+          <h1 className="text-4xl font-bold text-slate-900">
+            Lost in Space?
+          </h1>
+          <p className="text-xl text-slate-600 max-w-md mx-auto">
+            Don't worry, even the best explorers get lost sometimes. Let's get you back on track!
+          </p>
+        </div>
+
+        {/* Actions */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <Link
+            href="/"
+            className="group flex items-center gap-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-3 rounded-lg font-medium hover:shadow-lg hover:scale-105 transition-all duration-300"
+          >
+            Beam Me Home
+            <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </Link>
+
+          <Link
+            href="/contact"
+            className="text-indigo-600 hover:text-indigo-700 font-medium flex items-center gap-2"
+          >
+            <span className="hidden sm:inline">Or</span> Contact Support
+          </Link>
+        </div>
+
+        {/* Additional Help */}
+        <div className="mt-8 border-t border-slate-200 pt-8">
+          <p className="text-slate-500 mb-3">Quick Navigation</p>
+          <div className="flex items-center justify-center gap-4">
+            <Link href="/blog" className="text-slate-600 hover:text-indigo-600">
+              Blog
+            </Link>
+            <Link href="/docs" className="text-slate-600 hover:text-indigo-600">
+              Documentation
+            </Link>
+            <Link href="/status" className="text-slate-600 hover:text-indigo-600">
+              System Status
+            </Link>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
