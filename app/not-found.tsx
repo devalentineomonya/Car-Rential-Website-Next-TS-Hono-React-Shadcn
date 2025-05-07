@@ -4,7 +4,7 @@ import { ChevronRight } from "lucide-react";
 
 const NotFound = () => {
   return (
-    <div className="min-h-[85dvh] flex items-center justify-center bg-gradient-to-br from-slate-50 to-indigo-50 px-4">
+    <div className="min-h-[85dvh] flex items-center justify-center bg-gradient-to-br from-slate-50 to-indigo-50 px-4 py-10">
       <div className="max-w-3xl w-full text-center space-y-6">
         {/* Animated 404 Number */}
         <div className="relative inline-block">
@@ -14,10 +14,9 @@ const NotFound = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/20 to-purple-600/20 blur-2xl rounded-full" />
         </div>
 
-        {/* Illustration */}
         <div className="relative w-64 h-64 mx-auto animate-float">
           <Image
-            src="/404-illustration.svg"
+            src="/images/404-illustration.svg"
             alt="404 illustration"
             fill
             priority
@@ -25,7 +24,6 @@ const NotFound = () => {
           />
         </div>
 
-        {/* Content */}
         <div className="space-y-4">
           <h1 className="text-4xl font-bold text-slate-900">
             Lost in Space?
@@ -35,7 +33,6 @@ const NotFound = () => {
           </p>
         </div>
 
-        {/* Actions */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
             href="/"
@@ -53,21 +50,7 @@ const NotFound = () => {
           </Link>
         </div>
 
-        {/* Additional Help */}
-        <div className="mt-8 border-t border-slate-200 pt-8">
-          <p className="text-slate-500 mb-3">Quick Navigation</p>
-          <div className="flex items-center justify-center gap-4">
-            <Link href="/blog" className="text-slate-600 hover:text-indigo-600">
-              Blog
-            </Link>
-            <Link href="/docs" className="text-slate-600 hover:text-indigo-600">
-              Documentation
-            </Link>
-            <Link href="/status" className="text-slate-600 hover:text-indigo-600">
-              System Status
-            </Link>
-          </div>
-        </div>
+
       </div>
     </div>
   );
