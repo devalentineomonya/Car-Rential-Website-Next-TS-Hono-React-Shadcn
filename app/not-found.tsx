@@ -4,7 +4,7 @@ import { ChevronRight } from "lucide-react";
 
 const NotFound = () => {
   return (
-    <div className="min-h-[85dvh] flex items-center justify-center bg-gradient-to-br from-slate-50 to-indigo-50 px-4 py-10">
+    <div className="min-h-[50vh] flex items-center justify-center bg-gradient-to-br from-slate-50 to-indigo-50 px-4 py-10">
       <div className="max-w-3xl w-full text-center space-y-6">
         {/* Animated 404 Number */}
         <div className="relative inline-block">
@@ -14,15 +14,6 @@ const NotFound = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/20 to-purple-600/20 blur-2xl rounded-full" />
         </div>
 
-        <div className="relative w-64 h-64 mx-auto animate-float">
-          <Image
-            src="/images/404-illustration.svg"
-            alt="404 illustration"
-            fill
-            priority
-            className="object-contain"
-          />
-        </div>
 
         <div className="space-y-4">
           <h1 className="text-4xl font-bold text-slate-900">
