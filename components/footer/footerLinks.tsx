@@ -1,35 +1,30 @@
 import {
   BsFacebook,
-  BsGithub,
   BsInstagram,
   BsTwitter,
+  BsGithub,
   BsDribbble,
 } from "react-icons/bs";
-
 export const footerLinks = {
-  solutions: [
-    { name: "Marketing", href: "#" },
-    { name: "Analytics", href: "#" },
-    { name: "Commerce", href: "#" },
-    { name: "Insights", href: "#" },
+  vehicles: [
+    { name: "Rent a Car", href: "/cars?category=rent" },
+    { name: "Hire a Driver", href: "/cars?category=ride" },
+    { name: "Send a Delivery", href: "/cars?category=delivery" },
   ],
   support: [
-    { name: "Pricing", href: "#" },
-    { name: "Documentation", href: "#" },
-    { name: "Guides", href: "#" },
-    { name: "API Status", href: "#" },
+    { name: "Pricing", href: "/pricing" },
+    { name: "FAQ's", href: "/faq" },
+    { name: "Contact", href: "/contact" },
   ],
   company: [
-    { name: "About", href: "#" },
-    { name: "Blog", href: "#" },
-    { name: "Jobs", href: "#" },
-    { name: "Press", href: "#" },
+    { name: "About Us", href: "/about" },
+    { name: "Services", href: "/services" },
+    { name: "Careers", href: "#" },
     { name: "Partners", href: "#" },
   ],
   legal: [
-    { name: "Claim", href: "#" },
-    { name: "Privacy", href: "#" },
-    { name: "Terms", href: "#" },
+    { name: "Privacy Policy", href: "#" },
+    { name: "Terms of Service", href: "#" },
   ],
   social: [
     {

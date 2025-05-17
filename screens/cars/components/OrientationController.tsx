@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 const OrientationController = () => {
   const [view, setView] = useState<"grid" | "list">("grid");
   return (
-    <div className="flex border border-gray-300 rounded-md overflow-hidden">
+    <div className="hidden md:flex border border-gray-300 rounded-md overflow-hidden ">
       <Button
         variant="ghost"
         size="icon"

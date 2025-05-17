@@ -13,15 +13,7 @@ import {
 } from "@/components/ui/carousel";
 
 import LearnMoreCard from "../../components/LearnMoreCard";
-
-const services = [
-  { id: 1 },
-  { id: 2 },
-  { id: 3 },
-  { id: 4 },
-  { id: 5 },
-  { id: 6 },
-];
+import { blogs } from "./blogs";
 
 const LearnMore = () => {
   const [api, setApi] = React.useState<CarouselApi>();
@@ -64,18 +56,18 @@ const LearnMore = () => {
           className="w-full max-lg:px-4"
         >
           <CarouselContent>
-            {services.map((service) => (
+            {blogs.map((blog, idx) => (
               <CarouselItem
-                key={service.id}
+                key={idx}
                 className="basis-2/3 md:basis-1/2 lg:basis-1/4"
               >
-                <LearnMoreCard />
+                <LearnMoreCard {...blog} />
               </CarouselItem>
             ))}
           </CarouselContent>
         </Carousel>
         <div className="flex justify-center mt-10">
-          {services.map((_, index) => (
+          {blogs.map((_, index) => (
             <Button
               key={index}
               variant="ghost"

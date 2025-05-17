@@ -26,7 +26,7 @@ const NavbarMobile = () => {
     <Sheet>
       <header className="w-full flex items-center justify-center bg-background h-10 md:hidden px-2 sticky top-0 z-40 shadow-sm border-b border-b-border">
         <SheetTrigger asChild className="w-full max-w-6xl">
-          <div className="w-full flex items-center justify-between text-foreground hover:text-gray-100 hover:border-gray-200">
+          <div className="w-full flex items-center justify-between text-foreground hover:text-secondary-foreground ">
             <Button
               variant="ghost"
               size="icon"

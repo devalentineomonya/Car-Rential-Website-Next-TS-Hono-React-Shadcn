@@ -10,7 +10,7 @@ import {
 const SortByController = () => {
   return (
     <Select>
-      <SelectTrigger className="w-[180px]">
+      <SelectTrigger className="w-fit">
         <SelectValue placeholder="Sort By" />
       </SelectTrigger>
       <SelectContent>

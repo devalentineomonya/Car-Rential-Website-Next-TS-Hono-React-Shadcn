@@ -13,24 +13,7 @@ import {
 } from "@/components/ui/carousel";
 
 import TestimonialCard from "../../components/TestimonialCard";
-
-const testimonials = [
-  { id: 1, content: "Great service! Highly recommended.", author: "John Doe" },
-  {
-    id: 2,
-    content: "Quick and efficient. Will use again.",
-    author: "Jane Smith",
-  },
-  { id: 3, content: "Excellent work on my car.", author: "Mike Johnson" },
-  { id: 4, content: "Professional and friendly staff.", author: "Emily Brown" },
-  {
-    id: 5,
-    content: "Fair prices and quality results.",
-    author: "David Wilson",
-  },
-  { id: 6, content: "They went above and beyond.", author: "Sarah Taylor" },
-  { id: 7, content: "Best auto service in town!", author: "Chris Anderson" },
-];
+import { testimonials } from "./testimonials";
 
 export default function Testimonials() {
   const [api, setApi] = React.useState<CarouselApi>();
@@ -80,7 +63,7 @@ export default function Testimonials() {
                 key={testimonial.id}
                 className="w-full md:basis-1/2 lg:basis-1/2"
               >
-                <TestimonialCard />
+                <TestimonialCard {...testimonial} />
               </CarouselItem>
             ))}
           </CarouselContent>

@@ -10,7 +10,7 @@ import {
 const ItemsPerPageController = () => {
   return (
     <Select>
-      <SelectTrigger className="w-[180px]">
+      <SelectTrigger className="w-fit">
         <SelectValue placeholder="Show Items" />
       </SelectTrigger>
       <SelectContent>

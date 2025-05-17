@@ -6,18 +6,17 @@ import { FaCarSide } from "react-icons/fa6";
 import CarCard from "@/components/common/carcard/CarCard";
 import CarCardSkeleton from "@/components/common/carcard/CarCardSkeleton";
 import MainLayout from "@/components/common/layouts/MainLayout";
-
+import NoCarsFound from "@/components/common/error/NoCarsFound";
 import { useListCars } from "@/features/cars/api/use-list-cars";
 const TopCars = () => {
-  const { data: cars, isPending } = useListCars({ limit: 8 });
+  const { data, isPending } = useListCars({ limit: 8 });
   return (
     <MainLayout>
-      <div className="flex-1 pr-2 max-lg:mt-6">
-        <h2 className="text-3xl font-semibold text-foreground my-8 ">
+      <div className="flex-1 pr-2 max-lg:mt-6 flex justify-between items-center">
+        <h2 className="text-3xl font-semibold text-foreground x">
           Our Top Cars
         </h2>
-      </div>
-      <div className="w-full flex items-center justify-end max-xl:pr-3">
+
         <Link
           href="/cars"
           className="border bg-card text-card-foreground shadow group font-medium flex items-center gap-x-2 py-2 rounded-md px-4"
@@ -27,13 +26,17 @@ const TopCars = () => {
         </Link>
       </div>
       <div className="space-y-4 sm:grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pt-4 pb-12 max-xl:px-3">
-        {isPending
-          ? Array(8)
-              .fill(0)
-              .map((_, index) => <CarCardSkeleton key={`skeleton-${index}`} />)
-          : cars
-              ?.slice(0, 8)
-              .map((car) => <CarCard key={car.id} car={car as any} />)}
+        {isPending ? (
+          Array(8)
+            .fill(0)
+            .map((_, index) => <CarCardSkeleton key={`skeleton-${index}`} />)
+        ) : data?.length ? (
+          data.map((car) => <CarCard car={car as any} key={car.id} />)
+        ) : (
+          <div className="col-span-full">
+            <NoCarsFound />
+          </div>
+        )}
       </div>
     </MainLayout>
   );

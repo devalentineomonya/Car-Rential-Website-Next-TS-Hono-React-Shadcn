@@ -13,12 +13,7 @@ import { Plus, ArrowUp, ArrowDown } from "lucide-react";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardFooter,
-} from "@/components/ui/card";
+
 import { Input } from "@/components/ui/input";
 import {
   Table,
@@ -70,34 +65,29 @@ const CarsTable = () => {
   });
   if (isLoading) return <TableLoader />;
   return (
-    <Card className="mt-6 shadow-none border px-2">
-      <CardHeader className="flex-row items-center justify-between">
-        <div>
-          <div className="flex items-center py-4">
-            <Input
-              placeholder="Filter cars..."
-              value={
-                (table.getColumn("name")?.getFilterValue() as string) ?? ""
-              }
-              onChange={(event) =>
-                table.getColumn("name")?.setFilterValue(event.target.value)
-              }
-              className="max-w-sm"
-            />
-          </div>
-        </div>
-        <Button onClick={onOpen}>
-          <Plus className="mr-3" /> Add New
-        </Button>
-      </CardHeader>
-      <CardContent className="px-0 overflow-x-auto">
+    <>
+      <Button onClick={()=>onOpen()}>
+        <Plus className="mr-3" /> Add New
+      </Button>
+
+        <div className="flex items-center pt-2">
+          <Input
+            placeholder="Filter cars..."
+            value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
+            onChange={(event) =>
+              table.getColumn("name")?.setFilterValue(event.target.value)
+            }
+            className="max-w-sm"
+          />
+
+      </div>
+      <div className="rounded-md border mt-4">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow className="h-12 bg-gray-50 " key={headerGroup.id}>
+              <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
                   <TableHead
-                    className="text-gray-900 font-semibold cursor-pointer hover:bg-gray-100"
                     key={header.id}
                     onClick={header.column.getToggleSortingHandler()}
                   >
@@ -121,15 +111,9 @@ const CarsTable = () => {
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow
-                  className="hover:bg-transparent data-[state=selected]:bg-transparent"
-                  key={row.id}
-                >
+                <TableRow key={row.id}>
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell
-                      className="py-2 whitespace-nowrap shrink-0"
-                      key={cell.id}
-                    >
+                    <TableCell key={cell.id}>
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext(),
@@ -150,11 +134,9 @@ const CarsTable = () => {
             )}
           </TableBody>
         </Table>
-      </CardContent>
-      <CardFooter className="flex justify-between">
-        <TablePagination table={table} />
-      </CardFooter>
-    </Card>
+      </div>
+      <TablePagination table={table} />
+    </>
   );
 };
 

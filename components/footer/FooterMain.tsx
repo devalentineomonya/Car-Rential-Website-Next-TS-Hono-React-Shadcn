@@ -58,17 +58,18 @@ const FooterMain = () => {
     >
       <div className="container max-w-6xl px-4 py-12">
         <div className="grid grid-cols-12 max-sm:gap-y-6">
-          <FooterSection title="Solutions" items={footerLinks.solutions} />
-          <FooterSection title="Support" items={footerLinks.support} />
-          <FooterSection title="Company" items={footerLinks.company} />
+          <FooterSection title="Solutions" items={footerLinks.company} />
+          <FooterSection title="Support" items={footerLinks.vehicles} />
+          <FooterSection title="Company" items={footerLinks.support} />
+          <FooterSection title="Company" items={footerLinks.legal} />
 
-          <Card className="border-0 bg-transparent col-span-12 lg:col-span-6 shadow-none">
-            <CardHeader className="px-0">
+          <Card className="border-0 bg-transparent col-span-12 lg:col-span-4 shadow-none">
+            <CardHeader className="p-0">
               <h3 className="text-sm font-semibold text-slate-600 dark:text-gray-400 tracking-wider uppercase">
                 Subscribe to our newsletter
               </h3>
             </CardHeader>
-            <CardContent className="px-0">
+            <CardContent className="px-0 mt-4">
               <p className="text-slate-700 dark:text-gray-300 mb-4">
                 The latest news, articles, and resources, sent to your inbox
                 weekly.
@@ -100,15 +101,15 @@ const FooterMain = () => {
             </NavigationMenuList>
           </NavigationMenu>
           <p className="mt-8 md:mt-0 text-gray-700 dark:text-gray-400">
-            &copy; {new Date().getFullYear()}{" "}
+            &copy; {new Date().getFullYear()}
             <Link
-              href="http://devalentine.vercel.app"
+              href="http://devalentineomonya.vercel.app"
               target="_blank"
               className="underline"
             >
               Devalentine
             </Link>
-            . All rights rentd.
+            . All rights DevalRide.
           </p>
         </div>
       </div>

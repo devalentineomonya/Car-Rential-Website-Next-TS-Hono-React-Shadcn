@@ -36,19 +36,18 @@ export default function Page() {
           </p>
         </div>
         <div className="flex items-center justify-center mt-8 bg-background">
-          {!isLoaded && <Icons.spinner className="size-4 animate-spin" />}
           <ClerkLoaded>
             <SignIn.Root>
               <Clerk.Loading>
                 {(isGlobalLoading) => (
                   <>
                     <SignIn.Step name="start">
-                      <Card className="w-full sm:w-96">
+                      <Card className="w-full sm:w-[30rem] shadow-none border-none">
                         <CardContent className="grid gap-y-4 pt-12">
                           <div className="grid grid-cols-1 gap-x-4">
                             <Clerk.Connection name="google" asChild>
                               <Button
-                                size="sm"
+                                size="lg"
                                 variant="outline"
                                 type="button"
                                 disabled={isGlobalLoading}
@@ -84,7 +83,7 @@ export default function Page() {
                         <CardFooter>
                           <div className="grid w-full gap-y-4">
                             <SignIn.Action submit asChild>
-                              <Button disabled={isGlobalLoading}>
+                              <Button size="lg" disabled={isGlobalLoading}>
                                 <Clerk.Loading>
                                   {(isLoading) => {
                                     return isLoading ? (
@@ -108,7 +107,7 @@ export default function Page() {
                     </SignIn.Step>
 
                     <SignIn.Step name="choose-strategy">
-                      <Card className="w-full sm:w-96">
+                      <Card className="w-full sm:w-[30rem] border-none shadow-none">
                         <CardHeader>
                           <CardTitle>Use another method</CardTitle>
                           <CardDescription>
@@ -158,7 +157,7 @@ export default function Page() {
 
                     <SignIn.Step name="verifications">
                       <SignIn.Strategy name="password">
-                        <Card className="w-full sm:w-96">
+                        <Card className="w-full sm:w-[30rem] border-none shadow-none">
                           <CardHeader>
                             <CardTitle>Enter your password</CardTitle>
                             <CardDescription>
@@ -182,7 +181,7 @@ export default function Page() {
                           <CardFooter>
                             <div className="grid w-full gap-y-4">
                               <SignIn.Action submit asChild>
-                                <Button disabled={isGlobalLoading}>
+                                <Button size="lg" disabled={isGlobalLoading}>
                                   <Clerk.Loading>
                                     {(isLoading) => {
                                       return isLoading ? (
@@ -205,14 +204,18 @@ export default function Page() {
                       </SignIn.Strategy>
 
                       <SignIn.Strategy name="email_code">
-                        <Card className="w-full sm:w-96">
-                          <CardHeader>
+                        <Card className="w-full sm:w-[30rem] shadow-none border-none">
+                          <CardHeader className="text-center">
                             <CardTitle>Check your email</CardTitle>
-                            <CardDescription>
+                            <CardDescription className="text-center">
                               Enter the verification code sent to your email
                             </CardDescription>
-                            <p className="text-sm text-muted-foreground">
-                              Welcome back <SignIn.SafeIdentifier />
+                            <p className="text-sm text-muted-foreground text-center">
+                              Welcome back
+                              <p className="font-semibold text-black inline-block ml-3">
+
+                                <SignIn.SafeIdentifier />
+                              </p>
                             </p>
                           </CardHeader>
                           <CardContent className="grid gap-y-4">
@@ -268,7 +271,7 @@ export default function Page() {
                           <CardFooter>
                             <div className="grid w-full gap-y-4">
                               <SignIn.Action submit asChild>
-                                <Button disabled={isGlobalLoading}>
+                                <Button size="lg" disabled={isGlobalLoading}>
                                   <Clerk.Loading>
                                     {(isLoading) => {
                                       return isLoading ? (
