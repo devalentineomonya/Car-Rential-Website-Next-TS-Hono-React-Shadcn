@@ -16,6 +16,7 @@ import {
     FormMessage,
     FormDescription,
 } from "@/components/ui/form";
+import {Alert, AlertDescription, AlertTitle} from "@/components/ui/alert";
 
 import {Textarea} from "@/components/ui/textarea";
 import {IoCarSportOutline} from "react-icons/io5";
@@ -146,11 +147,7 @@ export const renderStepContent = ({
         case 2:
             return (
                 <div className="space-y-4 max-w-2xl mx-auto">
-
-                                    <FeatureInputList
-                                     
-                                    />
-
+                    <FeatureInputList />
                 </div>
             );
         case 3:
@@ -185,30 +182,6 @@ export const renderStepContent = ({
                             placeholder="2.0L"
                             type="number"
                         />
-                        <FormField
-                            name="isAvailable"
-                            render={({field}) => (
-                                <FormItem className="col-span-12 sm:col-span-6 flex flex-row items-start space-x-3 mt-9">
-                                    <FormControl>
-                                        <Checkbox
-                                            checked={field.value}
-                                            onCheckedChange={field.onChange}
-                                        />
-                                    </FormControl>
-                                    <div className="space-y-1 leading-none">
-                                        <FormLabel>Car Availability</FormLabel>
-                                        <FormDescription>
-                                            Check to indicate if the car is
-                                            available for hire.
-                                        </FormDescription>
-                                    </div>
-                                </FormItem>
-                            )}
-                        />
-                    </div>
-
-                    {/* Car Specifications */}
-                    <div className="grid grid-cols-12 gap-4">
                         <FormSelect
                             name="fuelType"
                             label="Fuel Type"
@@ -219,6 +192,10 @@ export const renderStepContent = ({
                                 {value: "gasoline", label: "Gasoline"},
                             ]}
                         />
+                    </div>
+
+                    {/* Car Specifications */}
+                    <div className="grid grid-cols-12 gap-4">
                         <FormSelect
                             name="bodyType"
                             label="Body Type"
@@ -267,12 +244,31 @@ export const renderStepContent = ({
                             ]}
                         />
                     </div>
+                    <FormField
+                        name="isAvailable"
+                        render={({field}) => (
+                            <FormItem className="col-span-12 flex flex-row items-start space-x-3 mt-9">
+                                <FormControl></FormControl>
+                                <Alert variant="info">
+                                    <Checkbox
+                                        checked={field.value}
+                                        onCheckedChange={field.onChange}
+                                    />
+                                    <AlertTitle>Car Availability</AlertTitle>
+                                    <AlertDescription>
+                                        Check to indicate if the car is
+                                        available for hire.
+                                    </AlertDescription>
+                                </Alert>
+                            </FormItem>
+                        )}
+                    />
                 </div>
             );
-        case 4:
+         case 4:
             return (
                 <div className="grid grid-cols-12">
-                    <div className="col-span-11 space-y-2">
+                    <div className="col-span-12 space-y-2">
                         <FileUpload onFilesChange={setFiles} />
                     </div>
                 </div>

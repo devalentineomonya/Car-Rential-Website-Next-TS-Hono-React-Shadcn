@@ -80,7 +80,7 @@ const CarCard: React.FC<CarCardProps> = ({ car, orientation = "grid" }) => {
             width={500}
             height={500}
             priority
-            className="bg-background mix-blend-multiply group-hover/image:translate-x-2 transition-all ease-in-out duration-300 group-hover/image:scale-105"
+            className="bg-background mix-blend-multiply transition-all ease-in-out duration-300 rounded-md"
           />
         </CardContent>
         <CardFooter className="p-3 flex-col item-start justify-center">
@@ -91,9 +91,9 @@ const CarCard: React.FC<CarCardProps> = ({ car, orientation = "grid" }) => {
             <div className="w-full flex items-center justify-between font-medium text-foreground text-lg">
               <h1>{car.bodyType}</h1>
               <p>
-                Ks {car.isForDelivery ? car.pricePerKm : car.pricePerDay}
+                Kes {car.isForDelivery ? car.pricePerKm : car.pricePerDay}
                 <span className="text-sm font-normal text-muted-foreground">
-                  /hour
+                  /day
                 </span>
               </p>
             </div>

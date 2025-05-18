@@ -56,10 +56,23 @@ const carPurposeEnum = z.enum(["ride", "deliver", "rent"]);
 export type CarPurpose = z.infer<typeof carPurposeEnum>;
 
 export const insertCarSchema = createInsertSchema(cars)
-    .omit({createdAt: true, updatedAt: true})
+    .omit({createdAt: true, updatedAt: true, id:true})
     .extend({
         carPurpose: carPurposeEnum,
+        pricePerDay: z
+            .number()
+            .int()
+            .positive()
+            .optional()
+            .or(z.literal(undefined)),
+        pricePerKm: z
+            .number()
+            .int()
+            .positive()
+            .optional()
+            .or(z.literal(undefined)),
     })
+    .strict()
     .superRefine((data, ctx) => {
         const {carPurpose, pricePerDay, pricePerKm} = data;
 

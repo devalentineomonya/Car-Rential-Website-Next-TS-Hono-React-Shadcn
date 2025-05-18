@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/carousel";
 
 import TestimonialCard from "../../components/TestimonialCard";
-import { testimonials } from "./testimonials";
+import { testimonials } from "./testimonialsData";
 
 export default function Testimonials() {
   const [api, setApi] = React.useState<CarouselApi>();

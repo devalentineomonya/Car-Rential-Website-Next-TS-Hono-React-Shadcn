@@ -18,6 +18,7 @@ import {
     Sheet,
     SheetContent,
     SheetDescription,
+    SheetFooter,
     SheetHeader,
     SheetTitle,
 } from "@/components/ui/sheet";
@@ -25,7 +26,7 @@ import {
 import {insertCarSchema} from "@/db/schema";
 import {useAddCar} from "@/features/cars/api/use-add-car";
 import {useNewCar} from "@/hooks/use-new-car";
-import {renderStepContent} from "./rendersteps";
+import {renderStepContent} from "./renderSteps";
 import Stepper from "./Stepper";
 
 const STEPS = [
@@ -38,7 +39,7 @@ const STEPS = [
 
 const AddCarSheet: React.FC = () => {
     const {isOpen, onClose} = useNewCar();
-    const {user} = useUser();
+    const {user, isLoaded} = useUser();
     const addCar = useAddCar();
     const [files, setFiles] = useState<string[]>([]);
     const [currentStep, setCurrentStep] = useState(0);
@@ -50,16 +51,20 @@ const AddCarSheet: React.FC = () => {
         false,
         false,
     ]);
-
+    if (isLoaded && !user?.id) {
+        toast.error("User ID is missing. Please log in again.");
+        onClose();
+        return null;
+    }
     const defaultValues = useMemo(
         () => ({
-            ownerId: user?.id ?? "",
+            ownerId: user?.id ?? "default-id",
             isForRent: false,
             isForHire: false,
             isForDelivery: false,
             isAvailable: true,
         }),
-        [user],
+        [user?.id],
     );
 
     type FormData = z.infer<typeof insertCarSchema>;
@@ -100,13 +105,42 @@ const AddCarSheet: React.FC = () => {
                 isForHire: boolean;
                 isForDelivery: boolean;
             });
-        setValue("isForRent", purpose.isForRent, {shouldDirty: false});
-        setValue("isForHire", purpose.isForHire, {shouldDirty: false});
-        setValue("isForDelivery", purpose.isForDelivery, {shouldDirty: false});
+        setValue("isForRent", purpose.isForRent);
+        setValue("isForHire", purpose.isForHire);
+        setValue("isForDelivery", purpose.isForDelivery);
     }, [carPurpose, setValue]);
 
     useEffect(() => {
+        const values = formMethods.getValues();
+        try {
+            insertCarSchema.parse(values);
+            console.log("✅ All values valid");
+        } catch (e) {
+            if (e instanceof ZodError) {
+                console.log("❌ Zod errors:");
+                e.errors.forEach((err) => {
+                    console.log(
+                        `Field: ${err.path.join(".")} => ${err.message}`,
+                    );
+                });
+            }
+        }
+    }, [formMethods.watch()]);
+
+    useEffect(() => {
+        if (Object.keys(errors).length > 0) {
+            console.log("🔴 Validation Errors:");
+            Object.entries(
+                errors as Record<string, {message?: string}>,
+            ).forEach(([key, error]) => {
+                console.log(`Field: ${key} =>`, error?.message || error);
+            });
+        }
+    }, [errors]);
+
+    useEffect(() => {
         setValue("images", files, {shouldValidate: true});
+        console.log({message: "Images added"});
     }, [files, setValue]);
 
     const validateStep = async (step: number): Promise<boolean> => {
@@ -152,7 +186,7 @@ const AddCarSheet: React.FC = () => {
     const handleNext = async () => {
         const isValid = await validateStep(currentStep);
 
-        if (isValid) {
+        if (isValid && currentStep != STEPS.length) {
             const newCompleted = [...stepCompleted];
             newCompleted[currentStep] = true;
             setStepCompleted(newCompleted);
@@ -175,8 +209,17 @@ const AddCarSheet: React.FC = () => {
             const filteredFeatures = Array.isArray(data.features)
                 ? data.features.filter(Boolean)
                 : [];
+
+            // CLEAN UP conflicting price fields based on purpose
+            if (data.carPurpose === "rent") {
+                data.pricePerKm = undefined;
+            } else {
+                data.pricePerDay = undefined;
+            }
+
             const carData = {
                 ...data,
+                
                 features:
                     filteredFeatures.length > 0 ? filteredFeatures : undefined,
             };
@@ -197,6 +240,10 @@ const AddCarSheet: React.FC = () => {
         }
     };
 
+    console.log("Form State:", formMethods.formState);
+    console.log("Errors:", errors);
+    console.log("Is Valid:", isValid);
+
     return (
         <Sheet open={isOpen} onOpenChange={onClose}>
             <SheetContent className="w-full sm:max-w-4xl">
@@ -205,15 +252,15 @@ const AddCarSheet: React.FC = () => {
                     <SheetDescription>
                         Fill out the form to add a new car.
                     </SheetDescription>
-                </SheetHeader>
-
-                <FormProvider {...formMethods}>
                     <Stepper
                         steps={STEPS}
                         currentStep={currentStep}
                         completedSteps={stepCompleted}
                     />
-                    <ScrollArea className="pb-28 pr-4">
+                </SheetHeader>
+
+                <ScrollArea className="pb-28 pr-4 min-h-screen max-h-screen flex flex-col items-center justify-center">
+                    <FormProvider {...formMethods}>
                         <form
                             onSubmit={handleSubmit(onSubmit)}
                             encType="multipart/form-data"
@@ -228,7 +275,7 @@ const AddCarSheet: React.FC = () => {
                                 })}
                             </div>
 
-                            <div className="pt-4 flex justify-between space-x-4">
+                            <SheetFooter className="pt-4 flex justify-between space-x-4">
                                 <div>
                                     {currentStep > 0 && (
                                         <Button
@@ -281,10 +328,10 @@ const AddCarSheet: React.FC = () => {
                                         </Button>
                                     )}
                                 </div>
-                            </div>
+                            </SheetFooter>
                         </form>
-                    </ScrollArea>
-                </FormProvider>
+                    </FormProvider>
+                </ScrollArea>
             </SheetContent>
         </Sheet>
     );

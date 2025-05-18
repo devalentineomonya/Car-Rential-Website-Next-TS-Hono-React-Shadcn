@@ -164,6 +164,7 @@ const app = new Hono()
                 .object(insertCarSchema._def.schema.shape)
                 .omit({
                     images: true,
+                    dateManufactured: true,
                 })
                 .merge(
                     z.object({
@@ -171,6 +172,7 @@ const app = new Hono()
                             .array(z.string())
                             .min(2, "At least one image is required")
                             .default([]),
+                        dateManufactured: z.string(),
                     }),
                 ),
         ),
@@ -197,7 +199,13 @@ const app = new Hono()
                 id: createId(),
             };
 
-            const car = await db.insert(cars).values(values).returning();
+            const car = await db
+                .insert(cars)
+                .values({
+                    ...values,
+                    dateManufactured: new Date(values.dateManufactured),
+                })
+                .returning();
             return c.json({success: true, car}, 200);
         },
     )
@@ -217,6 +225,7 @@ const app = new Hono()
                             .array(z.string())
                             .min(2, "At least one image is required")
                             .default([]),
+                        id: z.string(),
                     }),
                 ),
         ),

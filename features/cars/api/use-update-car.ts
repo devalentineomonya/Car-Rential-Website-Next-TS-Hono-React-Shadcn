@@ -11,6 +11,7 @@ const carUpdateSchema = z
     .merge(
         z.object({
             images: z.array(z.string()),
+            id: z.string(),
         }),
     );
 
