@@ -2,13 +2,13 @@
 
 import {useUser} from "@clerk/nextjs";
 import {zodResolver} from "@hookform/resolvers/zod";
-import {Car, ChevronLeft, ChevronRight} from "lucide-react";
+import {ChevronLeft, ChevronRight} from "lucide-react";
 import type React from "react";
 import {useEffect, useState, useMemo} from "react";
 import {useForm, FormProvider} from "react-hook-form";
 
 import {toast} from "sonner";
-import {z, ZodError} from "zod";
+import {type z, ZodError} from "zod";
 
 import {Button} from "@/components/ui/button";
 
@@ -31,6 +31,7 @@ import Stepper from "./Stepper";
 const STEPS = [
     "Car Purpose",
     "Vehicle Details",
+    "Features",
     "Pricing & Specs",
     "Media Upload",
 ];
@@ -43,6 +44,7 @@ const AddCarSheet: React.FC = () => {
     const [currentStep, setCurrentStep] = useState(0);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [stepCompleted, setStepCompleted] = useState<boolean[]>([
+        false,
         false,
         false,
         false,
@@ -60,7 +62,9 @@ const AddCarSheet: React.FC = () => {
         [user],
     );
 
-    const formMethods = useForm<z.infer<typeof insertCarSchema>>({
+    type FormData = z.infer<typeof insertCarSchema>;
+
+    const formMethods = useForm<FormData>({
         resolver: zodResolver(insertCarSchema),
         defaultValues,
         mode: "onChange",
@@ -71,11 +75,15 @@ const AddCarSheet: React.FC = () => {
         watch,
         setValue,
         trigger,
-        formState: {errors},
+        formState: {errors, isValid},
     } = formMethods;
     const carPurpose = watch("carPurpose" as const);
+    console.log("Errors", errors);
+    console.log("Values", formMethods.getValues());
+    console.log("Is Valid", formMethods.formState.isValid);
 
     useEffect(() => {
+        if (!carPurpose) return;
         const purposeMap = {
             rent: {isForRent: true, isForHire: false, isForDelivery: false},
             ride: {isForRent: false, isForHire: true, isForDelivery: false},
@@ -92,13 +100,13 @@ const AddCarSheet: React.FC = () => {
                 isForHire: boolean;
                 isForDelivery: boolean;
             });
-        setValue("isForRent", purpose.isForRent);
-        setValue("isForHire", purpose.isForHire);
-        setValue("isForDelivery", purpose.isForDelivery);
+        setValue("isForRent", purpose.isForRent, {shouldDirty: false});
+        setValue("isForHire", purpose.isForHire, {shouldDirty: false});
+        setValue("isForDelivery", purpose.isForDelivery, {shouldDirty: false});
     }, [carPurpose, setValue]);
 
     useEffect(() => {
-        setValue("images", files);
+        setValue("images", files, {shouldValidate: true});
     }, [files, setValue]);
 
     const validateStep = async (step: number): Promise<boolean> => {
@@ -116,33 +124,26 @@ const AddCarSheet: React.FC = () => {
                     "color",
                 ]);
             case 2:
-                if (carPurpose === "rent") {
-                    return await trigger([
-                        "pricePerDay",
-                        "fuelType",
-                        "bodyType",
-                        "transmission",
-                        "condition",
-                        "driveType",
-                        "doors",
-                        "cylinders",
-                        "engineSize",
-                    ]);
-                } else {
-                    return await trigger([
-                        "pricePerKm",
-                        "fuelType",
-                        "bodyType",
-                        "transmission",
-                        "condition",
-                        "driveType",
-                        "doors",
-                        "cylinders",
-                        "engineSize",
-                    ]);
-                }
-            case 3:
                 return true;
+            case 3:
+                const baseFields: Array<keyof z.infer<typeof insertCarSchema>> =
+                    [
+                        "fuelType",
+                        "bodyType",
+                        "transmission",
+                        "condition",
+                        "driveType",
+                        "doors",
+                        "cylinders",
+                        "engineSize",
+                    ];
+                if (carPurpose === "rent") {
+                    return await trigger(["pricePerDay", ...baseFields]);
+                } else {
+                    return await trigger(["pricePerKm", ...baseFields]);
+                }
+            case 4:
+                return await trigger("images");
             default:
                 return false;
         }
@@ -168,10 +169,19 @@ const AddCarSheet: React.FC = () => {
     };
 
     const onSubmit = async (data: z.infer<typeof insertCarSchema>) => {
-        console.log(data);
         try {
             setIsSubmitting(true);
-            await addCar.mutateAsync(data);
+
+            const filteredFeatures = Array.isArray(data.features)
+                ? data.features.filter(Boolean)
+                : [];
+            const carData = {
+                ...data,
+                features:
+                    filteredFeatures.length > 0 ? filteredFeatures : undefined,
+            };
+
+            await addCar.mutateAsync(carData);
             toast.success("Car added successfully!");
             onClose();
         } catch (error) {
@@ -188,7 +198,7 @@ const AddCarSheet: React.FC = () => {
     };
 
     return (
-        <Sheet open={true} onOpenChange={onClose}>
+        <Sheet open={isOpen} onOpenChange={onClose}>
             <SheetContent className="w-full sm:max-w-4xl">
                 <SheetHeader>
                     <SheetTitle>Add Car</SheetTitle>
@@ -203,15 +213,9 @@ const AddCarSheet: React.FC = () => {
                         currentStep={currentStep}
                         completedSteps={stepCompleted}
                     />
-                    <ScrollArea className="min-h-screen max-h-screen pb-28 pr-4 flex flex-col justify-center items-center">
+                    <ScrollArea className="pb-28 pr-4">
                         <form
-                            onSubmit={(e) => {
-                                e.preventDefault();
-                                console.dir(errors, {depth: null});
-                                return console.dir(formMethods.getValues(), {
-                                    depth: null,
-                                });
-                            }}
+                            onSubmit={handleSubmit(onSubmit)}
                             encType="multipart/form-data"
                             className="space-y-4"
                         >
@@ -260,7 +264,9 @@ const AddCarSheet: React.FC = () => {
                                         <Button
                                             type="submit"
                                             disabled={
-                                                isSubmitting || addCar.isPending
+                                                isSubmitting ||
+                                                addCar.isPending ||
+                                                !isValid
                                             }
                                         >
                                             {isSubmitting ||

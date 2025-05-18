@@ -40,7 +40,7 @@ export default function RootLayout({
               <NavbarPrimary />
               {children}
               <FooterMain />
-              <Toaster />
+              <Toaster richColors/>
             </QueryProvider>
           </ProgressProvider>
         </body>

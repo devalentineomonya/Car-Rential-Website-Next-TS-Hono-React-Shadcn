@@ -15,7 +15,7 @@ const Stepper: React.FC<StepperProps> = ({ steps, currentStep, completedSteps })
           <div key={index} className="flex flex-col items-center">
             <div
               className={cn(
-                "w-8 h-8 rounded-full flex items-center justify-center border-2 transition-all duration-200",
+                "w-7 h-7 rounded-full flex items-center justify-center border-2 transition-all duration-200 text-xs",
                 currentStep === index
                   ? "border-primary bg-primary text-primary-foreground"
                   : completedSteps[index]

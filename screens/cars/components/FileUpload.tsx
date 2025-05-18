@@ -43,7 +43,8 @@ const FileUpload: React.FC<FileUploadProps> = ({
     setFilePreviews((prev) => [...prev, ...newPreviews]);
   };
 
-  const handleUpload = async () => {
+  const handleUpload = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     try {
       const filesToUpload = filePreviews.map((preview) => preview.file);
       const response = await uploadImage.mutateAsync(filesToUpload);

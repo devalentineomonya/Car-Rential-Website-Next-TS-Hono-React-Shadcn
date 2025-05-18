@@ -1,12 +1,13 @@
-import { create } from "zustand";
+import {create} from "zustand";
 
-interface NewCarState {
-  isOpen: boolean;
-  onOpen: () => void;
-  onClose: () => void;
+interface newCarState {
+    isOpen: boolean;
+    onOpen: () => void;
+    onClose: () => void;
 }
-export const useNewCar = create<NewCarState>((set) => ({
+export const useNewCar = create<newCarState>()((set) => ({
   isOpen: false,
   onOpen: () => set({ isOpen: true }),
   onClose: () => set({ isOpen: false }),
 }));
+;

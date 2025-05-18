@@ -20,7 +20,8 @@ import {
 import {Textarea} from "@/components/ui/textarea";
 import {IoCarSportOutline} from "react-icons/io5";
 import {PiPackage} from "react-icons/pi";
-import {Car} from "lucide-react";
+import {Car, ListPlus} from "lucide-react";
+import FeatureInputList from "./FeatureInputList";
 
 const carPurposeOptions = [
     {label: "Ride", value: "ride", icon: <IoCarSportOutline size={24} />},
@@ -144,6 +145,16 @@ export const renderStepContent = ({
             );
         case 2:
             return (
+                <div className="space-y-4 max-w-2xl mx-auto">
+
+                                    <FeatureInputList
+                                     
+                                    />
+
+                </div>
+            );
+        case 3:
+            return (
                 <div className="space-y-6">
                     {/* Service-specific pricing */}
                     <div className="grid grid-cols-12 gap-4">
@@ -258,13 +269,10 @@ export const renderStepContent = ({
                     </div>
                 </div>
             );
-        case 3:
+        case 4:
             return (
                 <div className="grid grid-cols-12">
-                    <div className="col-span-12 space-y-2">
-                        <label className="block text-sm font-medium text-muted-foreground">
-                            Upload Images
-                        </label>
+                    <div className="col-span-11 space-y-2">
                         <FileUpload onFilesChange={setFiles} />
                     </div>
                 </div>
