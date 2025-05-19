@@ -110,33 +110,7 @@ const AddCarSheet: React.FC = () => {
         setValue("isForDelivery", purpose.isForDelivery);
     }, [carPurpose, setValue]);
 
-    useEffect(() => {
-        const values = formMethods.getValues();
-        try {
-            insertCarSchema.parse(values);
-            console.log("✅ All values valid");
-        } catch (e) {
-            if (e instanceof ZodError) {
-                console.log("❌ Zod errors:");
-                e.errors.forEach((err) => {
-                    console.log(
-                        `Field: ${err.path.join(".")} => ${err.message}`,
-                    );
-                });
-            }
-        }
-    }, [formMethods.watch()]);
 
-    useEffect(() => {
-        if (Object.keys(errors).length > 0) {
-            console.log("🔴 Validation Errors:");
-            Object.entries(
-                errors as Record<string, {message?: string}>,
-            ).forEach(([key, error]) => {
-                console.log(`Field: ${key} =>`, error?.message || error);
-            });
-        }
-    }, [errors]);
 
     useEffect(() => {
         setValue("images", files, {shouldValidate: true});
@@ -219,7 +193,7 @@ const AddCarSheet: React.FC = () => {
 
             const carData = {
                 ...data,
-                
+
                 features:
                     filteredFeatures.length > 0 ? filteredFeatures : undefined,
             };
@@ -240,9 +214,6 @@ const AddCarSheet: React.FC = () => {
         }
     };
 
-    console.log("Form State:", formMethods.formState);
-    console.log("Errors:", errors);
-    console.log("Is Valid:", isValid);
 
     return (
         <Sheet open={isOpen} onOpenChange={onClose}>
