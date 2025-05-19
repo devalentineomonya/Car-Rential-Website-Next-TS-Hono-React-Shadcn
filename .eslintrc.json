@@ -1,3 +1,4 @@
+
 {
   "env": {
     "browser": true,
@@ -11,20 +12,13 @@
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:import/typescript",
-    "plugin:unicorn/recommended",
-    "plugin:sonarjs/recommended",
-    "plugin:security/recommended",
     "plugin:eslint-comments/recommended",
     "plugin:promise/recommended",
-    "plugin:perfectionist/recommended-natural",
-    "plugin:jsdoc/recommended",
-    "plugin:regexp/recommended",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "prettier"
   ],
   "parser": "@typescript-eslint/parser",
-
   "parserOptions": {
     "project": "./tsconfig.json",
     "ecmaFeatures": {
@@ -36,14 +30,8 @@
   "plugins": [
     "@typescript-eslint",
     "import",
-    "unicorn",
-    "sonarjs",
-    "security",
     "eslint-comments",
     "promise",
-    "perfectionist",
-    "jsdoc",
-    "regexp",
     "react",
     "react-hooks"
   ],
@@ -65,34 +53,6 @@
     }],
     "@typescript-eslint/no-explicit-any": "error",
 
-    // Unicorn rules
-    "unicorn/filename-case": ["error", {
-      "cases": {
-        "camelCase": true,
-        "pascalCase": true
-      },
-      "ignore": ["\\.d\\.ts$", "^_.*"]
-    }],
-    "unicorn/no-null": "off",
-    "unicorn/prevent-abbreviations": ["error", {
-      "allowList": {
-        "props": true,
-        "ref": true,
-        "params": true,
-        "args": true,
-        "env": true,
-        "ctx": true,
-        "req": true,
-        "res": true,
-        "i18n": true,
-        "db": true,
-        "fn": true,
-        "id": true,
-        "api": true,
-        "ui": true
-      }
-    }],
-
     // Import rules
     "import/no-default-export": "off",
     "import/order": ["error", {
@@ -104,31 +64,14 @@
       }
     }],
 
-    // SonarJS rules
-    "sonarjs/cognitive-complexity": ["error", 15],
-    "sonarjs/no-duplicate-string": ["error", { "threshold": 5 }],
-
-    // Security rules
-    "security/detect-object-injection": "off",
-
     // Promise rules
-    "promise/catch-or-return": "error",
-
-    // Perfectionist rules
-    "perfectionist/sort-objects": ["error", {
-      "type": "natural",
-      "order": "asc"
-    }]
+    "promise/catch-or-return": "error"
   },
   "settings": {
     "react": {
       "version": "detect"
-    },
-    "import/resolver": {
-      "node": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
-      }
     }
+
   },
   "overrides": [
     {
@@ -140,8 +83,7 @@
     {
       "files": ["*.test.ts", "*.test.tsx", "*.spec.ts", "*.spec.tsx"],
       "rules": {
-        "max-lines-per-function": "off",
-        "sonarjs/no-duplicate-string": "off"
+        "max-lines-per-function": "off"
       }
     }
   ]
