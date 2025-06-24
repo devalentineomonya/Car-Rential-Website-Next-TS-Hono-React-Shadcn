@@ -1,3 +1,4 @@
+"use client"
 import {zodResolver} from "@hookform/resolvers/zod";
 import {Car} from "lucide-react";
 import React, {useEffect, useState} from "react";

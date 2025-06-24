@@ -12,6 +12,7 @@ export const useGetCar = (id?: string) => {
           id,
         },
       });
+      console.log( "Response json ",await response.json())
       if (!response.ok) {
         throw new Error("Failed to fetch car");
       }

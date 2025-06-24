@@ -85,7 +85,7 @@ const CarCard: React.FC<CarCardProps> = ({ car, orientation = "grid" }) => {
         </CardContent>
         <CardFooter className="p-3 flex-col item-start justify-center">
           <div className="w-full">
-            <h2 className="uppercase text-muted-foreground font-normal text-base">
+            <h2 className="uppercase text-muted-foreground font-normal text-base truncate" >
               {car.name}
             </h2>
             <div className="w-full flex items-center justify-between font-medium text-foreground text-lg">

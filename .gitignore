@@ -1,78 +1,247 @@
-# Created by https://www.toptal.com/developers/gitignore/api/nextjs,react,visualstudiocode,dotenv
-# Edit at https://www.toptal.com/developers/gitignore?templates=nextjs,react,visualstudiocode,dotenv
 
-### dotenv ###
+# Logs
+*.log
+# Temporary files
+*.tmp
+*~
+
+*.bak
+# Environment files (containing secrets, API keys, credentials)
 .env
-/drizzle
-### NextJS ###
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
+*.env
+.env.*
 
-# testing
-/coverage
+# Local configuration that shouldn't be shared
+*.local
 
-# next.js
-/.next/
-/out/
+### Node ###
+# Node.js dependency directory, logs, and environment files
 
-# production
-/build
+# Dependencies
+node_modules/
+jspm_packages/
+bower_components/
+web_modules/
 
-# misc
-.DS_Store
-*.pem
+# Logs
+logs
+*.log
+*.launch
+connect.lock/
 
-# debug
+libpeerconnection.log
+.history/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+lerna-debug.log*
 .pnpm-debug.log*
+# Diagnostic reports
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+# Runtime data
 
-# local env files
-.env*.local
+pids
+*.pid
+*.seed
+*.pid.lock
+# Environment
 
-# vercel
-.vercel
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+# Package management
 
-# typescript
+.npm
+package-lock.json
+yarn.lock
+.yarn-integrity
+.yarn/cache
+
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+# Coverage & Test
+
+coverage/
+lib-cov
+*.lcov
+.nyc_output
+# Build output
+
+dist/
+build/
+.next/
+out/
+.nuxt
+
+.output
+# Cache & Temporary
+.cache/
+.temp/
+.grunt
+
+.lock-wscript
+.fusebox/
+.dynamodb/
+.tern-port
+.vscode-test
+
+.node_repl_history
+.webpack/
+# TypeScript
 *.tsbuildinfo
-next-env.d.ts
+# Optional REPL history
 
-### react ###
-.DS_*
-*.log
-logs
-**/*.backup.*
-**/*.back.*
+.node_repl_history
+# Additional caches
+.eslintcache
+.stylelintcache
+.parcel-cache
 
-node_modules
-bower_components
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+# Misc
 
-*.sublime*
+*.tgz
+.serverless/
+.vuepress/dist
+.temp
+.docusaurus
 
-psd
-thumb
-sketch
+.svelte-kit
 
-### VisualStudioCode ###
+### Next_js ###
+# next_js specific files
+
+.next/
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+### Visual_studio ###
+# visual_studio editor specific files
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+
+*.sln.docstates
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+
+[Oo]bj/
+[Ll]og/
+.vs/
+*.VisualState.xml
+TestResult.xml
+
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+*.VisualState.xml
+*.psess
+*.vsp
+
+*.vspx
+*.sap
+ipch/
+*.aps
+*.ncb
+
+*.opendb
+*.opensdf
+*.sdf
+*.cachefile
+*.VC.db
+
+*.VC.VC.opendb
+*.coverage
+*.coveragexml
+_UpgradeReport_Files/
+Backup*/
+
+UpgradeLog*.XML
+UpgradeLog*.htm
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+
+[Ll]ogs/
+Generated\ Files/
+BenchmarkDotNet.Artifacts/
+ScaffoldingReadMe.txt
+StyleCopReport.xml
+
+*_wpftmp.csproj
+.axoCover/*
+!.axoCover/settings.json
+coverage*.json
+coverage*.xml
+
+coverage*.info
+.vshistory/
+healthchecksdb
+
+### Vscode ###
+# Visual Studio Code editor settings and workspace files
+
+# Visual Studio Code
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
+
 !.vscode/extensions.json
 !.vscode/*.code-snippets
-
-# Local History for Visual Studio Code
 .history/
-
-# Built Visual Studio Code Extensions
 *.vsix
-
-### VisualStudioCode Patch ###
-# Ignore all local history of files
-.history
 .ionide
 
-# End of https://www.toptal.com/developers/gitignore/api/nextjs,react,visualstudiocode,dotenv
+.vs/
+*.code-workspace
+.vscode-test
+.vscodeignore
+.vscode/chrome
+
+.vscode-server/
+.vscode/sftp.json
+.vscode/tags
+.devcontainer/
+
+### Pnpm ###
+# pnpm package manager specific files
+
+# PNPM
+pnpm-lock.yaml
+pnpm-workspace.yaml
+.pnpm/
+.pnpm-debug.log
+
+.pnpm-store/
+pnpm-lock.yaml.bak
+.pnpmfile.cjs
+node_modules/
+.pnpm-cache/
+
+### Typescript ###
+# typescript specific files
+
+*.tsbuildinfo
+node_modules/
+dist/
+ End of https://www.toptal.com/developers/gitignore/api/nextjs,react,visualstudiocode,dotenv

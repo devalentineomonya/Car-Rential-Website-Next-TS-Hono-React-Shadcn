@@ -2,8 +2,6 @@
     "name": "carhiringwebsite",
     "version": "0.1.0",
     "private": true,
- "packageManager": "pnpm@8.6.0",
- 
     "scripts": {
         "dev": "next dev --turbo",
         "build": "next build",
@@ -32,9 +30,9 @@
         ]
     },
     "dependencies": {
-        "@clerk/elements": "^0.23.18",
-        "@clerk/nextjs": "^6.18.0",
-        "@hono/clerk-auth": "^2.0.0",
+        "@clerk/elements": "^0.23.34",
+        "@clerk/nextjs": "^6.23.0",
+        "@hono/clerk-auth": "^3.0.0",
         "@hono/zod-validator": "^0.4.1",
         "@hookform/resolvers": "^3.9.1",
         "@neondatabase/serverless": "^0.10.3",
@@ -76,7 +74,7 @@
         "leaflet": "^1.9.4",
         "leaflet-defaulticon-compatibility": "^0.1.2",
         "lucide-react": "^0.445.0",
-        "next": "^14.2.20",
+        "next": "^15.3.4",
         "next-cloudinary": "^6.16.0",
         "next-nprogress-bar": "^2.3.15",
         "rc-image": "^7.11.0",

@@ -3,15 +3,12 @@
 import {useUser} from "@clerk/nextjs";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {ChevronLeft, ChevronRight} from "lucide-react";
-import type React from "react";
-import {useEffect, useState, useMemo} from "react";
+import React, {useEffect, useState, useMemo} from "react";
 import {useForm, FormProvider} from "react-hook-form";
-
 import {toast} from "sonner";
-import {type z, ZodError} from "zod";
+import {type z} from "zod";
 
 import {Button} from "@/components/ui/button";
-
 import {Icons} from "@/components/ui/icons";
 import {ScrollArea} from "@/components/ui/scroll-area";
 import {
@@ -44,21 +41,21 @@ const AddCarSheet: React.FC = () => {
     const [files, setFiles] = useState<string[]>([]);
     const [currentStep, setCurrentStep] = useState(0);
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [stepCompleted, setStepCompleted] = useState<boolean[]>([
-        false,
-        false,
-        false,
-        false,
-        false,
-    ]);
-    if (isLoaded && !user?.id) {
-        toast.error("User ID is missing. Please log in again.");
-        onClose();
-        return null;
-    }
+    const [stepCompleted, setStepCompleted] = useState<boolean[]>(
+        Array(STEPS.length).fill(false),
+    );
+
+    // Handle user state in useEffect
+    useEffect(() => {
+        if (isLoaded && !user?.id) {
+            toast.error("User ID is missing. Please log in again.");
+            onClose();
+        }
+    }, [isLoaded, user?.id, onClose]);
+
     const defaultValues = useMemo(
         () => ({
-            ownerId: user?.id ?? "default-id",
+            ownerId: user?.id ?? "",
             isForRent: false,
             isForHire: false,
             isForDelivery: false,
@@ -80,41 +77,30 @@ const AddCarSheet: React.FC = () => {
         watch,
         setValue,
         trigger,
-        formState: {errors, isValid},
+        formState: {isValid},
     } = formMethods;
+
     const carPurpose = watch("carPurpose" as const);
-    console.log("Errors", errors);
-    console.log("Values", formMethods.getValues());
-    console.log("Is Valid", formMethods.formState.isValid);
 
     useEffect(() => {
         if (!carPurpose) return;
+
         const purposeMap = {
             rent: {isForRent: true, isForHire: false, isForDelivery: false},
             ride: {isForRent: false, isForHire: true, isForDelivery: false},
-            deliver: {
-                isForRent: false,
-                isForHire: false,
-                isForDelivery: true,
-            } as const,
+            deliver: {isForRent: false, isForHire: false, isForDelivery: true},
         } as const;
+
         const purpose =
-            purposeMap[carPurpose as keyof typeof purposeMap] ??
-            (purposeMap.rent as {
-                isForRent: boolean;
-                isForHire: boolean;
-                isForDelivery: boolean;
-            });
+            purposeMap[carPurpose as keyof typeof purposeMap] ||
+            purposeMap.rent;
         setValue("isForRent", purpose.isForRent);
         setValue("isForHire", purpose.isForHire);
         setValue("isForDelivery", purpose.isForDelivery);
     }, [carPurpose, setValue]);
 
-
-
     useEffect(() => {
         setValue("images", files, {shouldValidate: true});
-        console.log({message: "Images added"});
     }, [files, setValue]);
 
     const validateStep = async (step: number): Promise<boolean> => {
@@ -145,11 +131,9 @@ const AddCarSheet: React.FC = () => {
                         "cylinders",
                         "engineSize",
                     ];
-                if (carPurpose === "rent") {
-                    return await trigger(["pricePerDay", ...baseFields]);
-                } else {
-                    return await trigger(["pricePerKm", ...baseFields]);
-                }
+                return carPurpose === "rent"
+                    ? await trigger(["pricePerDay", ...baseFields])
+                    : await trigger(["pricePerKm", ...baseFields]);
             case 4:
                 return await trigger("images");
             default:
@@ -160,10 +144,12 @@ const AddCarSheet: React.FC = () => {
     const handleNext = async () => {
         const isValid = await validateStep(currentStep);
 
-        if (isValid && currentStep != STEPS.length) {
-            const newCompleted = [...stepCompleted];
-            newCompleted[currentStep] = true;
-            setStepCompleted(newCompleted);
+        if (isValid) {
+            setStepCompleted((prev) =>
+                prev.map((completed, i) =>
+                    i === currentStep ? true : completed,
+                ),
+            );
             setCurrentStep((prev) => Math.min(prev + 1, STEPS.length - 1));
         } else {
             toast.error(
@@ -180,40 +166,36 @@ const AddCarSheet: React.FC = () => {
         try {
             setIsSubmitting(true);
 
-            const filteredFeatures = Array.isArray(data.features)
-                ? data.features.filter(Boolean)
-                : [];
-
-            // CLEAN UP conflicting price fields based on purpose
-            if (data.carPurpose === "rent") {
-                data.pricePerKm = undefined;
-            } else {
-                data.pricePerDay = undefined;
-            }
-
+            // Clean up conflicting price fields
             const carData = {
                 ...data,
-
-                features:
-                    filteredFeatures.length > 0 ? filteredFeatures : undefined,
+                features: Array.isArray(data.features)
+                    ? data.features.filter(Boolean)
+                    : undefined,
+                pricePerDay:
+                    data.carPurpose === "rent" ? data.pricePerDay : undefined,
+                pricePerKm:
+                    data.carPurpose !== "rent" ? data.pricePerKm : undefined,
             };
 
             await addCar.mutateAsync(carData);
             toast.success("Car added successfully!");
             onClose();
         } catch (error) {
-            const errorMessage =
-                error instanceof ZodError
-                    ? "Invalid form data."
-                    : error instanceof Error
-                      ? error.message
-                      : "Failed to add car.";
-            toast.error(errorMessage);
+            toast.error(
+                error instanceof Error
+                    ? error.message
+                    : "Failed to add car. Please try again.",
+            );
         } finally {
             setIsSubmitting(false);
         }
     };
 
+    // Don't render if user is not loaded or missing ID
+    if (!isLoaded || (isLoaded && !user?.id)) {
+        return null;
+    }
 
     return (
         <Sheet open={isOpen} onOpenChange={onClose}>
@@ -230,11 +212,10 @@ const AddCarSheet: React.FC = () => {
                     />
                 </SheetHeader>
 
-                <ScrollArea className="pb-28 pr-4 min-h-screen max-h-screen flex flex-col items-center justify-center">
+                <ScrollArea className="pb-28 pr-4 min-h-screen max-h-screen">
                     <FormProvider {...formMethods}>
                         <form
                             onSubmit={handleSubmit(onSubmit)}
-                            encType="multipart/form-data"
                             className="space-y-4"
                         >
                             <div className="min-h-[400px] transition-all duration-300 ease-in-out">
@@ -282,9 +263,7 @@ const AddCarSheet: React.FC = () => {
                                         <Button
                                             type="submit"
                                             disabled={
-                                                isSubmitting ||
-                                                addCar.isPending ||
-                                                !isValid
+                                                isSubmitting || addCar.isPending
                                             }
                                         >
                                             {isSubmitting ||

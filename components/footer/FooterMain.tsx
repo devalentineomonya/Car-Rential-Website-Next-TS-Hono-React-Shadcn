@@ -56,7 +56,7 @@ const FooterMain = () => {
         hideNavbarOrFooter && "hidden",
       )}
     >
-      <div className="container max-w-6xl px-4 py-12">
+      <div className="container max-w-7xl px-4 py-12">
         <div className="grid grid-cols-12 max-sm:gap-y-6">
           <FooterSection title="Solutions" items={footerLinks.company} />
           <FooterSection title="Support" items={footerLinks.vehicles} />

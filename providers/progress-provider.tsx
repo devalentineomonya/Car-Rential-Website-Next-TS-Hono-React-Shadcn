@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { AppProgressBar as ProgressBar } from "next-nprogress-bar";
 import { ReactNode } from "react";
 
-const ProgressProvider = ({ children }: { children: ReactNode }) => {
+export const ProgressProvider = ({ children }: { children: ReactNode }) => {
   const { user } = useUser();
   const pathname = usePathname();
 
@@ -26,5 +26,3 @@ const ProgressProvider = ({ children }: { children: ReactNode }) => {
     </>
   );
 };
-
-export default ProgressProvider;

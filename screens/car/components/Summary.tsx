@@ -3,7 +3,7 @@ import { BsFuelPump, BsWhatsapp } from "react-icons/bs";
 import { GiGearStickPattern, GiCarDoor, GiGearStick } from "react-icons/gi";
 import { IoCarSportOutline } from "react-icons/io5";
 import { PiFanLight } from "react-icons/pi";
-
+import {Cog } from "lucide-react"
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -13,40 +13,48 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+const iconsMap = [
+  {
+    label:"bodyType",
 
-const Summary = () => {
-  const carFeatures = [
-    {
-      icon: IoCarSportOutline,
-      label: "Hatchback",
-      value: "123",
-    },
-    {
-      icon: GiGearStickPattern,
-      label: "Transmission",
-      value: "123",
-    },
-    {
-      icon: BsFuelPump,
-      label: "Fuel Type",
-      value: "123",
-    },
-    {
-      icon: GiGearStick,
-      label: "Gears",
-      value: "123",
-    },
-    {
-      icon: GiCarDoor,
-      label: "Doors",
-      value: "123",
-    },
-    {
-      icon: PiFanLight,
-      label: "Air Condition",
-      value: "123",
-    },
-  ];
+    icon: IoCarSportOutline,
+  },
+  {
+label:"transmission",
+icon: GiGearStickPattern,
+  },
+  {
+    label:"fuelType",
+    icon: BsFuelPump,
+
+  },
+  {
+    label:"driveType",
+    icon: GiGearStick,
+
+  },
+  {
+    label:"doors",
+    icon: GiCarDoor,
+
+  },
+  {
+label:"engineSize",
+icon:Cog
+  }
+]
+interface FeatureItem {
+  label:string;
+  value:string;
+
+}
+interface CarSummaryProps {
+  carFeatures:FeatureItem[];
+  price:string;
+  isForRent:boolean
+
+}
+const Summary:React.FC<CarSummaryProps>= ({carFeatures, price, isForRent}) => {
 
   return (
     <Card className="max-h-fit">
@@ -54,7 +62,7 @@ const Summary = () => {
         <CardTitle>
           <div className="flex items-center gap-x-2">
             <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
-              Ke 2300
+              Kes {price}/{isForRent ? "day":"Km"}
             </h1>
             <span className="text-sm text-muted-foreground">/per hour</span>
           </div>
@@ -70,7 +78,12 @@ const Summary = () => {
                 className="flex-shrink-0 flex items-center justify-between gap-x-1 space-y-4 text-base font-medium text-muted-foreground"
               >
                 <label className="flex items-center gap-x-2">
-                  <feature.icon size={28} className="text-foreground" />
+
+                  {React.createElement(
+                    iconsMap.find((iconItem) => iconItem.label === feature.label)?.icon || "div",
+                    { size: 28, className: "text-foreground" }
+                  )}
+
                   <span>{feature.label}</span>
                 </label>
                 <div>{feature.value}</div>
