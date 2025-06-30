@@ -1,12 +1,6 @@
 import React from "react";
 import dynamic from "next/dynamic";
-const LocationMap = dynamic(
-  () => import("@/components/common/shared/LocationMap"),
-  {
-    ssr: false,
-  },
-);
-
+import DynamicLocationMap from "@/components/common/shared/DynamicLocationMap";
 import HeaderBanner from "@/components/common/shared/HeaderBanner";
 import Mission from "@/screens/about/widgets/Mission";
 import Network from "@/screens/about/widgets/Network";
@@ -19,7 +13,7 @@ const About = () => {
       <Mission />
       <Vision />
       <Network />
-      <LocationMap />
+      <DynamicLocationMap />
     </>
   );
 };

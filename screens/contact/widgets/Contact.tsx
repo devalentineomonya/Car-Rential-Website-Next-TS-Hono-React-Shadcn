@@ -1,12 +1,6 @@
 import dynamic from "next/dynamic";
 import React from "react";
-
-const LocationMap = dynamic(
-  () => import("@/components/common/shared/LocationMap"),
-  {
-    ssr: false,
-  },
-);
+import DynamicLocationMap from "@/components/common/shared/DynamicLocationMap";
 
 import MainLayout from "@/components/common/layouts/MainLayout";
 
@@ -25,7 +19,7 @@ const ContactWidget = () => {
         <ContactForm />
         <ContactSummary />
       </div>
-      <LocationMap />
+      <DynamicLocationMap />
     </MainLayout>
   );
 };
