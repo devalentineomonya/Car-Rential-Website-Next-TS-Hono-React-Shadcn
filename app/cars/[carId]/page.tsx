@@ -9,8 +9,9 @@ import CarInfo from "@/screens/car/widgets/CarInfo";
 import NoCarsFound from "@/components/common/error/NoCarsFound";
 import {useGetCar} from "@/features/cars/api/use-get-car";
 
-const Page = ({params}: {params: {carId: string}}) => {
-    const {data, isLoading, isFetching} = useGetCar(params.carId);
+const Page = async ({params}: {params: Promise<{carId: string}>}) => {
+    const {carId} = await params;
+    const {data, isLoading, isFetching} = useGetCar(carId);
 
     // Handle loading and fetching states
     if (isLoading) {
@@ -54,7 +55,7 @@ const Page = ({params}: {params: {carId: string}}) => {
                     </div>
 
                     <div className="flex-1 lg:pl-5">
-                        <CarInfo carData={data} />
+                        <CarInfo  />
                     </div>
                 </div>
             </MainLayout>
